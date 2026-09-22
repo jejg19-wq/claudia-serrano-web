@@ -19,8 +19,12 @@ window.SITE = {
 (function () {
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const html = document.documentElement;
+  const forceMotion = location.hash === '#intro';           // #intro fuerza la experiencia completa
+  const isStatic = /[?&]static=1/.test(location.search);      // ?static=1 = modo captura, sin animaciones
+  const reduced = !forceMotion && (window.matchMedia('(prefers-reduced-motion: reduce)').matches || isStatic);
+  if (!isStatic) html.classList.add('js'); else html.classList.add('is-static');
+  if (forceMotion) html.classList.add('force-motion');
 
   /* ---------- IDIOMA ---------- */
   const LANG_KEY = 'cs-lang';
@@ -74,19 +78,30 @@ window.SITE = {
   const INTRO_KEY = 'cs-intro-seen';
   let seen = false;
   try { seen = sessionStorage.getItem(INTRO_KEY) === '1'; } catch (e) {}
-  const forceIntro = location.hash === '#intro';
+  const forceIntro = forceMotion;
   function finishIntro() {
     if (!intro) return;
     intro.classList.add('is-leaving');
     try { sessionStorage.setItem(INTRO_KEY, '1'); } catch (e) {}
     document.body.classList.remove('is-locked');
     setTimeout(() => { document.body.classList.add('is-ready'); }, 250);
-    setTimeout(() => { intro.hidden = true; }, 1500);
+    setTimeout(() => { intro.hidden = true; scrollToHash(); }, 1500);
+  }
+  function scrollToHash() {
+    if (location.hash && location.hash !== '#intro') {
+      const t = document.querySelector(location.hash);
+      if (t) t.scrollIntoView({ block: 'start' });
+    }
   }
   if (intro && !reduced && (!seen || forceIntro)) {
     document.body.classList.add('is-locked');
-    requestAnimationFrame(() => intro.classList.add('is-playing'));
+    setTimeout(() => intro.classList.add('is-playing'), 40);
     const t = setTimeout(finishIntro, 3100);
+    const skip = $('.intro__skip', intro);
+    if (skip) skip.addEventListener('click', () => { clearTimeout(t); finishIntro(); });
+  } else if (intro && reduced && !isStatic && !seen) {
+    // Movimiento reducido: splash estático de marca, breve y sin animación
+    const t = setTimeout(finishIntro, 1400);
     const skip = $('.intro__skip', intro);
     if (skip) skip.addEventListener('click', () => { clearTimeout(t); finishIntro(); });
   } else {
@@ -101,7 +116,7 @@ window.SITE = {
     if (okDevice) {
       const start = () => {
         video.src = video.dataset.src;
-        video.addEventListener('canplay', () => video.classList.add('is-loaded'), { once: true });
+        video.addEventListener('canplay', () => { video.classList.add('is-loaded'); video.play().catch(() => {}); }, { once: true });
         video.addEventListener('error', () => video.remove(), { once: true });
         video.play().catch(() => {});
       };
@@ -154,6 +169,11 @@ window.SITE = {
   } else {
     $$('[data-reveal], [data-reveal-stagger]').forEach(el => el.classList.add('is-in'));
   }
+  // Red de seguridad: lo que ya está en pantalla se muestra aunque el observer no dispare (miniaturas, capturas)
+  const revealSafety = () => $$('[data-reveal]:not(.is-in), [data-reveal-stagger]:not(.is-in)').forEach(el => { if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('is-in'); });
+  setTimeout(revealSafety, 1200);
+  window.addEventListener('load', () => setTimeout(revealSafety, 400));
+  window.addEventListener('hashchange', () => setTimeout(revealSafety, 200));
 
   /* ---------- CONTADORES ---------- */
   const counters = $$('[data-count]');
