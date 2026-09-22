@@ -9,7 +9,7 @@ window.SITE = {
   brand: 'Claudia Serrano · Makeup Studio & Academy',
   whatsapp: '12107935636',            // WhatsApp de Claudia: +1 (210) 793-5636
   phoneDisplay: '(210) 793-5636',     // número visible
-  email: 'hola@claudiaserrano.studio',// ← correo real
+  email: 'claudiaserranoinfo@gmail.com', // correo de Claudia
   instagram: 'claudiasserrano',       // instagram.com/claudiasserrano
   tiktok: 'claudiasserrano',          // ← confirmar handle de TikTok
   city: 'San Antonio, TX',
@@ -93,13 +93,14 @@ window.SITE = {
       if (t) t.scrollIntoView({ block: 'start' });
     }
   }
-  if (intro && !reduced && (!seen || forceIntro)) {
+  const gated = html.classList.contains('gate-locked');
+  if (intro && !gated && !reduced && (!seen || forceIntro)) {
     document.body.classList.add('is-locked');
     setTimeout(() => intro.classList.add('is-playing'), 40);
     const t = setTimeout(finishIntro, 3100);
     const skip = $('.intro__skip', intro);
     if (skip) skip.addEventListener('click', () => { clearTimeout(t); finishIntro(); });
-  } else if (intro && reduced && !isStatic && !seen) {
+  } else if (intro && !gated && reduced && !isStatic && !seen) {
     // Movimiento reducido: splash estático de marca, breve y sin animación
     const t = setTimeout(finishIntro, 1400);
     const skip = $('.intro__skip', intro);

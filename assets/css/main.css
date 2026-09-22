@@ -846,3 +846,21 @@ html.is-static .nav.is-hidden { transform: none; }
   .service .bezel__core, .service--flip .bezel__core { grid-template-columns: 1fr; }
   .service__media { aspect-ratio: 4 / 3; order: 0 !important; }
 }
+
+/* ---------- Puerta de acceso del prototipo (clave) ---------- */
+html.gate-locked body > :not(.gate) { display: none !important; }
+html.gate-locked body { overflow: hidden; background: var(--black); }
+.gate { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; padding: 1.5rem; background: radial-gradient(circle at 50% 30%, rgba(212,175,55,0.12), transparent 55%), var(--black); color: var(--cream); font-family: var(--font-body); }
+.gate__card { width: min(420px, 100%); display: grid; gap: 0.9rem; justify-items: center; text-align: center; padding: clamp(1.6rem, 5vw, 2.6rem) clamp(1.2rem, 5vw, 2.2rem); border-radius: var(--r-xl); background: rgba(255,255,255,0.03); border: 1px solid rgba(212,175,55,0.35); box-shadow: 0 40px 100px -40px rgba(0,0,0,0.9), inset 0 1px 1px rgba(255,255,255,0.06); }
+.gate__mono { width: 84px; }
+.gate__sig { width: min(260px, 70%); }
+.gate__title { font-family: var(--font-display); font-size: 1.6rem; margin-top: 0.4rem; }
+.gate__text { color: var(--fg-muted); font-size: 0.92rem; }
+.gate__field { width: 100%; }
+.gate__field input { width: 100%; padding: 0.95rem 1rem; border-radius: 999px; border: 1px solid rgba(212,175,55,0.35); background: rgba(255,255,255,0.05); color: var(--cream); text-align: center; letter-spacing: 0.25em; font-size: 1rem; outline: none; }
+.gate__field input:focus { border-color: var(--gold); }
+.gate__btn { width: 100%; padding: 0.95rem 1rem; border-radius: 999px; background: linear-gradient(120deg, #e9cf6a, var(--gold) 40%, #c9a22f); color: var(--black); font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; font-size: 0.82rem; box-shadow: 0 10px 40px -12px rgba(212,175,55,0.6); }
+.gate__err { color: #e9a4a4; font-size: 0.85rem; }
+.gate__foot { font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fg-muted); margin-top: 0.4rem; }
+.gate.is-shaking .gate__card { animation: gate-shake 0.4s var(--ease-out); }
+@keyframes gate-shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }

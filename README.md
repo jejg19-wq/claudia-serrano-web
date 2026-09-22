@@ -14,7 +14,7 @@ Sitio estático bilingüe (ES/EN) para **Claudia Serrano**, maquilladora y estil
 | Hollywood Waves | $120 | `servicios.html#waves`, reserva en línea |
 | Cursos de maquillaje 1:1 (presencial u online) | desde $150 · Package 1 $300 · Package 2 $1,000 · Package 3 $1,500 | `academia.html#paquetes` |
 
-Datos de contacto reales: WhatsApp **+1 (210) 793-5636**, Instagram **@claudiasserrano**. Claudia atiende en español; la web está traducida al inglés solo para que las familias puedan leer servicios y precios.
+Datos de contacto reales: WhatsApp **+1 (210) 793-5636**, Instagram **@claudiasserrano**, correo **claudiaserranoinfo@gmail.com**. Claudia atiende en español; la web está traducida al inglés solo para que las familias puedan leer servicios y precios.
 
 ## Páginas
 
@@ -50,6 +50,10 @@ Diseño con el video generado del hero, la firma dorada, TAN Mon Cheri y los dat
 
 El manual indica **TAN Mon Cheri** (fuente comercial). El sitio usa una versión reconstruida desde el PDF de marca (`assets/fonts/tan-mon-cheri.woff2`) con acentos y ñ sintetizados, e Italiana como respaldo para los signos que no existen en ese subset (¿ ? ! $). Antes del lanzamiento, comprar la licencia web de TAN Mon Cheri y reemplazar el archivo; el CSS no cambia.
 
+## Clave de acceso del prototipo
+
+El sitio pide una clave antes de mostrarse (`assets/js/gate.js`): **claudia**. Se recuerda en cada dispositivo después de entrar una vez. Es una puerta de cortesía para compartir el prototipo, no seguridad real; para cambiar la clave o quitarla, ver los comentarios al inicio de `gate.js`.
+
 ## Cómo verlo
 
 ```bash
@@ -72,7 +76,7 @@ gh repo create claudia-serrano-web --public --source=. --push
 
 ## Qué cambiar antes de lanzar
 
-- **Correo real**: `hola@claudiaserrano.studio` es un marcador (`window.SITE` en `assets/js/main.js`). TikTok: confirmar el handle.
+- **TikTok**: confirmar el handle (`window.SITE` en `assets/js/main.js`). Correo ya real: claudiaserranoinfo@gmail.com.
 - **Cifras**: «+7 años de experiencia» y «+500 rostros» son marcadores (`data-count` en `index.html` y `sobre-mi.html`).
 - **Testimonios**: los tres de la portada están marcados como *[Ejemplo]*. Reemplazar por reseñas reales de Google.
 - **Políticas** (depósito 30 %, cancelación 48 h, viáticos fuera del Loop 1604 a $1/milla, prueba de novia cotizada): son propuestas basadas en la investigación; confirmar con Claudia.
