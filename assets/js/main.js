@@ -7,11 +7,11 @@
 /* ---------- CONFIGURACIÓN DEL SITIO (cambiar aquí, una sola vez) ---------- */
 window.SITE = {
   brand: 'Claudia Serrano · Makeup Studio & Academy',
-  whatsapp: '12100000000',            // ← número real en formato internacional sin "+" (ej. 12105551234)
-  phoneDisplay: '(210) 000-0000',     // ← número visible
+  whatsapp: '12107935636',            // WhatsApp de Claudia: +1 (210) 793-5636
+  phoneDisplay: '(210) 793-5636',     // número visible
   email: 'hola@claudiaserrano.studio',// ← correo real
-  instagram: 'claudiaserrano.makeup', // ← handle real
-  tiktok: 'claudiaserrano.makeup',
+  instagram: 'claudiasserrano',       // instagram.com/claudiasserrano
+  tiktok: 'claudiasserrano',          // ← confirmar handle de TikTok
   city: 'San Antonio, TX',
   bookingDeposit: 0.30                // 30% de depósito al reservar
 };
@@ -245,6 +245,11 @@ window.SITE = {
           ? ['Hi Claudia! I would like a quote:', 'Name: ' + data.nombre, 'Event: ' + (form.dataset.event || ''), 'Date: ' + data.fecha, 'Venue / area: ' + data.lugar, 'People: ' + data.personas, 'Contact: ' + data.contacto]
           : ['¡Hola Claudia! Quisiera una cotización:', 'Nombre: ' + data.nombre, 'Evento: ' + (form.dataset.event || ''), 'Fecha: ' + data.fecha, 'Lugar / zona: ' + data.lugar, 'Personas: ' + data.personas, 'Contacto: ' + data.contacto];
         msg = lines.join('\n');
+      } else if (kind === 'academy') {
+        const L = lang === 'en';
+        msg = [L ? 'Hi Claudia! I want to enroll in the makeup classes.' : '¡Hola Claudia! Quiero inscribirme en los cursos de maquillaje.',
+          (L ? 'Name: ' : 'Nombre: ') + data.nombre, (L ? 'Package: ' : 'Paquete: ') + data.paquete,
+          (L ? 'Format: ' : 'Modalidad: ') + data.modalidad, (L ? 'Contact: ' : 'Contacto: ') + data.contacto].join(String.fromCharCode(10));
       } else if (kind === 'contact') {
         msg = (lang === 'en' ? 'Hi Claudia! ' : '¡Hola Claudia! ') + (data.nombre ? data.nombre + ' — ' : '') + (data.mensaje || '');
       }

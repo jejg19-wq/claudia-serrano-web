@@ -4,6 +4,15 @@
    Tipografía: Italiana (sustituto web de TAN Mon Cheri) · Cormorant (acentos) · Open Sans (cuerpo, según manual)
    ============================================================ */
 
+/* Tipografía de marca: TAN Mon Cheri (reconstruida del PDF de marca; acentos y ñ sintetizados) */
+@font-face {
+  font-family: 'TAN Mon Cheri';
+  src: url('../fonts/tan-mon-cheri.woff2') format('woff2'), url('../fonts/tan-mon-cheri.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* Paleta oficial (PDF de marca) */
   --black: #000000;
@@ -27,15 +36,15 @@
   --gold-text: linear-gradient(110deg, #f6e7a8 0%, #d4af37 45%, #b8922e 70%, #f1dd8f 100%);
 
   /* Tipografía */
-  --font-display: 'Italiana', 'TAN Mon Cheri', 'Cormorant Garamond', serif;
-  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-display: 'TAN Mon Cheri', 'Italiana', Georgia, serif;
+  --font-serif: 'TAN Mon Cheri', 'Italiana', Georgia, serif;
   --font-body: 'Open Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   /* Escala fluida */
-  --fs-hero: clamp(2.9rem, 8vw, 7.2rem);
-  --fs-1: clamp(2.4rem, 5.6vw, 4.8rem);
-  --fs-2: clamp(1.9rem, 3.8vw, 3.2rem);
-  --fs-3: clamp(1.4rem, 2.2vw, 1.9rem);
+  --fs-hero: clamp(2.25rem, 7vw, 6.4rem);
+  --fs-1: clamp(2.2rem, 5vw, 4.3rem);
+  --fs-2: clamp(1.75rem, 3.4vw, 2.9rem);
+  --fs-3: clamp(1.3rem, 2vw, 1.75rem);
   --fs-body: clamp(0.98rem, 1.05vw, 1.08rem);
   --fs-small: 0.84rem;
   --fs-micro: 0.68rem;
@@ -101,8 +110,8 @@ body::after {
 .display, .h1, .h2, .h3 {
   font-family: var(--font-display);
   font-weight: 400;
-  line-height: 1.02;
-  letter-spacing: 0.005em;
+  line-height: 1.06;
+  letter-spacing: 0.01em;
   text-wrap: balance;
 }
 .display { font-size: var(--fs-hero); }
@@ -110,11 +119,12 @@ body::after {
 .h2 { font-size: var(--fs-2); }
 .h3 { font-size: var(--fs-3); line-height: 1.15; }
 .h1 em, .h2 em, .display em, .h3 em {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 300;
-  letter-spacing: 0;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 400;
+  color: var(--gold);
 }
+.section--cream .h1 em, .section--cream .h2 em, .section--cream .h3 em, .section--sand .h1 em, .section--sand .h2 em, .section--sand .h3 em { color: var(--gold-deep); }
 .gold-text {
   background: var(--gold-text);
   -webkit-background-clip: text;
@@ -140,7 +150,7 @@ body::after {
 .muted { color: var(--fg-muted); }
 .small { font-size: var(--fs-small); }
 .micro { font-size: var(--fs-micro); letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600; }
-.serif-italic { font-family: var(--font-serif); font-style: italic; font-weight: 300; }
+.serif-italic { font-family: var(--font-body); font-style: italic; font-weight: 300; }
 .measure { max-width: 62ch; }
 .center { text-align: center; }
 .center .lede { margin-inline: auto; }
@@ -413,7 +423,7 @@ body::after {
   max-width: 100%;
 }
 .hero__title { max-width: 13ch; }
-.hero__title .line { display: block; overflow: hidden; }
+.hero__title .line { display: block; overflow: hidden; padding: 0.16em 0.08em 0.05em; margin: -0.16em -0.08em -0.05em; }
 .hero__title .line > span { display: block; transition: transform 1.3s var(--ease-expo); }
 html.js:not(.is-static) .hero__title .line > span { transform: translateY(110%); }
 .is-ready .hero__title .line > span { transform: translateY(0); }
@@ -544,8 +554,8 @@ html.js:not(.is-static) .hero__fade { opacity: 0; transform: translateY(24px); }
 .quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 2vw, 1.6rem); }
 .quote { --bz-r: var(--r-lg); }
 .quote .bezel__core { padding: clamp(1.5rem, 2.6vw, 2.2rem); display: grid; gap: 1.2rem; height: 100%; }
-.quote__mark { font-family: var(--font-serif); font-size: 4rem; line-height: 0.5; color: var(--gold); height: 1.4rem; }
-.quote p { font-family: var(--font-serif); font-size: 1.25rem; font-style: italic; line-height: 1.5; font-weight: 300; }
+.quote__mark { font-family: var(--font-display); font-size: 3.4rem; line-height: 0.5; color: var(--gold); height: 1.4rem; }
+.quote p { font-family: var(--font-body); font-size: 1.02rem; font-style: italic; line-height: 1.6; font-weight: 300; }
 .quote footer { display: grid; gap: 0.15rem; font-size: var(--fs-small); }
 .quote footer b { font-weight: 600; letter-spacing: 0.06em; }
 .quote footer span { color: var(--fg-muted); }
@@ -576,7 +586,7 @@ html.js:not(.is-static) .hero__fade { opacity: 0; transform: translateY(24px); }
 .accordion details { border-bottom: 1px solid var(--hairline-soft); }
 .accordion summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.35rem 0; font-family: var(--font-display); font-size: 1.35rem; }
 .accordion summary::-webkit-details-marker { display: none; }
-.accordion summary::after { content: '+'; font-family: var(--font-serif); font-size: 1.8rem; color: var(--gold); transition: transform 0.5s var(--ease-expo); flex: 0 0 auto; }
+.accordion summary::after { content: '+'; font-family: var(--font-body); font-weight: 300; font-size: 1.8rem; color: var(--gold); transition: transform 0.5s var(--ease-expo); flex: 0 0 auto; }
 .accordion details[open] summary::after { transform: rotate(45deg); }
 .accordion .acc__body { padding: 0 0 1.5rem; color: var(--fg-muted); max-width: 70ch; }
 
@@ -809,3 +819,30 @@ html.is-static .page-hero { min-height: 640px; }
 html.is-static .page-hero--tall { min-height: 760px; }
 html.is-static .marquee__track, html.is-static .hero__still, html.is-static .parallax-img, html.is-static .scroll-hint i { animation: none !important; }
 html.is-static .nav.is-hidden { transform: none; }
+
+/* ---------- Tarjetas de servicio con foto (catálogo real) ---------- */
+.service { --bz-r: var(--r-xl); }
+.service .bezel__core { display: grid; grid-template-columns: 0.9fr 1.1fr; min-height: 420px; }
+.service__media { position: relative; overflow: hidden; }
+.service__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; transition: transform 1.2s var(--ease-soft); }
+@media (hover: hover) { .service:hover .service__media img { transform: scale(1.04); } }
+.service__body { padding: clamp(1.5rem, 3vw, 2.6rem); display: grid; gap: 1rem; align-content: center; }
+.service__head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+.service__price { font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.6rem); color: var(--gold); line-height: 1; white-space: nowrap; }
+.service__price small { font-family: var(--font-body); font-size: var(--fs-micro); letter-spacing: 0.2em; text-transform: uppercase; color: var(--fg-muted); display: block; margin-bottom: 0.3rem; }
+.service--flip .bezel__core { grid-template-columns: 1.1fr 0.9fr; }
+.service--flip .service__media { order: 2; }
+.thumbs { display: flex; gap: 0.5rem; }
+.thumbs img { width: 3.6rem; height: 3.6rem; object-fit: cover; border-radius: 0.8rem; border: 1px solid var(--hairline); }
+.aula-gate { max-width: 520px; margin-inline: auto; }
+.lesson { --bz-r: var(--r-lg); }
+.lesson .bezel__core { display: grid; grid-template-columns: 1fr; gap: 0; }
+.lesson video { width: 100%; aspect-ratio: 16 / 9; background: #000; display: block; }
+.lesson__body { padding: 1.2rem 1.4rem; display: grid; gap: 0.35rem; }
+.lesson__body b { font-family: var(--font-display); font-size: 1.25rem; font-weight: 400; }
+.lesson__body span { color: var(--fg-muted); font-size: var(--fs-small); }
+.lesson__empty { padding: 2rem; text-align: center; color: var(--fg-muted); border: 1px dashed var(--hairline); border-radius: var(--r-lg); }
+@media (max-width: 768px) {
+  .service .bezel__core, .service--flip .bezel__core { grid-template-columns: 1fr; }
+  .service__media { aspect-ratio: 4 / 3; order: 0 !important; }
+}

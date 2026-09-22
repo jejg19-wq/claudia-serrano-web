@@ -1,86 +1,97 @@
 # Claudia Serrano · Makeup Studio & Academy — sitio web (prototipo)
 
-Sitio estático bilingüe (ES/EN) para **Claudia Serrano**, maquilladora profesional venezolana radicada en San Antonio, Texas. Construido a partir del manual de marca (paleta negro · oro · nude, tipografía TAN Mon Cheri + Open Sans) y de las dos investigaciones de lanzamiento (mercado, nichos, precios, sitemap, academia, legal).
+Sitio estático bilingüe (ES/EN) para **Claudia Serrano**, maquilladora y estilista profesional venezolana radicada en San Antonio, Texas. Construido con el manual de marca (paleta negro · oro · nude, tipografía **TAN Mon Cheri** + Open Sans), el catálogo real de servicios y precios, el flyer de cursos y las dos investigaciones de lanzamiento.
 
-**Estado:** prototipo listo para presentar a Claudia. Sin backend: los formularios abren WhatsApp con el mensaje redactado y la reserva funciona de punta a punta en el navegador (con depósito simulado).
+**Estado:** prototipo listo para presentar a Claudia. Sin backend: los formularios abren WhatsApp con el mensaje redactado, la reserva funciona de punta a punta en el navegador (con depósito simulado) y el aula virtual valida el código en el navegador.
+
+## Servicios y precios (catálogo real de Claudia)
+
+| Servicio | Precio | Dónde está |
+|---|---|---|
+| Bride Makeup & Hair (novia: maquillaje + peinado) | desde $350 | `bodas.html`, `servicios.html#novias` |
+| Full Glam Signature Look | $150 | `servicios.html#fullglam`, reserva en línea |
+| Full Glam + Peinado (no novias) | $230 | `servicios.html#glam-peinado`, reserva en línea |
+| Hollywood Waves | $120 | `servicios.html#waves`, reserva en línea |
+| Cursos de maquillaje 1:1 (presencial u online) | desde $150 · Package 1 $300 · Package 2 $1,000 · Package 3 $1,500 | `academia.html#paquetes` |
+
+Datos de contacto reales: WhatsApp **+1 (210) 793-5636**, Instagram **@claudiasserrano**. Claudia atiende en español; la web está traducida al inglés solo para que las familias puedan leer servicios y precios.
 
 ## Páginas
 
 | Archivo | Qué contiene |
 |---|---|
-| `index.html` | Intro cinematográfica (monograma + firma), hero con video, presentación «La Nueva Era», bento de servicios con precios, look firma «El Glow Serrano», portafolio destacado, academia, proceso, testimonios (de muestra), CTA |
-| `servicios.html` | Tabla completa de precios por nicho (quinceañeras, novias, citas individuales, clases y extras), qué incluye, políticas |
-| `bodas.html` | Landing nupcial: proceso, paquetes desde $175, tendencias 2026, formulario de cotización de 5 campos, FAQ |
-| `quinceaneras.html` | Landing de quinceañeras (español primero): paquete «Quince Completa» $495, cronograma de belleza, galería glam latino, formulario de 5 campos, FAQ para mamás |
-| `academia.html` | Funnel: masterclass gratuita (captura de email) → catálogo con pestañas **Online / Presencial** → para quién → certificado, garantía, plan de pagos y lista de espera |
-| `portafolio.html` | Galería tipo revista con filtros y lightbox; sección «antes/después» reservada para el model call |
-| `sobre-mi.html` | Historia (Venezuela → Texas, esposo y dos hijos), filosofía, monograma, formación y kit |
-| `reservar.html` | Reserva instantánea en 5 pasos: servicio → calendario y horarios → datos → depósito 30 % → confirmación con archivo `.ics` y WhatsApp |
-| `contacto.html` | Tarjetas de contacto, formulario, zona de servicio, horario, FAQ general y textos legales (borrador) |
+| `index.html` | Intro cinematográfica (monograma + firma), hero con video, presentación, bento de servicios con precios reales, look firma «Full Glam Serrano», portafolio con clientas reales, academia, proceso, testimonios (de muestra), CTA |
+| `servicios.html` | Tarjetas con foto real de cada servicio, precio, qué incluye y botón de reserva; políticas |
+| `bodas.html` | Landing de novias: proceso, Novia desde $350, cortejo con precios publicados, formulario de 5 campos, FAQ |
+| `quinceaneras.html` | Landing de quinceañeras: menú para ella y para mamá/damas, cronograma de belleza, galería, formulario, FAQ |
+| `academia.html` | Makeup Class 1:1: tres paquetes del flyer, cómo funcionan, aula virtual, certificado, formulario de inscripción |
+| `aula/index.html` | **Aula virtual** con código de acceso: videos de las lecciones, guías y certificado (ver abajo) |
+| `portafolio.html` | Galería con filtros (novias, full glam, peinados, editorial) y lightbox, con las fotos del catálogo |
+| `sobre-mi.html` | Historia (Venezuela → Texas, esposo y dos hijos), filosofía, monograma |
+| `reservar.html` | Reserva instantánea en 5 pasos: servicio → calendario → datos → depósito 30 % → confirmación con `.ics` y WhatsApp |
+| `contacto.html` | Contacto, formulario, zona de servicio, horario, FAQ y textos legales (borrador) |
+
+## Aula virtual (videos para alumnas que pagan)
+
+- Carpeta de videos: **`aula/videos/`** (instrucciones en `aula/videos/README.md`).
+- Lista de lecciones y códigos de acceso: `aula/lecciones.js`. Cada lección puede ser un archivo MP4 local o un video no listado de YouTube/Vimeo.
+- Guías PDF: `aula/guias/`.
+- Código de demostración: `SERRANO2026`. En producción, sustituir por una plataforma de cursos (Squarespace Courses, Thinkific, Kajabi) o un login con servidor: el código en el navegador no es seguridad real.
+
+## Banners (carpeta `banner/`)
+
+Diseño con el video generado del hero, la firma dorada, TAN Mon Cheri y los datos reales. En español y en inglés (`-en`):
+
+- `banner-video-1920x1080.mp4` — video 10 s (ida y vuelta) para web, Facebook, YouTube, pantallas.
+- `banner-story-1080x1920.mp4` — video vertical para historias y reels.
+- `banner-1920x1080.jpg`, `banner-1200x628.jpg` (portada/anuncios), `banner-post-1080x1350.jpg` (post IG), `banner-story-1080x1920.jpg`.
+
+## Tipografía de marca
+
+El manual indica **TAN Mon Cheri** (fuente comercial). El sitio usa una versión reconstruida desde el PDF de marca (`assets/fonts/tan-mon-cheri.woff2`) con acentos y ñ sintetizados, e Italiana como respaldo para los signos que no existen en ese subset (¿ ? ! $). Antes del lanzamiento, comprar la licencia web de TAN Mon Cheri y reemplazar el archivo; el CSS no cambia.
 
 ## Cómo verlo
-
-Abrir `index.html` directamente funciona, pero para que todo cargue igual que en producción:
 
 ```bash
 python -m http.server 8765
 ```
 
-y visitar `http://localhost:8765`. Para volver a ver la intro (solo se muestra una vez por sesión): `index.html#intro`.
+y visitar `http://localhost:8765`. Para volver a ver la intro (solo se muestra una vez por sesión): `index.html#intro`. Si el equipo tiene activado «reducir movimiento» en Windows, `#intro` también fuerza el video y las animaciones.
 
 ## Publicar en GitHub Pages
 
-1. Crear el repositorio público y subir esta carpeta (el `.gitignore` ya excluye las fotos originales y el PDF).
+1. Crear el repositorio público y subir esta carpeta (el `.gitignore` ya excluye las fotos originales, el PDF y las carpetas `catalogo/` y `cursos/`).
 2. En **Settings → Pages**: *Deploy from a branch* → `main` → `/ (root)`.
-3. El sitio queda en `https://<usuario>.github.io/<repo>/`.
 
 Con GitHub CLI, desde esta carpeta:
 
 ```bash
 gh auth login
 gh repo create claudia-serrano-web --public --source=. --push
-gh api -X POST repos/{owner}/claudia-serrano-web/pages -f "source[branch]=main" -f "source[path]=/"
 ```
 
-## Qué cambiar antes de lanzar (checklist para Jackson y Claudia)
+## Qué cambiar antes de lanzar
 
-**Datos reales** — todo está centralizado en `assets/js/main.js` (`window.SITE`): número de WhatsApp, teléfono visible, correo, Instagram, TikTok.
-
-**Cifras a confirmar con Claudia** — «+7 años de experiencia» y «+500 rostros» son marcadores; cambiarlos en `index.html` y `sobre-mi.html` (`data-count`).
-
-**Testimonios** — los tres de la portada están marcados como *[Ejemplo]*. Reemplazar por reseñas reales de Google después del model call (la FTC Rule on Reviews prohíbe reseñas ficticias).
-
-**Precios** — son los sugeridos por la investigación (por encima del promedio local, dentro del rango nacional). Ajustar en `servicios.html`, `bodas.html`, `quinceaneras.html`, `academia.html` y en `SERVICES` dentro de `assets/js/booking.js`.
-
-**Fotos de portafolio** — hoy son las fotos de estudio de Claudia. Las fotos de clientas se añaden solo con consentimiento firmado (parental para menores).
-
-**Integraciones de producción**
-- Reserva y depósito: Acuity / Square / GlossGenius (reemplaza `booking.js`) con Stripe para tarjeta y Apple Pay; Zelle/Venmo como alternativa.
-- Formularios de boda/quince: HoneyBook o Dubsado (propuesta + contrato + retainer) y autoresponder bilingüe en menos de una hora.
-- Masterclass y lista de espera: Flodesk / Mailchimp.
-- Cursos: Squarespace Courses, Thinkific o Kajabi.
-- Analítica: GA4 + Search Console + Meta Pixel, con aviso de cookies.
-
-**Legal** — los textos de privacidad, términos, cancelación, academia y FTC en `contacto.html#legal` son borradores para revisión de abogado. El certificado de la academia no es acreditación estatal (TDLR).
-
-**Tipografía** — el manual indica *TAN Mon Cheri* (fuente comercial). El sitio usa **Italiana** (Google Fonts) como sustituto visual; si se compra la licencia, cargar el `.woff2` y cambiar `--font-display` en `assets/css/main.css`.
+- **Correo real**: `hola@claudiaserrano.studio` es un marcador (`window.SITE` en `assets/js/main.js`). TikTok: confirmar el handle.
+- **Cifras**: «+7 años de experiencia» y «+500 rostros» son marcadores (`data-count` en `index.html` y `sobre-mi.html`).
+- **Testimonios**: los tres de la portada están marcados como *[Ejemplo]*. Reemplazar por reseñas reales de Google.
+- **Políticas** (depósito 30 %, cancelación 48 h, viáticos fuera del Loop 1604 a $1/milla, prueba de novia cotizada): son propuestas basadas en la investigación; confirmar con Claudia.
+- **Integraciones**: reserva y depósito con Acuity / Square / GlossGenius + Stripe; formularios con HoneyBook o Dubsado; cursos con Squarespace Courses, Thinkific o Kajabi; GA4 + Search Console + Meta Pixel con aviso de cookies.
+- **Legal**: los textos de `contacto.html#legal` son borradores para revisión de abogado.
 
 ## Estructura técnica
 
 ```
-├── index.html … contacto.html     páginas estáticas
-├── assets/css/main.css            sistema de diseño (tokens de marca, componentes, motion, responsive, reduced-motion)
-├── assets/js/main.js              intro, nav flotante, reveals, idioma ES/EN, formularios → WhatsApp, galería, pestañas
-├── assets/js/booking.js           flujo de reserva (calendario, horarios, depósito, .ics)
-├── assets/img/                    fotos optimizadas en WebP (xl 1400 px · md 900 px · sm 520 px · recorte 4:5 · hero 16:9)
-├── assets/logo/                   firma SVG (oro/blanco/negro), monograma CS, favicon, apple-touch-icon
-└── assets/video/hero.mp4          loop del hero (generado a partir de una foto de Claudia)
+├── index.html … contacto.html      páginas estáticas
+├── aula/                            aula virtual (index.html, aula.js, lecciones.js, videos/, guias/)
+├── banner/                          banners de marca (video y estáticos, ES y EN)
+├── assets/css/main.css              sistema de diseño (tokens de marca, componentes, motion, responsive, reduced-motion)
+├── assets/js/main.js                intro, nav, reveals, idioma ES/EN, formularios → WhatsApp, galería, pestañas
+├── assets/js/booking.js             flujo de reserva con los servicios reales
+├── assets/fonts/                    TAN Mon Cheri reconstruida (woff2 + ttf)
+├── assets/img/                      fotos de Claudia (WebP) · assets/img/catalogo/ fotos reales de clientas por servicio
+├── assets/logo/                     firma SVG, monograma CS, favicon
+└── assets/video/                    hero.mp4 / hero.webm (16:9) y hero-vertical.mp4 (9:16), generados de una foto de Claudia
 ```
 
-**Bilingüe:** cada texto lleva su traducción en el atributo `data-en`; el botón ES/EN del menú alterna sin recargar y recuerda la elección. Para producción con SEO real, migrar a rutas `/es/` + `hreflang` como indica la investigación.
-
-**Rendimiento y accesibilidad:** `100dvh`, WebP, `loading="lazy"`, video solo en escritorio y nunca con *save-data*, `prefers-reduced-motion` respetado (sin intro ni animaciones), foco visible, contraste AA en texto, navegación por teclado en menú y acordeones.
-
-## Créditos
-
-Diseño y desarrollo del prototipo: Jackson · Identidad de marca: manual «Claudia Serrano · Brand Identity» (13-01-2026).
+**Bilingüe:** cada texto lleva su traducción en `data-en`; el botón ES/EN alterna sin recargar. **Rendimiento y accesibilidad:** `100dvh`, WebP, `loading="lazy"`, video solo en escritorio, `prefers-reduced-motion` respetado, foco visible, navegación por teclado.

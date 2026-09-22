@@ -14,7 +14,7 @@
     es: {
       months: ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'],
       dows: ['L','M','X','J','V','S','D'],
-      studio: 'En estudio', home: 'A domicilio', min: 'min',
+      studio: 'Estudio o a domicilio', home: 'A domicilio', flex: 'Estudio o a domicilio · San Antonio', min: 'min',
       pick: 'Elige un día para ver horarios', none: 'Sin horarios disponibles ese día — prueba otro',
       closed: 'Cerrado los lunes', deposit: 'Depósito (30 %)', balance: 'Saldo el día de la cita',
       service: 'Servicio', date: 'Fecha', time: 'Hora', where: 'Lugar', total: 'Total',
@@ -26,7 +26,7 @@
     en: {
       months: ['January','February','March','April','May','June','July','August','September','October','November','December'],
       dows: ['M','T','W','T','F','S','S'],
-      studio: 'At the studio', home: 'On location', min: 'min',
+      studio: 'Studio or on location', home: 'On location', flex: 'Studio or on location · San Antonio', min: 'min',
       pick: 'Pick a day to see available times', none: 'No times available that day — try another',
       closed: 'Closed on Mondays', deposit: 'Deposit (30%)', balance: 'Balance due on the day',
       service: 'Service', date: 'Date', time: 'Time', where: 'Where', total: 'Total',
@@ -39,12 +39,10 @@
   const L = () => T[(window.CS_lang && CS_lang()) || 'es'];
 
   const SERVICES = [
-    { id: 'glam-estudio', es: 'Sesión glam · estudio', en: 'Glam session · studio', price: 110, dur: 75, where: 'studio', descEs: 'Evento, gala, foto o cita especial. Incluye pestañas y kit de retoque.', descEn: 'Event, gala, photo shoot or special date. Lashes and touch-up kit included.' },
-    { id: 'glam-domicilio', es: 'Sesión glam · a domicilio', en: 'Glam session · on location', price: 135, dur: 90, where: 'home', descEs: 'Llego a tu casa u hotel dentro del Loop 1604. Fuera: $1 por milla.', descEn: 'I come to your home or hotel inside Loop 1604. Outside: $1 per mile.' },
-    { id: 'clase-1a1', es: 'Clase 1:1 de automaquillaje', en: '1:1 self-makeup class', price: 175, dur: 90, where: 'studio', descEs: '90 minutos, tu rostro y tus productos. Te llevas tu rutina paso a paso.', descEn: '90 minutes, your face and your products. Leave with your step-by-step routine.' },
-    { id: 'trial-novia', es: 'Prueba de novia', en: 'Bridal trial', price: 110, dur: 120, where: 'studio', descEs: 'Diseñamos tu soft glam nupcial. Se descuenta 50 % si reservas tu boda.', descEn: 'We design your bridal soft glam. 50% credited when you book your wedding.' },
-    { id: 'trial-quince', es: 'Prueba de quinceañera', en: 'Quinceañera trial', price: 95, dur: 105, where: 'studio', descEs: 'Ensayo completo 2–4 semanas antes. Mamá bienvenida.', descEn: 'Full rehearsal 2–4 weeks before. Mom welcome.' },
-    { id: 'retoque', es: 'Retoque exprés', en: 'Express touch-up', price: 60, dur: 40, where: 'studio', descEs: 'Piel, ojos y labios en 40 minutos para una cita o foto de último momento.', descEn: 'Skin, eyes and lips in 40 minutes for a last-minute date or photo.' }
+    { id: 'fullglam', es: 'Full Glam Signature Look', en: 'Full Glam Signature Look', price: 150, dur: 90, where: 'flex', descEs: 'Mi maquillaje más pedido: full glam, full face. Incluye pestañas y preparación de piel.', descEn: 'My most requested look: full glam, full face. Lashes and skin prep included.' },
+    { id: 'glam-peinado', es: 'Full Glam + Peinado', en: 'Full Glam + Hairstyling', price: 230, dur: 150, where: 'flex', descEs: 'Maquillaje completo y peinado para quinceañeras, madrinas, graduaciones y eventos (no novias).', descEn: 'Full makeup and hairstyling for quinceañeras, madrinas, graduations and events (not brides).' },
+    { id: 'waves', es: 'Hollywood Waves', en: 'Hollywood Waves', price: 120, dur: 60, where: 'flex', descEs: 'Ondas de alfombra roja que aguantan fotos, baile y abrazos.', descEn: 'Red-carpet waves that survive photos, dancing and hugs.' },
+    { id: 'clase', es: 'Clase de maquillaje 1:1', en: '1:1 makeup class', price: 150, dur: 210, where: 'flex', descEs: 'Una clase personalizada (3.5 h), presencial u online. Paquetes de 2, 4 y 5 clases en la academia.', descEn: 'One personalized class (3.5 h), in person or online. 2, 4 and 5-class packages in the academy.' }
   ];
   const SLOTS = ['09:00', '10:30', '12:00', '13:30', '15:00', '16:30', '18:00'];
 
@@ -71,7 +69,7 @@
         <span class="bezel__core">
           <span class="svc__head"><span class="svc__name">${lang === 'en' ? s.en : s.es}</span><span class="svc__price">${money(s.price)}</span></span>
           <p>${lang === 'en' ? s.descEn : s.descEs}</p>
-          <span class="svc__meta">${s.dur} ${L().min} · ${s.where === 'home' ? L().home : L().studio}</span>
+          <span class="svc__meta">${s.dur} ${L().min} · ${L()[s.where] || L().studio}</span>
         </span>
       </button>`).join('');
     $$('[data-svc]', grid).forEach(b => b.addEventListener('click', () => {
@@ -139,7 +137,7 @@
         <div><dt>${l.service}</dt><dd>${lang === 'en' ? s.en : s.es}</dd></div>
         <div><dt>${l.date}</dt><dd>${state.date ? fmtDate(state.date) : '—'}</dd></div>
         <div><dt>${l.time}</dt><dd>${state.time || '—'}</dd></div>
-        <div><dt>${l.where}</dt><dd>${s.where === 'home' ? l.home : l.studio}</dd></div>
+        <div><dt>${l.where}</dt><dd>${l[s.where] || l.studio}</dd></div>
       </dl>
       <div class="summary__total"><span>${l.total}</span><b>${money(s.price)}</b></div>
       <dl>
@@ -185,7 +183,7 @@
   }
   $('#pay').addEventListener('click', () => {
     const s = state.service; const lang = CS_lang(); const l = L();
-    const summary = { service: lang === 'en' ? s.en : s.es, date: fmtDate(state.date), time: state.time, where: s.where === 'home' ? l.home : l.studio, name: state.name };
+    const summary = { service: lang === 'en' ? s.en : s.es, date: fmtDate(state.date), time: state.time, where: l[s.where] || l.studio, name: state.name };
     // .ics para el calendario de la clienta
     const [hh, mm] = state.time.split(':').map(Number);
     const start = new Date(state.date); start.setHours(hh, mm, 0, 0);
