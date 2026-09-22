@@ -1,0 +1,9 @@
+# Material fuente pesado (no va al repo público)
+fotos de claudia/
+*.pdf
+claudiadd.svg
+1555.svg
+# Sistema
+.DS_Store
+Thumbs.db
+.claude/
