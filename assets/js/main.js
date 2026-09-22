@@ -77,11 +77,13 @@ window.SITE = {
   const intro = $('#intro');
   const INTRO_KEY = 'cs-intro-seen';
   let seen = false;
-  try { seen = sessionStorage.getItem(INTRO_KEY) === '1'; } catch (e) {}
+  // La intro se ve una sola vez por dispositivo: las visitas siguientes entran directo al contenido
+  try { seen = localStorage.getItem(INTRO_KEY) === '1' || sessionStorage.getItem(INTRO_KEY) === '1'; } catch (e) {}
   const forceIntro = forceMotion;
   function finishIntro() {
     if (!intro) return;
     intro.classList.add('is-leaving');
+    try { localStorage.setItem(INTRO_KEY, '1'); } catch (e) {}
     try { sessionStorage.setItem(INTRO_KEY, '1'); } catch (e) {}
     document.body.classList.remove('is-locked');
     setTimeout(() => { document.body.classList.add('is-ready'); }, 250);
@@ -97,12 +99,12 @@ window.SITE = {
   if (intro && !gated && !reduced && (!seen || forceIntro)) {
     document.body.classList.add('is-locked');
     setTimeout(() => intro.classList.add('is-playing'), 40);
-    const t = setTimeout(finishIntro, 3100);
+    const t = setTimeout(finishIntro, 2600);
     const skip = $('.intro__skip', intro);
     if (skip) skip.addEventListener('click', () => { clearTimeout(t); finishIntro(); });
   } else if (intro && !gated && reduced && !isStatic && !seen) {
     // Movimiento reducido: splash estático de marca, breve y sin animación
-    const t = setTimeout(finishIntro, 1400);
+    const t = setTimeout(finishIntro, 900);
     const skip = $('.intro__skip', intro);
     if (skip) skip.addEventListener('click', () => { clearTimeout(t); finishIntro(); });
   } else {
