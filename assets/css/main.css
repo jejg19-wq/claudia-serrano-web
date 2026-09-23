@@ -73,7 +73,7 @@
 
 /* ---------- Reset ---------- */
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: auto; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: auto; overflow-x: hidden; overflow-x: clip; }
 body {
   margin: 0;
   background: var(--ink);
@@ -85,6 +85,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  overflow-x: clip;
 }
 body.is-locked { overflow: hidden; }
 img, video, svg { display: block; max-width: 100%; }
@@ -402,14 +403,14 @@ p { text-wrap: pretty; }
 .hero__title { max-width: 19ch; text-shadow: 0 2px 28px rgba(0,0,0,0.35); }
 .hero__title .line { display: block; overflow: hidden; padding: 0.16em 0.08em 0.05em; margin: -0.16em -0.08em -0.05em; }
 .hero__title .line > span { display: block; transition: transform 1.3s var(--ease-expo); }
-html.js:not(.is-static) .hero__title .line > span { transform: translateY(110%); }
+html.js:not(.is-static) body:not(.is-ready) .hero__title .line > span { transform: translateY(110%); }
 .is-ready .hero__title .line > span { transform: translateY(0); }
 .is-ready .hero__title .line:nth-child(2) > span { transition-delay: 0.12s; }
 .is-ready .hero__title .line:nth-child(3) > span { transition-delay: 0.24s; }
 .hero__lede { max-width: 46ch; color: rgba(245,245,245,0.78); font-size: clamp(1rem, 1.3vw, 1.18rem); }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 0.9rem; align-items: center; }
 .hero__fade { transition: opacity 1s var(--ease-out), transform 1s var(--ease-out); }
-html.js:not(.is-static) .hero__fade { opacity: 0; transform: translateY(24px); }
+html.js:not(.is-static) body:not(.is-ready) .hero__fade { opacity: 0; transform: translateY(24px); }
 .is-ready .hero__fade { opacity: 1; transform: none; }
 .is-ready .hero__fade:nth-of-type(1) { transition-delay: 0.1s; }
 .is-ready .hero__lede { transition-delay: 0.45s; }
@@ -684,13 +685,14 @@ html.js:not(.is-static) .hero__fade { opacity: 0; transform: translateY(24px); }
 .wa:hover { transform: translateY(-3px); border-color: var(--gold); }
 
 /* ---------- Reveals al scroll ---------- */
-html.js [data-reveal] { opacity: 0; transform: translateY(36px); filter: blur(6px); transition: opacity 1s var(--ease-out), transform 1s var(--ease-out), filter 1s var(--ease-out); will-change: transform, opacity; }
-[data-reveal].is-in { opacity: 1; transform: none; filter: blur(0); will-change: auto; }
-html.js [data-reveal="left"] { transform: translateX(-40px); }
-html.js [data-reveal="right"] { transform: translateX(40px); }
-html.js [data-reveal="scale"] { transform: scale(0.94); }
-html.js [data-reveal-stagger] > * { opacity: 0; transform: translateY(28px); transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out); }
-[data-reveal-stagger].is-in > * { opacity: 1; transform: none; }
+[data-reveal] { transition: opacity 1s var(--ease-out), transform 1s var(--ease-out), filter 1s var(--ease-out); }
+html.js [data-reveal]:not(.is-in) { opacity: 0; transform: translateY(36px); filter: blur(6px); }
+html.js [data-reveal="left"]:not(.is-in) { transform: translateX(-40px); }
+html.js [data-reveal="right"]:not(.is-in) { transform: translateX(40px); }
+@media (max-width: 1023px) { html.js [data-reveal="left"]:not(.is-in), html.js [data-reveal="right"]:not(.is-in) { transform: translateY(28px); } }
+html.js [data-reveal="scale"]:not(.is-in) { transform: scale(0.94); }
+[data-reveal-stagger] > * { transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out); }
+html.js [data-reveal-stagger]:not(.is-in) > * { opacity: 0; transform: translateY(28px); }
 [data-reveal-stagger].is-in > :nth-child(2) { transition-delay: 0.1s; }
 [data-reveal-stagger].is-in > :nth-child(3) { transition-delay: 0.2s; }
 [data-reveal-stagger].is-in > :nth-child(4) { transition-delay: 0.3s; }
@@ -843,21 +845,30 @@ html.gate-locked body { overflow: hidden; background: var(--black); }
 @keyframes gate-shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }
 
 /* ---------- Detalles de la versión 2026 ---------- */
-/* Transición suave entre páginas (View Transitions entre documentos; los navegadores sin soporte navegan igual) */
-@view-transition { navigation: auto; }
-.nav { view-transition-name: site-nav; }
-.wa { view-transition-name: wa-float; }
-::view-transition-old(root) { animation: vt-out 0.3s var(--ease-out) both; }
-::view-transition-new(root) { animation: vt-in 0.6s var(--ease-expo) both; }
+/* Solo en computadora (puntero fino y pantalla ancha). En teléfonos y tabletas la página
+   queda estable: sin transición entre páginas ni efectos ligados al scroll. */
+@media (hover: hover) and (pointer: fine) and (min-width: 1024px) {
+  /* Transición suave entre páginas (View Transitions entre documentos; los navegadores sin soporte navegan igual) */
+  @view-transition { navigation: auto; }
+  ::view-transition-old(root) { animation: vt-out 0.3s var(--ease-out) both; }
+  ::view-transition-new(root) { animation: vt-in 0.6s var(--ease-expo) both; }
+  /* Hero que se aleja al hacer scroll (scroll-driven, progresivo) */
+  @supports (animation-timeline: scroll()) {
+    html:not(.is-static) .hero__media { animation: hero-recede linear both; animation-timeline: scroll(root); animation-range: 0 100vh; }
+    html:not(.is-static) .hero > .hero__content { animation: hero-lift linear both; animation-timeline: scroll(root); animation-range: 0 90vh; }
+  }
+}
 @keyframes vt-out { to { opacity: 0; } }
 @keyframes vt-in { from { opacity: 0; transform: translateY(14px); } }
+@keyframes hero-recede { to { transform: scale(1.06); opacity: 0.35; } }
+@keyframes hero-lift { to { transform: translateY(-6vh); opacity: 0.2; } }
 
-/* Hero que se aleja al hacer scroll (scroll-driven, progresivo) */
-@supports (animation-timeline: scroll()) {
-  html:not(.is-static) .hero__media { animation: hero-recede linear both; animation-timeline: scroll(root); animation-range: 0 100vh; }
-  html:not(.is-static) .hero > .hero__content { animation: hero-lift linear both; animation-timeline: scroll(root); animation-range: 0 90vh; }
-  @keyframes hero-recede { to { transform: scale(1.06); opacity: 0.35; } }
-  @keyframes hero-lift { to { transform: translateY(-6vh); opacity: 0.2; } }
+/* Teléfonos y tabletas: sin grano superpuesto ni desenfoque en las apariciones (más fluido y sin parpadeos en Safari) */
+@media (hover: none), (max-width: 1023px) {
+  body::after { display: none; }
+  /* En teléfonos y tabletas el contenido está siempre visible: nada depende de que una animación termine */
+  html.js [data-reveal]:not(.is-in), html.js [data-reveal-stagger]:not(.is-in) > *,
+  html.js [data-reveal], html.js [data-reveal-stagger] > * { opacity: 1; transform: none; filter: none; transition: none; }
 }
 
 /* Filete dorado al pasar sobre tarjetas con enlace */

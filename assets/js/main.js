@@ -164,23 +164,31 @@ window.SITE = {
   $$('.nav__links a, .menu__links a').forEach(a => { if (a.getAttribute('href') === path) a.classList.add('is-active'); });
 
   /* ---------- REVEALS AL SCROLL ---------- */
+  // threshold 0: basta con que el bloque asome (los bloques muy altos nunca llegan a un % visible en móvil).
+  const revealAll = () => $$('[data-reveal], [data-reveal-stagger]').forEach(el => el.classList.add('is-in'));
   if (!reduced && 'IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); } });
-    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    }, { threshold: 0, rootMargin: '0px 0px -6% 0px' });
     $$('[data-reveal], [data-reveal-stagger]').forEach(el => io.observe(el));
   } else {
-    $$('[data-reveal], [data-reveal-stagger]').forEach(el => el.classList.add('is-in'));
+    revealAll();
   }
-  // Red de seguridad: lo que ya está en pantalla se muestra aunque el observer no dispare (miniaturas, capturas)
-  const revealSafety = () => $$('[data-reveal]:not(.is-in), [data-reveal-stagger]:not(.is-in)').forEach(el => { if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('is-in'); });
+  // Red de seguridad: todo lo que ya está en pantalla o por encima se muestra aunque el observer no dispare
+  // (Safari de iPhone a veces no avisa al bajar rápido).
+  const revealSafety = () => $$('[data-reveal]:not(.is-in), [data-reveal-stagger]:not(.is-in)').forEach(el => { if (el.getBoundingClientRect().top < window.innerHeight * 0.96) el.classList.add('is-in'); });
+  let safetyTick = false;
+  window.addEventListener('scroll', () => { if (!safetyTick) { safetyTick = true; setTimeout(() => { revealSafety(); safetyTick = false; }, 150); } }, { passive: true });
   setTimeout(revealSafety, 1200);
   window.addEventListener('load', () => setTimeout(revealSafety, 400));
   window.addEventListener('hashchange', () => setTimeout(revealSafety, 200));
 
   /* ---------- CONTADORES ---------- */
   const counters = $$('[data-count]');
-  if (counters.length && 'IntersectionObserver' in window) {
+  // La cifra final se escribe desde el principio: si la animación no llega a correr, el número igual es correcto
+  counters.forEach(el => { el.textContent = (el.dataset.prefix || '') + el.dataset.count + (el.dataset.suffix || ''); });
+  const animateCounters = !reduced && window.matchMedia('(hover: hover) and (min-width: 1024px)').matches;
+  if (counters.length && animateCounters && 'IntersectionObserver' in window) {
     const cio = new IntersectionObserver((entries) => {
       entries.forEach(en => {
         if (!en.isIntersecting) return;
