@@ -9,10 +9,12 @@
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
   var CS = window.CS;
   if (!CS || !CS.services) return;
+  var t = function (x) { return CS.t ? CS.t(x) : x; }, EN = !!CS.en;
 
-  var MONTHS = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-  var DOW = ['Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá', 'Do'];
-  var SLOTS = ['8:00 a. m.', '9:30 a. m.', '11:00 a. m.', '12:30 p. m.', '2:00 p. m.', '3:30 p. m.', '5:00 p. m.'];
+  var MONTHS = EN ? ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+                  : ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+  var DOW = EN ? ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'] : ['Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá', 'Do'];
+  var SLOTS = EN ? ['8:00 AM', '9:30 AM', '11:00 AM', '12:30 PM', '2:00 PM', '3:30 PM', '5:00 PM'] : ['8:00 a. m.', '9:30 a. m.', '11:00 a. m.', '12:30 p. m.', '2:00 p. m.', '3:30 p. m.', '5:00 p. m.'];
   var state = { step: 1, svc: null, date: null, time: null, data: {} };
   var today = new Date(); today.setHours(0, 0, 0, 0);
   var view = new Date(today.getFullYear(), today.getMonth(), 1);
@@ -20,7 +22,7 @@
   /* ---------- Paso 1: servicios ---------- */
   var list = $('#svc-list');
   list.innerHTML = CS.services.map(function (s) {
-    return '<button type="button" class="opt" data-id="' + s.id + '" aria-pressed="false"><img src="' + s.img + '" alt="" width="152" height="184"><div><b>' + s.name + '</b><span>' + s.tag + ' · aprox. ' + dur(s.duration) + '</span></div><span class="price">' + (s.from ? '<small class="muted" style="font-family:var(--body);font-size:.6rem;letter-spacing:.14em;display:block">DESDE</small>' : '') + CS.money(s.price) + '</span></button>';
+    return '<button type="button" class="opt" data-id="' + s.id + '" aria-pressed="false"><img src="' + s.img + '" alt="" width="152" height="184"><div><b>' + t(s.name) + '</b><span>' + t(s.tag) + ' · ' + (EN ? 'approx. ' : 'aprox. ') + dur(s.duration) + '</span></div><span class="price">' + (s.from ? '<small class="muted" style="font-family:var(--body);font-size:.6rem;letter-spacing:.14em;display:block">' + t('Desde').toUpperCase() + '</small>' : '') + CS.money(s.price) + '</span></button>';
   }).join('');
   list.addEventListener('click', function (e) {
     var b = e.target.closest('.opt'); if (!b) return;
@@ -51,7 +53,7 @@
     for (var n = 1; n <= days; n++) {
       var d = new Date(view.getFullYear(), view.getMonth(), n);
       var on = state.date && d.getTime() === state.date.getTime();
-      html += '<button type="button" class="day' + (on ? ' is-on' : '') + '" data-d="' + d.getTime() + '"' + (available(d) ? '' : ' disabled') + ' aria-label="' + n + ' de ' + MONTHS[d.getMonth()] + '">' + n + '</button>';
+      html += '<button type="button" class="day' + (on ? ' is-on' : '') + '" data-d="' + d.getTime() + '"' + (available(d) ? '' : ' disabled') + ' aria-label="' + (EN ? MONTHS[d.getMonth()] + ' ' + n : n + ' de ' + MONTHS[d.getMonth()]) + '">' + n + '</button>';
     }
     $('#cal-grid').innerHTML = html;
     $('#cal-prev').disabled = view <= new Date(today.getFullYear(), today.getMonth(), 1);
@@ -64,11 +66,11 @@
   });
   function renderSlots() {
     $('#slots-wrap').hidden = !state.date; if (!state.date) return;
-    $('#slots-title').textContent = 'Horarios para el ' + longDate(state.date);
+    $('#slots-title').textContent = (EN ? 'Times for ' : 'Horarios para el ') + longDate(state.date);
     var s = seed(state.date);
     $('#slots').innerHTML = SLOTS.map(function (t, i) {
       var busy = (s + i * 5) % 4 === 0;
-      return '<button type="button" class="slot' + (state.time === t ? ' is-on' : '') + '" data-t="' + t + '"' + (busy ? ' disabled aria-label="' + t + ' ocupado"' : '') + '>' + t + '</button>';
+      return '<button type="button" class="slot' + (state.time === t ? ' is-on' : '') + '" data-t="' + t + '"' + (busy ? ' disabled aria-label="' + t + (EN ? ' taken' : ' ocupado') + '"' : '') + '>' + t + '</button>';
     }).join('');
   }
   $('#slots').addEventListener('click', function (e) {
@@ -92,14 +94,16 @@
 
   /* ---------- Paso 4: pago simulado ---------- */
   $('#pay').addEventListener('click', function () {
-    var btn = this; btn.disabled = true; btn.textContent = 'Procesando…';
+    var btn = this; btn.disabled = true; btn.textContent = t('Procesando…');
     setTimeout(function () {
       var booking = { id: 'CS-' + Date.now().toString(36).toUpperCase(), svc: state.svc.id, name: state.svc.name, price: state.svc.price, date: state.date.getTime(), time: state.time, client: state.data, paid: true, created: Date.now() };
       var all = CS.store.get('cs-bookings', []); all.push(booking); CS.store.set('cs-bookings', all);
       CS.store.set('cs-user', { name: state.data.name.split(' ')[0], full: state.data.name });
       state.booking = booking;
-      $('#done-text').textContent = state.svc.name + ' · ' + longDate(state.date) + ' a las ' + state.time + '. Código de reserva: ' + booking.id + '. Claudia te escribirá por WhatsApp para los detalles.';
-      $('#wa-confirm').href = CS.wa('¡Hola Claudia! Acabo de reservar en la página: ' + state.svc.name + ', ' + longDate(state.date) + ' a las ' + state.time + '. Código ' + booking.id + '. Soy ' + state.data.name + '.');
+      $('#done-text').textContent = EN ? t(state.svc.name) + ' · ' + longDate(state.date) + ' at ' + state.time + '. Booking code: ' + booking.id + '. Claudia will message you on WhatsApp with the details.'
+        : state.svc.name + ' · ' + longDate(state.date) + ' a las ' + state.time + '. Código de reserva: ' + booking.id + '. Claudia te escribirá por WhatsApp para los detalles.';
+      $('#wa-confirm').href = CS.wa(EN ? 'Hi Claudia! I just booked on your website: ' + state.svc.name + ', ' + longDate(state.date) + ' at ' + state.time + '. Code ' + booking.id + '. My name is ' + state.data.name + '.'
+        : '¡Hola Claudia! Acabo de reservar en la página: ' + state.svc.name + ', ' + longDate(state.date) + ' a las ' + state.time + '. Código ' + booking.id + '. Soy ' + state.data.name + '.');
       go(5);
       if (window.gsap && !matchMedia('(prefers-reduced-motion: reduce)').matches) gsap.from('.done__check', { scale: 0, rotate: -90, duration: .9, ease: 'back.out(2)' });
     }, 1100);
@@ -109,7 +113,7 @@
     var start = toDate(b.date, b.time), end = new Date(start.getTime() + (state.svc.duration || 90) * 60000);
     var fmt = function (d) { return d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, ''); };
     var ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Claudia Serrano//Agenda//ES', 'BEGIN:VEVENT', 'UID:' + b.id + '@claudiaserrano', 'DTSTAMP:' + fmt(new Date()), 'DTSTART:' + fmt(start), 'DTEND:' + fmt(end),
-      'SUMMARY:' + b.name + ' con Claudia Serrano', 'LOCATION:San Antonio, TX', 'DESCRIPTION:Código ' + b.id + '. WhatsApp +1 (210) 793-5636', 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+      'SUMMARY:' + b.name + (EN ? ' with Claudia Serrano' : ' con Claudia Serrano'), 'LOCATION:San Antonio, TX', 'DESCRIPTION:' + (EN ? 'Code ' : 'Código ') + b.id + '. WhatsApp +1 (210) 793-5636', 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
     var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' })); a.download = 'cita-claudia-serrano.ics'; a.click();
   });
 
@@ -119,7 +123,7 @@
     $$('[data-panel]').forEach(function (p) { p.hidden = +p.dataset.panel !== n; });
     $$('#steps li').forEach(function (li) { var s = +li.dataset.step; li.classList.toggle('is-on', s === n); li.classList.toggle('is-done', s < n); });
     if (n === 2) { if (state.date) view = new Date(state.date.getFullYear(), state.date.getMonth(), 1); renderCal(); renderSlots(); check2(); }
-    if (n === 4) { $('#pay-total').textContent = (state.svc.from ? 'Desde ' : '') + CS.money(state.svc.price); $('#pay-note').textContent = state.svc.from ? 'El precio de novia es desde $350; Claudia confirma el total según tu look.' : 'Precio publicado del servicio.'; }
+    if (n === 4) { $('#pay-total').textContent = (state.svc.from ? t('Desde') + ' ' : '') + CS.money(state.svc.price); $('#pay-note').textContent = state.svc.from ? (EN ? 'The bridal price starts at $350; Claudia confirms the total based on your look.' : 'El precio de novia es desde $350; Claudia confirma el total según tu look.') : (EN ? 'Published service price.' : 'Precio publicado del servicio.'); }
     var top = $('#wizard').getBoundingClientRect().top + window.scrollY - 90;
     if (window.scrollY > top) window.scrollTo({ top: top, behavior: 'smooth' });
     var panel = $('[data-panel="' + n + '"]');
@@ -131,16 +135,19 @@
   /* ---------- Resumen ---------- */
   function summary() {
     var s = state.svc;
-    $('#sum-name').textContent = s ? s.name : 'Elige un servicio';
+    $('#sum-name').textContent = s ? t(s.name) : t('Elige un servicio');
     if (s) $('#sum-img').src = s.img;
     $('#sum-date').textContent = state.date ? longDate(state.date) : '—';
     $('#sum-time').textContent = state.time || '—';
     $('#sum-dur').textContent = s ? dur(s.duration) : '—';
-    $('#sum-total').textContent = s ? (s.from ? 'Desde ' : '') + CS.money(s.price) : '—';
+    $('#sum-total').textContent = s ? (s.from ? t('Desde') + ' ' : '') + CS.money(s.price) : '—';
   }
   function dur(min) { var h = Math.floor(min / 60), m = min % 60; return (h ? h + ' h' : '') + (m ? ' ' + m + ' min' : ''); }
-  function longDate(d) { var w = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'][d.getDay()]; return w + ' ' + d.getDate() + ' de ' + MONTHS[d.getMonth()]; }
-  function toDate(ms, t) { var d = new Date(ms), m = t.match(/(\d+):(\d+)\s*([ap])/i), h = +m[1] % 12 + (m[3].toLowerCase() === 'p' ? 12 : 0); d.setHours(h, +m[2], 0, 0); return d; }
+  function longDate(d) {
+    if (EN) return ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][d.getDay()] + ', ' + MONTHS[d.getMonth()] + ' ' + d.getDate();
+    var w = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'][d.getDay()]; return w + ' ' + d.getDate() + ' de ' + MONTHS[d.getMonth()];
+  }
+  function toDate(ms, tm) { var d = new Date(ms), m = tm.match(/(\d+):(\d+)\s*([ap])/i), h = +m[1] % 12 + (m[3].toLowerCase() === 'p' ? 12 : 0); d.setHours(h, +m[2], 0, 0); return d; }
 
   go(1); summary();
 })();

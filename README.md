@@ -15,6 +15,10 @@ Prototipo para **agendar citas**, la **academia** (con portal de alumnas y clase
 | `portal/index.html` | Portal de clientas y alumnas. Se entra con «Entrar como alumna (demo)», con un código (`SERRANO2026`, `PACKAGE1`–`3`) o directo después de reservar o inscribirse. Pestañas: **Mis clases** (video, lista de lecciones y progreso), **Clases 1:1** (agendar sesiones con Claudia), **Mis citas**, **Certificado** y **Guías**. |
 | `aula/index.html` | Redirige al portal (enlace antiguo). |
 
+## Idioma
+
+Bilingüe **español / inglés**. Se abre en inglés si el navegador o teléfono está en inglés, y el botón **ES/EN** lo cambia. Las traducciones están en `assets/js/i18n.js` (diccionario español → inglés); cada texto nuevo se añade ahí. Los cursos se ofrecen en español o inglés y los videos llevan subtítulos en ambos idiomas: los de ejemplo están en `assets/video/subs/`.
+
 ## Contenido
 
 - **Real, del material de la clienta:**

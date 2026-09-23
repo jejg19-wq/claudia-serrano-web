@@ -15,6 +15,7 @@
   <script>window.CS = { root: '../' };</script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
   <script src="../assets/js/data.js" defer></script>
+  <script src="../assets/js/i18n.js" defer></script>
   <script src="../assets/js/app.js" defer></script>
   <script src="../assets/js/portal.js" defer></script>
 </head>
@@ -25,7 +26,7 @@
       <img src="../assets/img/claudia-studio-smile-xl.webp" alt="Claudia Serrano en su estudio" width="1400" height="2100" fetchpriority="high">
     </div>
     <div class="gate__form">
-      <a href="../index.html" aria-label="Volver al inicio"><img src="../assets/logo/signature-gold.svg" alt="Claudia Serrano" width="1275" height="276" style="width:190px"></a>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem"><a href="../index.html" aria-label="Volver al inicio"><img src="../assets/logo/signature-gold.svg" alt="Claudia Serrano" width="1275" height="276" style="width:190px"></a><button class="lang-btn" type="button" data-lang-toggle aria-label="English / Español" style="color:var(--cream)">EN</button></div>
       <p class="label">Portal de clientas y alumnas</p>
       <h1 class="display d-1">Bienvenida</h1>
       <p class="lede">Aquí están tus clases en video, tus sesiones uno a uno con Claudia, tus citas y tu certificado.</p>
@@ -46,7 +47,7 @@
       <div class="wrap">
         <div class="app__bar">
           <a href="../index.html" aria-label="Inicio"><img src="../assets/logo/signature-gold.svg" alt="Claudia Serrano" width="1275" height="276" style="width:150px"></a>
-          <div class="app__user"><img src="../assets/img/claudia-hand-chin-sm.webp" alt="" width="72" height="108"><span id="user-name">Alumna</span><button class="btn btn--ghost btn--sm" type="button" id="logout" style="--b-fg:var(--cream);--b-bd:rgba(245,245,245,.3)">Salir</button></div>
+          <div class="app__user"><button class="lang-btn" type="button" data-lang-toggle aria-label="English / Español" style="color:var(--cream)">EN</button><img src="../assets/img/claudia-hand-chin-sm.webp" alt="" width="72" height="108"><span id="user-name">Alumna</span><button class="btn btn--ghost btn--sm" type="button" id="logout" style="--b-fg:var(--cream);--b-bd:rgba(245,245,245,.3)">Salir</button></div>
         </div>
         <nav class="tabs" role="tablist" aria-label="Secciones del portal">
           <button class="tab" role="tab" data-tab="clases">Mis clases</button>
@@ -70,7 +71,7 @@
         <div class="course">
           <div>
             <div class="player">
-              <video id="player" controls playsinline preload="metadata" poster="../assets/img/claudia-studio-smile-md.webp"></video>
+              <video id="player" controls playsinline preload="metadata" crossorigin="anonymous" poster="../assets/img/claudia-studio-smile-md.webp"><track kind="subtitles" srclang="es" label="Español" src="../assets/video/subs/demo-es.vtt"><track kind="subtitles" srclang="en" label="English" src="../assets/video/subs/demo-en.vtt"></video>
               <div class="player__meta">
                 <span class="label" id="lesson-num">Lección 01</span>
                 <h2 class="display d-3" id="lesson-title">Bienvenida</h2>
@@ -78,7 +79,7 @@
                 <div class="actions"><button class="btn btn--gold btn--sm" type="button" id="mark">Marcar como vista</button><button class="btn btn--ghost btn--sm" type="button" id="next">Siguiente clase</button></div>
               </div>
             </div>
-            <p class="proto" style="margin-top:1rem">Prototipo: las clases usan un video de muestra. Aquí irán los videos reales de cada lección.</p>
+            <p class="proto" style="margin-top:1rem">Prototipo: las clases usan un video de muestra. Aquí irán los videos reales de cada lección, con subtítulos en español e inglés (botón CC del reproductor).</p>
           </div>
           <div style="display:grid;gap:.8rem">
             <p class="label">Tus lecciones</p>

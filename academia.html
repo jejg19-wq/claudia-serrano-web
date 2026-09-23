@@ -18,6 +18,7 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js" defer></script>
   <script src="assets/js/data.js" defer></script>
+  <script src="assets/js/i18n.js" defer></script>
   <script src="assets/js/app.js" defer></script>
   <script src="assets/js/academy.js" defer></script>
 </head>
@@ -36,6 +37,7 @@
         <a href="tienda.html">Tienda</a>
       </nav>
       <div class="header__right">
+        <button class="lang-btn" type="button" data-lang-toggle aria-label="English / Español">EN</button>
         <a class="btn btn--ghost btn--sm btn--access" href="portal/index.html">Portal de alumnas</a>
         <button class="icon-btn" type="button" data-cart-open aria-label="Abrir carrito"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg><span class="cart-count" data-n="0"></span></button>
         <details class="menu">
@@ -51,7 +53,7 @@
               <a href="tienda.html"><small>04</small>Tienda</a>
               <a href="portal/index.html"><small>05</small>Portal de alumnas</a>
             </nav>
-            <p class="muted small">Clases presenciales en San Antonio, TX, u online.</p>
+            <p class="muted small">Clases presenciales en San Antonio, TX, u online · Español o inglés.</p>
           </div>
         </details>
       </div>
@@ -60,11 +62,11 @@
 
   <main id="contenido">
     <section class="page-hero">
-      <img src="assets/img/claudia-ringlight-palette-xl.webp" alt="Claudia Serrano con brochas y paleta de sombras" width="1400" height="2100" fetchpriority="high" style="object-position:50% 25%">
+      <div class="page-hero__media"><img src="assets/img/claudia-ringlight-palette-xl.webp" alt="Claudia Serrano con brochas y paleta de sombras" width="1400" height="2100" fetchpriority="high" style="object-position:50% 20%"></div>
       <div class="wrap">
         <p class="label" style="color:var(--gold)">Academia · presencial u online</p>
         <h1 class="display d-hero" data-split>Makeup Class 1:1</h1>
-        <p class="lede">Cursos de maquillaje totalmente personalizados, desde $150. Incluyen certificado y guías de productos.</p>
+        <p class="lede">Cursos de maquillaje totalmente personalizados, desde $150, en español o inglés. Incluyen certificado y guías de productos.</p>
         <div class="actions"><a class="btn btn--gold" href="#paquetes" data-magnetic>Ver paquetes</a><a class="btn btn--glass" href="portal/index.html">Entrar al portal (demo)</a></div>
       </div>
     </section>
@@ -77,8 +79,8 @@
           <h2 class="display d-1" data-split>Aprende conmigo, a tu ritmo</h2>
         </div>
         <div class="cards cards--3" data-stagger>
-          <div class="card"><span class="display d-2 gold">01</span><h3 class="display d-3">Elige tu paquete</h3><p class="muted">Package 1, 2 o 3, presencial en San Antonio u online.</p></div>
-          <div class="card"><span class="display d-2 gold">02</span><h3 class="display d-3">Entra a tu portal</h3><p class="muted">Al inscribirte recibes acceso al portal de alumnas con tus clases en video.</p></div>
+          <div class="card"><span class="display d-2 gold">01</span><h3 class="display d-3">Elige tu paquete</h3><p class="muted">Package 1, 2 o 3, presencial en San Antonio u online, en español o inglés.</p></div>
+          <div class="card"><span class="display d-2 gold">02</span><h3 class="display d-3">Entra a tu portal</h3><p class="muted">Al inscribirte recibes acceso al portal de alumnas con tus clases en video, con subtítulos en español e inglés.</p></div>
           <div class="card"><span class="display d-2 gold">03</span><h3 class="display d-3">Clases 1:1 y certificado</h3><p class="muted">Agendas tus sesiones uno a uno conmigo y al terminar recibes tu certificado y las guías de productos.</p></div>
         </div>
       </div>
@@ -110,7 +112,7 @@
           <p class="label">Tu portal de alumna</p>
           <h2 class="display d-1" data-split>Todo en un solo lugar</h2>
           <ul class="facts" data-stagger>
-            <li><b>Clases en video</b><span>Mira, pausa y repite</span></li>
+            <li><b>Clases en video</b><span>Con subtítulos en español e inglés</span></li>
             <li><b>Sesiones 1:1</b><span>Agenda con Claudia</span></li>
             <li><b>Guías de productos</b><span>Incluidas</span></li>
             <li><b>Certificado</b><span>Al terminar tu paquete</span></li>
@@ -130,6 +132,7 @@
       <div class="field"><label for="e-name">Nombre y apellido</label><input id="e-name" name="name" autocomplete="name" required><span class="err" hidden>Escribe tu nombre.</span></div>
       <div class="field"><label for="e-phone">WhatsApp o teléfono</label><input id="e-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required><span class="err" hidden>Escribe un teléfono de al menos 10 dígitos.</span></div>
       <div class="field"><label for="e-mode">Modalidad</label><select id="e-mode" name="mode"><option>Presencial (San Antonio, TX)</option><option>Online</option></select></div>
+      <div class="field"><label for="e-lang">Idioma del curso</label><select id="e-lang" name="lang"><option>Español</option><option>English</option></select></div>
       <p class="proto">Prototipo: el pago es simulado; no se piden datos de tarjeta.</p>
       <div class="wiz-actions"><button class="btn btn--ghost" type="button" data-close>Cancelar</button><button class="btn btn--gold" type="submit" value="ok">Pagar e ir a mi portal</button></div>
     </form>

@@ -16,13 +16,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Italiana&amp;family=Open+Sans:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
   <link rel="preload" as="font" href="assets/fonts/tan-mon-cheri.woff2" type="font/woff2" crossorigin>
-  <link rel="preload" as="image" href="assets/img/hero-brush-wide.webp" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/img/hero-video-poster.webp" fetchpriority="high">
   <link rel="stylesheet" href="assets/css/app.css">
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js" defer></script>
   <script src="assets/js/data.js" defer></script>
+  <script src="assets/js/i18n.js" defer></script>
   <script src="assets/js/app.js" defer></script>
 </head>
 <body>
@@ -43,6 +44,7 @@
         <a href="#sobre-mi">Sobre mí</a>
       </nav>
       <div class="header__right">
+        <button class="lang-btn" type="button" data-lang-toggle aria-label="English / Español">EN</button>
         <a class="btn btn--ghost btn--sm btn--access" href="portal/index.html">Acceder</a>
         <a class="btn btn--sm btn--book" href="agendar.html" data-magnetic>Agendar cita</a>
         <button class="icon-btn" type="button" data-cart-open aria-label="Abrir carrito">
@@ -63,7 +65,7 @@
               <a href="#portafolio"><small>05</small>Portafolio</a>
               <a href="portal/index.html"><small>06</small>Mi portal</a>
             </nav>
-            <p class="muted small">San Antonio, TX · Atiendo en español · WhatsApp +1 (210) 793-5636</p>
+            <p class="muted small">San Antonio, TX · WhatsApp +1 (210) 793-5636</p>
           </div>
         </details>
       </div>
@@ -71,32 +73,29 @@
   </header>
 
   <main id="contenido">
-    <!-- ===== PORTAL DE ACCESO: Claudia protagonista ===== -->
+    <!-- ===== PORTAL DE ACCESO: Claudia protagonista (el texto nunca tapa su cara) ===== -->
     <section class="portal" aria-label="Portada">
       <div class="portal__media">
-        <img src="assets/img/hero-brush-wide.webp" alt="Claudia Serrano maquillándose con brocha bajo la luz de anillo" width="1920" height="1080" fetchpriority="high">
-        <video data-wide="assets/video/hero.mp4" data-tall="assets/video/hero-vertical.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
+        <div class="portal__frame">
+          <img src="assets/img/hero-video-poster.webp" alt="Claudia Serrano maquillándose con brocha bajo la luz de anillo" width="720" height="1080" fetchpriority="high">
+          <video data-wide="assets/video/hero-vertical.mp4" data-tall="assets/video/hero-vertical.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
+        </div>
       </div>
-      <div class="wrap portal__content">
+      <div class="portal__panel">
         <p class="portal__sub" data-portal>Makeup Studio &amp; Academy · San Antonio, TX</p>
         <h1 class="display d-hero portal__title"><span class="word"><span>Claudia</span></span><span class="word"><span>Serrano</span></span></h1>
-        <div class="portal__row">
-          <div style="display:grid;gap:1.2rem" data-portal>
-            <p class="phrase">La nueva era de la belleza.</p>
-            <p class="lede">Agenda tu cita, aprende maquillaje conmigo uno a uno y compra mis productos favoritos, todo en un solo lugar.</p>
-            <div class="actions">
-              <a class="btn btn--gold" href="agendar.html" data-magnetic>Agendar mi cita
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-              <a class="btn btn--glass" href="portal/index.html">Acceder a mi portal</a>
-            </div>
-          </div>
-          <nav class="doors" aria-label="Entradas" data-portal>
-            <a class="door" href="agendar.html"><img src="assets/img/catalogo/novia-06-sm.webp" alt="" width="200" height="266"><div><b>Agenda</b><span>Novias, full glam y peinados</span></div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></a>
-            <a class="door" href="academia.html"><img src="assets/img/gen/academia-clase.webp" alt="" width="200" height="250"><div><b>Academia</b><span>Makeup Class 1:1 · desde $150</span></div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></a>
-            <a class="door" href="tienda.html"><img src="assets/img/gen/prod-paleta.webp" alt="" width="200" height="250"><div><b>Tienda</b><span>Los favoritos de Claudia</span></div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></a>
-          </nav>
+        <p class="phrase" data-portal>Makeup and hair para todo tipo de ocasión, especialista en novias y quinceañeras.</p>
+        <p class="lede" data-portal>Agenda tu cita, aprende maquillaje conmigo uno a uno y compra mis productos favoritos.</p>
+        <div class="actions" data-portal>
+          <a class="btn btn--gold" href="agendar.html" data-magnetic>Agendar mi cita <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn--glass" href="portal/index.html">Acceder a mi portal</a>
         </div>
-        <div class="portal__foot" data-portal><span>Atiendo en español</span><span class="scroll-cue">Descubre <i></i></span></div>
+        <nav class="doors" aria-label="Entradas" data-portal>
+          <a class="door" href="agendar.html"><img src="assets/img/catalogo/novia-06-sm.webp" alt="" width="200" height="266"><div><b>Agenda</b><span>Novias, full glam y peinados</span></div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></a>
+          <a class="door" href="academia.html"><img src="assets/img/gen/academia-clase.webp" alt="" width="200" height="250"><div><b>Academia</b><span>Makeup Class 1:1 · desde $150</span></div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></a>
+          <a class="door" href="tienda.html"><img src="assets/img/gen/prod-paleta.webp" alt="" width="200" height="250"><div><b>Tienda</b><span>Los favoritos de Claudia</span></div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></a>
+        </nav>
+        <div class="portal__foot" data-portal><span>San Antonio, TX</span><span class="scroll-cue">Descubre <i></i></span></div>
       </div>
     </section>
 
@@ -260,12 +259,12 @@
           <p class="label">Sobre mí</p>
           <h2 class="display d-1" data-split>La nueva era</h2>
           <p class="phrase" data-anim="up">Belleza editorial, con la precisión y el arte del maquillaje de alto nivel.</p>
-          <p class="lede" data-anim="up">Soy Claudia Serrano, maquilladora y estilista profesional venezolana, radicada en San Antonio, Texas. Me inspiro en las grandes casas de moda y en la belleza editorial para crear el look que tú escojas, uno con el que te sientas a gusto.</p>
+          <p class="lede" data-anim="up">Soy Claudia Serrano, maquilladora y estilista profesional venezolana, radicada en San Antonio, Texas. Makeup and hair para todo tipo de ocasión, especialista en novias y quinceañeras. Me inspiro en las grandes casas de moda y en la belleza editorial para crear el look que tú escojas, uno con el que te sientas a gusto.</p>
           <ul class="facts" data-stagger>
             <li><b>Estudio</b><span>San Antonio, TX</span></li>
-            <li><b>Idioma</b><span>Español</span></li>
+            <li><b>Especialidad</b><span>Novias y quinceañeras</span></li>
             <li><b>Lo más pedido</b><span>Full Glam Signature Look</span></li>
-            <li><b>Academia</b><span>Clases 1:1 presencial u online</span></li>
+            <li><b>Academia</b><span>Clases 1:1 en español o inglés</span></li>
           </ul>
           <img class="about__sig" src="assets/logo/signature-black.svg" alt="Firma de Claudia Serrano" width="1275" height="276" loading="lazy" data-anim="fade">
         </div>
@@ -278,7 +277,7 @@
       <div class="wrap cta__inner">
         <img class="cta__mono" src="assets/logo/monogram-gold.png" alt="" width="712" height="490" loading="lazy" data-anim="fade">
         <h2 class="display d-1" data-split>Tu cita te espera</h2>
-        <p class="lede" data-anim="up">Elige tu servicio y reserva en línea en minutos. Atiendo en español.</p>
+        <p class="lede" data-anim="up">Elige tu servicio y reserva en línea en minutos.</p>
         <div class="actions" data-anim="up">
           <a class="btn btn--gold" href="agendar.html" data-magnetic>Agendar mi cita</a>
           <a class="btn btn--ghost" href="https://wa.me/12107935636?text=Hola%20Claudia%2C%20quiero%20agendar%20una%20cita" target="_blank" rel="noopener">WhatsApp</a>

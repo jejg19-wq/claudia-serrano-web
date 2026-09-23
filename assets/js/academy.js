@@ -16,6 +16,7 @@
     current = CS.packages.filter(function (p) { return p.id === b.dataset.enroll; })[0];
     $('#enroll-title').textContent = current.name;
     $('#enroll-price').textContent = CS.money(current.price);
+    if (form.lang) form.lang.selectedIndex = CS.en ? 1 : 0;   // idioma del curso: el de la página por defecto
     dlg.showModal();
   });
   $('[data-close]', dlg).addEventListener('click', function () { dlg.close(); });
@@ -26,9 +27,9 @@
     flag(form.name, form.name.value.trim().length < 2);
     flag(form.phone, form.phone.value.replace(/\D/g, '').length < 10);
     if (!ok) return;
-    var btn = form.querySelector('[type="submit"]'); btn.disabled = true; btn.textContent = 'Procesando…';
+    var btn = form.querySelector('[type="submit"]'); btn.disabled = true; btn.textContent = CS.t ? CS.t('Procesando…') : 'Procesando…';
     setTimeout(function () {
-      CS.store.set('cs-enroll', { pkg: current.id, name: current.name, price: current.price, mode: form.mode.value, date: Date.now() });
+      CS.store.set('cs-enroll', { pkg: current.id, name: current.name, price: current.price, mode: form.mode.value, lang: form.lang ? form.lang.value : '', date: Date.now() });
       CS.store.set('cs-user', { name: form.name.value.trim().split(' ')[0], full: form.name.value.trim() });
       location.href = 'portal/index.html#clases';
     }, 900);

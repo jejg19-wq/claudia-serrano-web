@@ -17,6 +17,7 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js" defer></script>
   <script src="assets/js/data.js" defer></script>
+  <script src="assets/js/i18n.js" defer></script>
   <script src="assets/js/app.js" defer></script>
   <script src="assets/js/shop.js" defer></script>
 </head>
@@ -35,6 +36,7 @@
         <a href="tienda.html" aria-current="page">Tienda</a>
       </nav>
       <div class="header__right">
+        <button class="lang-btn" type="button" data-lang-toggle aria-label="English / Español">EN</button>
         <a class="btn btn--sm btn--book" href="agendar.html">Agendar cita</a>
         <button class="icon-btn" type="button" data-cart-open aria-label="Abrir carrito"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg><span class="cart-count" data-n="0"></span></button>
         <details class="menu">

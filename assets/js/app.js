@@ -11,6 +11,7 @@
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
   var CS = window.CS || (window.CS = {});
+  var t = function (x) { return CS.t ? CS.t(x) : x; };
   var ICON_PLUS = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>';
 
   /* ---------- Aviso breve ---------- */
@@ -45,23 +46,23 @@
   CS.cartAdd = function (id) {
     var line = cart.filter(function (l) { return l.id === id; })[0];
     if (line) line.qty += 1; else cart.push({ id: id, qty: 1 });
-    saveCart(); var p = productById(id); CS.toast((p ? p.name : 'Producto') + ' se añadió al carrito');
+    saveCart(); var p = productById(id); CS.toast(t(p ? p.name : 'Producto') + ' ' + t('se añadió al carrito'));
   };
   function ensureDrawer() {
     if ($('#cart')) return;
     var d = document.createElement('div');
     d.className = 'drawer'; d.id = 'cart'; d.setAttribute('aria-hidden', 'true');
     d.innerHTML = '<div class="drawer__scrim" data-cart-close></div>' +
-      '<aside class="drawer__panel" role="dialog" aria-label="Carrito">' +
-        '<div class="drawer__head"><b class="display d-3">Tu carrito</b><button class="icon-btn" type="button" data-cart-close aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>' +
+      '<aside class="drawer__panel" role="dialog" aria-label="' + t('Carrito') + '">' +
+        '<div class="drawer__head"><b class="display d-3">' + t('Tu carrito') + '</b><button class="icon-btn" type="button" data-cart-close aria-label="' + t('Cerrar') + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>' +
         '<div class="drawer__items" id="cart-items"></div>' +
         '<div class="drawer__foot"><div class="total"><span>Subtotal</span><b id="cart-total">$0</b></div>' +
-          '<button class="btn btn--block" type="button" id="cart-checkout">Pagar · Shopify (próximamente)</button>' +
-          '<p class="proto">Prototipo: los productos y precios son de ejemplo. El pago se conectará a la tienda de Shopify.</p></div>' +
+          '<button class="btn btn--block" type="button" id="cart-checkout">' + t('Pagar · Shopify (próximamente)') + '</button>' +
+          '<p class="proto">' + t('Prototipo: los productos y precios son de ejemplo. El pago se conectará a la tienda de Shopify.') + '</p></div>' +
       '</aside>';
     document.body.appendChild(d);
     $$('[data-cart-close]', d).forEach(function (b) { b.addEventListener('click', closeCart); });
-    $('#cart-checkout').addEventListener('click', function () { CS.toast('Prototipo: aquí se abrirá el pago de Shopify'); });
+    $('#cart-checkout').addEventListener('click', function () { CS.toast(t('Prototipo: aquí se abrirá el pago de Shopify')); });
     $('#cart-items').addEventListener('click', function (e) {
       var b = e.target.closest('button[data-q]'); if (!b) return;
       var line = cart.filter(function (l) { return l.id === b.dataset.id; })[0]; if (!line) return;
@@ -73,14 +74,14 @@
     var n = cart.reduce(function (s, l) { return s + l.qty; }, 0);
     $$('.cart-count').forEach(function (c) { c.textContent = n ? n : ''; c.dataset.n = n; });
     var box = $('#cart-items'); if (!box) return;
-    if (!cart.length) { box.innerHTML = '<p class="muted">Tu carrito está vacío. Mira los favoritos de Claudia en la <a class="link" href="' + (CS.root || '') + 'tienda.html">tienda</a>.</p>'; }
+    if (!cart.length) { box.innerHTML = '<p class="muted">' + t('Tu carrito está vacío. Mira los favoritos de Claudia en la') + ' <a class="link" href="' + (CS.root || '') + 'tienda.html">' + t('tienda') + '</a>.</p>'; }
     else box.innerHTML = cart.map(function (l) {
       var p = productById(l.id); if (!p) return '';
-      return '<div class="citem"><img src="' + (CS.root || '') + p.img + '" alt=""><div><b>' + p.name + '</b><div class="muted small">' + CS.money(p.price) + ' · ejemplo</div></div>' +
-        '<div class="qty"><button type="button" data-q="-1" data-id="' + p.id + '" aria-label="Quitar uno">−</button><span>' + l.qty + '</span><button type="button" data-q="1" data-id="' + p.id + '" aria-label="Añadir uno">+</button></div></div>';
+      return '<div class="citem"><img src="' + (CS.root || '') + p.img + '" alt=""><div><b>' + t(p.name) + '</b><div class="muted small">' + CS.money(p.price) + ' · ' + t('ejemplo') + '</div></div>' +
+        '<div class="qty"><button type="button" data-q="-1" data-id="' + p.id + '" aria-label="' + t('Quitar uno') + '">−</button><span>' + l.qty + '</span><button type="button" data-q="1" data-id="' + p.id + '" aria-label="' + t('Añadir uno') + '">+</button></div></div>';
     }).join('');
     var total = cart.reduce(function (s, l) { var p = productById(l.id); return s + (p ? p.price * l.qty : 0); }, 0);
-    var t = $('#cart-total'); if (t) t.textContent = CS.money(total);
+    var totEl = $('#cart-total'); if (totEl) totEl.textContent = CS.money(total);
   }
   function openCart() { ensureDrawer(); renderCart(); var d = $('#cart'); d.classList.add('is-open'); d.setAttribute('aria-hidden', 'false'); }
   function closeCart() { var d = $('#cart'); if (!d) return; d.classList.remove('is-open'); d.setAttribute('aria-hidden', 'true'); }
@@ -98,15 +99,18 @@
   CS.productCard = function (p) {
     var r = CS.root || '';
     return '<article class="pcard" data-cat="' + p.cat + '" data-anim="up">' +
-      '<div class="pcard__img"><img src="' + r + p.img + '" alt="' + p.name + ' (producto de ejemplo)" width="720" height="900" loading="lazy">' +
-      '<span class="tag-example pcard__ex">Ejemplo</span>' +
-      '<button class="pcard__add" type="button" data-add="' + p.id + '" aria-label="Añadir ' + p.name + ' al carrito">' + ICON_PLUS + '</button></div>' +
-      '<h3>' + p.name + '</h3><div class="pcard__meta"><span>' + p.note + '</span><b>' + CS.money(p.price) + '</b></div></article>';
+      '<div class="pcard__img"><img src="' + r + p.img + '" alt="' + t(p.name) + ' (' + t('ejemplo') + ')" width="720" height="900" loading="lazy">' +
+      '<span class="tag-example pcard__ex">' + t('Ejemplo') + '</span>' +
+      '<button class="pcard__add" type="button" data-add="' + p.id + '" aria-label="+ ' + t(p.name) + '">' + ICON_PLUS + '</button></div>' +
+      '<h3>' + t(p.name) + '</h3><div class="pcard__meta"><span>' + t(p.note) + '</span><b>' + CS.money(p.price) + '</b></div></article>';
   };
   $$('[data-products]').forEach(function (box) {
     var list = (CS.products || []).slice(0, +box.dataset.products || 99);
     box.innerHTML = list.map(CS.productCard).join('');
   });
+
+  /* ---------- Idioma: traducir textos fijos (antes del motion) ---------- */
+  if (CS.translate) CS.translate(document.body);
 
   /* ---------- Año ---------- */
   $$('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
@@ -161,8 +165,8 @@
   // Titulares por líneas (máscara) o por palabras
   $$('[data-split]').forEach(function (el) {
     if (window.SplitText) {
-      var split = new window.SplitText(el, { type: 'lines', mask: 'lines', linesClass: 'split-line' });
-      reveal(el, { yPercent: 110, stagger: 0.09, duration: 1.2 }, { targets: split.lines });
+      var split = new window.SplitText(el, { type: 'lines', linesClass: 'split-line' });
+      reveal(el, { y: 26, opacity: 0, stagger: 0.1, duration: 1.2 }, { targets: split.lines });
     } else reveal(el, { y: 40, opacity: 0 });
   });
   $$('[data-anim="up"]').forEach(function (el) { reveal(el, { y: 48, opacity: 0 }); });
@@ -206,11 +210,11 @@
         .add(function () { intro.remove(); });
       setTimeout(function () { if (intro.parentNode) intro.remove(); }, 4500);   // red de seguridad
     }
-    tl.from('.portal__media', { scale: 1.12, duration: 2.2, ease: 'power2.out' }, first ? '-=1' : 0)
+    tl.fromTo('.portal__frame', { clipPath: 'inset(8% 10% 8% 10% round 22px)' }, { clipPath: 'inset(0% 0% 0% 0% round 0px)', duration: 1.8, ease: 'expo.inOut', clearProps: 'clipPath' }, first ? '-=1' : 0)
       .from(words, { yPercent: 110, stagger: .1, duration: 1.3 }, '-=1.9')
       .from(rest, { y: 30, opacity: 0, stagger: .08, duration: 1 }, '-=1');
     setTimeout(function () { tl.progress(1); }, 6000);   // red de seguridad
-    if (desktop) gsap.to('.portal__media', { yPercent: 12, ease: 'none', scrollTrigger: { trigger: portal, start: 'top top', end: 'bottom top', scrub: true } });
+    if (desktop) gsap.to('.portal__frame', { yPercent: 6, ease: 'none', scrollTrigger: { trigger: portal, start: 'top top', end: 'bottom top', scrub: true } });
   }
 
   /* ---------- Secuencia: el video de Claudia avanza con el scroll (PC) ---------- */
