@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex">
+  <title>Mi portal · Claudia Serrano Makeup Studio &amp; Academy</title>
+  <meta name="theme-color" content="#0b0908">
+  <link rel="icon" href="../assets/logo/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Italiana&amp;family=Open+Sans:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="preload" as="font" href="../assets/fonts/tan-mon-cheri.woff2" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/app.css">
+  <script>window.CS = { root: '../' };</script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+  <script src="../assets/js/data.js" defer></script>
+  <script src="../assets/js/app.js" defer></script>
+  <script src="../assets/js/portal.js" defer></script>
+</head>
+<body>
+  <!-- ===== ACCESO ===== -->
+  <main class="gate" id="gate">
+    <div class="gate__media">
+      <img src="../assets/img/claudia-studio-smile-xl.webp" alt="Claudia Serrano en su estudio" width="1400" height="2100" fetchpriority="high">
+    </div>
+    <div class="gate__form">
+      <a href="../index.html" aria-label="Volver al inicio"><img src="../assets/logo/signature-gold.svg" alt="Claudia Serrano" width="1275" height="276" style="width:190px"></a>
+      <p class="label">Portal de clientas y alumnas</p>
+      <h1 class="display d-1">Bienvenida</h1>
+      <p class="lede">Aquí están tus clases en video, tus sesiones uno a uno con Claudia, tus citas y tu certificado.</p>
+      <button class="btn btn--gold btn--block" type="button" id="demo">Entrar como alumna (demo)</button>
+      <p class="or">o con tu código</p>
+      <form class="form" id="code-form" novalidate>
+        <div class="field"><label for="code">Código de acceso</label><input id="code" name="code" autocomplete="one-time-code" autocapitalize="characters" spellcheck="false" placeholder="Ej. SERRANO2026"><span class="err" id="code-err" hidden>Ese código no es válido. Revisa el mensaje que te envió Claudia.</span></div>
+        <button class="btn btn--ghost btn--block" type="submit" style="--b-fg:var(--cream);--b-bd:rgba(245,245,245,.35)">Entrar con mi código</button>
+      </form>
+      <p class="muted small">¿Aún no tienes acceso? <a class="link" href="../agendar.html">Agenda una cita</a> o <a class="link" href="../academia.html#paquetes">inscríbete en un curso</a>.</p>
+      <p class="proto">Prototipo: el acceso es de demostración y se guarda solo en este dispositivo.</p>
+    </div>
+  </main>
+
+  <!-- ===== PORTAL ===== -->
+  <div class="app" id="app" hidden>
+    <header class="app__top">
+      <div class="wrap">
+        <div class="app__bar">
+          <a href="../index.html" aria-label="Inicio"><img src="../assets/logo/signature-gold.svg" alt="Claudia Serrano" width="1275" height="276" style="width:150px"></a>
+          <div class="app__user"><img src="../assets/img/claudia-hand-chin-sm.webp" alt="" width="72" height="108"><span id="user-name">Alumna</span><button class="btn btn--ghost btn--sm" type="button" id="logout" style="--b-fg:var(--cream);--b-bd:rgba(245,245,245,.3)">Salir</button></div>
+        </div>
+        <nav class="tabs" role="tablist" aria-label="Secciones del portal">
+          <button class="tab" role="tab" data-tab="clases">Mis clases</button>
+          <button class="tab" role="tab" data-tab="sesiones">Clases 1:1</button>
+          <button class="tab" role="tab" data-tab="citas">Mis citas</button>
+          <button class="tab" role="tab" data-tab="certificado">Certificado</button>
+          <button class="tab" role="tab" data-tab="guias">Guías</button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap app__main">
+      <!-- Mis clases -->
+      <section data-view="clases" role="tabpanel">
+        <div class="welcome">
+          <p class="label" id="pkg-label">Academia</p>
+          <h1 class="display d-2" id="hello">Hola</h1>
+          <div style="display:flex;justify-content:space-between;gap:1rem;font-size:.85rem" class="muted"><span id="progress-text">0 de 0 clases vistas</span><span id="progress-pct">0 %</span></div>
+          <div class="progress"><i id="progress-bar"></i></div>
+        </div>
+        <div class="course">
+          <div>
+            <div class="player">
+              <video id="player" controls playsinline preload="metadata" poster="../assets/img/claudia-studio-smile-md.webp"></video>
+              <div class="player__meta">
+                <span class="label" id="lesson-num">Lección 01</span>
+                <h2 class="display d-3" id="lesson-title">Bienvenida</h2>
+                <p class="muted small" id="lesson-pkg"></p>
+                <div class="actions"><button class="btn btn--gold btn--sm" type="button" id="mark">Marcar como vista</button><button class="btn btn--ghost btn--sm" type="button" id="next">Siguiente clase</button></div>
+              </div>
+            </div>
+            <p class="proto" style="margin-top:1rem">Prototipo: las clases usan un video de muestra. Aquí irán los videos reales de cada lección.</p>
+          </div>
+          <div style="display:grid;gap:.8rem">
+            <p class="label">Tus lecciones</p>
+            <div class="lessons" id="lessons"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Clases 1:1 -->
+      <section data-view="sesiones" role="tabpanel" hidden>
+        <div class="welcome"><p class="label">Uno a uno con Claudia</p><h1 class="display d-2">Clases 1:1</h1><p class="lede">Agenda tus sesiones personalizadas, presenciales en San Antonio u online por videollamada.</p></div>
+        <div class="cards cards--2">
+          <div class="card">
+            <p class="label">Agendar una sesión</p>
+            <div class="filters" id="s-days" style="margin:0"></div>
+            <div class="slots" id="s-slots"></div>
+            <div class="filters" id="s-mode" style="margin:0"><button class="chip is-on" type="button" data-mode="Online">Online</button><button class="chip" type="button" data-mode="Presencial">Presencial</button></div>
+            <button class="btn btn--block" type="button" id="s-book" disabled>Agendar sesión</button>
+            <p class="proto">Prototipo: horarios de ejemplo.</p>
+          </div>
+          <div class="card card--dark">
+            <p class="label">Próximas sesiones</p>
+            <div id="s-list" style="display:grid;gap:.6rem"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Mis citas -->
+      <section data-view="citas" role="tabpanel" hidden>
+        <div class="welcome"><p class="label">Servicios</p><h1 class="display d-2">Mis citas</h1></div>
+        <div id="bookings" style="display:grid;gap:.8rem"></div>
+        <div class="actions" style="margin-top:1.4rem"><a class="btn" href="../agendar.html">Agendar otra cita</a></div>
+      </section>
+
+      <!-- Certificado -->
+      <section data-view="certificado" role="tabpanel" hidden>
+        <div class="welcome"><p class="label">Academia</p><h1 class="display d-2">Tu certificado</h1></div>
+        <div class="cert">
+          <img src="../assets/logo/monogram-gold.png" alt="" width="712" height="490" style="width:80px">
+          <p class="label">Certificado de finalización</p>
+          <p class="display d-2" id="cert-name">Alumna</p>
+          <p class="muted" id="cert-pkg">Makeup Class 1:1</p>
+          <img src="../assets/logo/signature-black.svg" alt="Firma de Claudia Serrano" width="1275" height="276" style="width:200px">
+          <p class="muted small" id="cert-state"></p>
+          <button class="btn btn--gold" type="button" id="cert-btn" disabled>Descargar certificado</button>
+        </div>
+      </section>
+
+      <!-- Guías -->
+      <section data-view="guias" role="tabpanel" hidden>
+        <div class="welcome"><p class="label">Material del curso</p><h1 class="display d-2">Guías de productos</h1></div>
+        <div class="cards cards--3">
+          <div class="card"><img src="../assets/img/gen/prod-base.webp" alt="" width="720" height="900" style="border-radius:12px;aspect-ratio:4/3;object-fit:cover"><b>Guía de piel</b><span class="muted small">Preparación, bases y fijación</span><span class="tag-example" style="justify-self:start">Próximamente</span></div>
+          <div class="card"><img src="../assets/img/gen/prod-paleta.webp" alt="" width="720" height="900" style="border-radius:12px;aspect-ratio:4/3;object-fit:cover"><b>Guía de ojos y labios</b><span class="muted small">Sombras, delineado, pestañas y labios</span><span class="tag-example" style="justify-self:start">Próximamente</span></div>
+          <div class="card"><img src="../assets/img/gen/prod-brochas.webp" alt="" width="720" height="900" style="border-radius:12px;aspect-ratio:4/3;object-fit:cover"><b>Brochas esenciales</b><span class="muted small">Qué brocha usar para cada paso</span><span class="tag-example" style="justify-self:start">Próximamente</span></div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

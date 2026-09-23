@@ -4,316 +4,310 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="robots" content="noindex">
-  <title>Claudia Serrano · Makeup Studio &amp; Academy · San Antonio, TX</title>
-  <meta name="description" content="Claudia Serrano, maquilladora y estilista profesional en San Antonio, TX. Bride Makeup &amp; Hair desde $350, Full Glam Signature Look $150, Full Glam + Peinado $230, Hollywood Waves $120 y cursos de maquillaje 1:1 desde $150. Atiende en español.">
-  <meta name="theme-color" content="#f5f5f5">
+  <title>Claudia Serrano · Makeup Studio &amp; Academy</title>
+  <meta name="description" content="Agenda tu cita con Claudia Serrano en San Antonio, TX: Bride Makeup &amp; Hair, Full Glam, Full Glam + Peinado y Hollywood Waves. Academia de maquillaje 1:1 y tienda de sus productos favoritos.">
+  <meta name="theme-color" content="#0b0908">
   <link rel="icon" href="assets/logo/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png">
-  <meta property="og:type" content="website">
   <meta property="og:title" content="Claudia Serrano · Makeup Studio &amp; Academy">
-  <meta property="og:description" content="Maquillaje y peinado profesional en San Antonio, TX. Novias, full glam, Hollywood waves y cursos de maquillaje 1:1.">
+  <meta property="og:description" content="Agenda tu cita, aprende maquillaje 1:1 y compra los favoritos de Claudia.">
   <meta property="og:image" content="assets/img/og-cover.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Italiana&amp;family=Open+Sans:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
   <link rel="preload" as="font" href="assets/fonts/tan-mon-cheri.woff2" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/site.css">
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BeautySalon","name":"Claudia Serrano Makeup Studio & Academy","image":"assets/img/og-cover.jpg","telephone":"+1-210-793-5636","email":"claudiaserranoinfo@gmail.com","sameAs":["https://www.instagram.com/claudiasserrano"],"address":{"@type":"PostalAddress","addressLocality":"San Antonio","addressRegion":"TX","addressCountry":"US"},"areaServed":"San Antonio, TX","knowsLanguage":["es"]}
-  </script>
+  <link rel="preload" as="image" href="assets/img/hero-brush-wide.webp" fetchpriority="high">
+  <link rel="stylesheet" href="assets/css/app.css">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js" defer></script>
+  <script src="assets/js/data.js" defer></script>
+  <script src="assets/js/app.js" defer></script>
 </head>
 <body>
-  <a class="skip" href="#contenido" data-en="Skip to content">Saltar al contenido</a>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
 
+  <!-- ===== CABECERA ===== -->
   <header class="header">
     <div class="wrap header__bar">
-      <a class="header__logo" href="#inicio" aria-label="Claudia Serrano, inicio"><img src="assets/logo/signature-black.svg" alt="Claudia Serrano" width="1275" height="276"></a>
-      <nav class="header__nav" aria-label="Principal">
-        <a href="#sobre-mi" data-en="About">Sobre mí</a>
-        <a href="#servicios" data-en="Services">Servicios</a>
-        <a href="#novias" data-en="Brides">Novias</a>
-        <a href="#academia" data-en="Academy">Academia</a>
-        <a href="#portafolio" data-en="Portfolio">Portafolio</a>
-        <a href="#contacto" data-en="Contact">Contacto</a>
+      <a class="logo" href="index.html" aria-label="Claudia Serrano, inicio">
+        <img class="logo--light" src="assets/logo/signature-white.svg" alt="Claudia Serrano" width="1275" height="276">
+        <img class="logo--dark" src="assets/logo/signature-black.svg" alt="" width="1275" height="276">
+      </a>
+      <nav class="nav" aria-label="Principal">
+        <a href="#servicios">Servicios</a>
+        <a href="academia.html">Academia</a>
+        <a href="tienda.html">Tienda</a>
+        <a href="#portafolio">Portafolio</a>
+        <a href="#sobre-mi">Sobre mí</a>
       </nav>
       <div class="header__right">
-        <div class="lang" role="group" aria-label="Idioma / Language"><button type="button" data-lang="es" class="is-on" aria-pressed="true">ES</button><button type="button" data-lang="en" aria-pressed="false">EN</button></div>
-        <a class="btn header__cta" href="https://wa.me/12107935636?text=%C2%A1Hola%20Claudia%21%20Vi%20tu%20p%C3%A1gina%20web%20y%20quiero%20reservar%20una%20cita." target="_blank" rel="noopener"><span data-en="Book">Reservar</span></a>
+        <a class="btn btn--ghost btn--sm btn--access" href="portal/index.html">Acceder</a>
+        <a class="btn btn--sm btn--book" href="agendar.html" data-magnetic>Agendar cita</a>
+        <button class="icon-btn" type="button" data-cart-open aria-label="Abrir carrito">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+          <span class="cart-count" data-n="0"></span>
+        </button>
         <details class="menu">
-          <summary aria-label="Menú"><span></span></summary>
-          <nav class="menu__panel" aria-label="Menú">
-            <a href="#sobre-mi" data-en="About">Sobre mí</a>
-            <a href="#servicios" data-en="Services">Servicios</a>
-            <a href="#novias" data-en="Brides">Novias</a>
-            <a href="#academia" data-en="Academy">Academia</a>
-            <a href="#portafolio" data-en="Portfolio">Portafolio</a>
-            <a href="#contacto" data-en="Contact">Contacto</a>
-            <a class="btn" href="https://wa.me/12107935636?text=%C2%A1Hola%20Claudia%21%20Vi%20tu%20p%C3%A1gina%20web%20y%20quiero%20reservar%20una%20cita." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.4.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c1.7.7 2 .6 2.7.5a2.3 2.3 0 0 0 1.5-1.1 1.9 1.9 0 0 0 .1-1.1c0-.1-.2-.2-.4-.3z"/></svg><span data-en="Book on WhatsApp">Reservar por WhatsApp</span></a>
-            <p class="menu__foot" data-en="San Antonio, TX · Appointments in Spanish">San Antonio, TX · Atiendo en español</p>
-          </nav>
+          <summary class="icon-btn" aria-label="Menú">
+            <svg class="i-burger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
+            <svg class="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          </summary>
+          <div class="menu__panel">
+            <nav class="menu__links" aria-label="Menú">
+              <a href="agendar.html"><small>01</small>Agendar cita</a>
+              <a href="#servicios"><small>02</small>Servicios</a>
+              <a href="academia.html"><small>03</small>Academia</a>
+              <a href="tienda.html"><small>04</small>Tienda</a>
+              <a href="#portafolio"><small>05</small>Portafolio</a>
+              <a href="portal/index.html"><small>06</small>Mi portal</a>
+            </nav>
+            <p class="muted small">San Antonio, TX · Atiendo en español · WhatsApp +1 (210) 793-5636</p>
+          </div>
         </details>
       </div>
     </div>
   </header>
 
   <main id="contenido">
-    <!-- PORTADA (como la portada del manual: nombre grande, filete, banda taupe) -->
-    <section class="hero" id="inicio">
-      <div class="wrap hero__grid">
-        <div class="hero__text">
-          <p class="label rise">Makeup Studio &amp; Academy</p>
-          <h1 class="display display--xl hero__title rise rise--2"><span>Claudia</span><span>Serrano</span></h1>
-          <div class="hero__rule" aria-hidden="true"></div>
-          <p class="hero__sub rise rise--3" data-en="Professional makeup &amp; hair · San Antonio, TX">Maquillaje y peinado profesional · San Antonio, TX</p>
-          <p class="lede rise rise--3" data-en="Brides, full glam, Hollywood waves and 1:1 makeup classes. See every price right here and book on WhatsApp.">Novias, full glam, Hollywood waves y cursos de maquillaje 1:1. Mira todos los precios aquí mismo y reserva por WhatsApp.</p>
-          <div class="actions rise rise--4">
-            <a class="btn" href="https://wa.me/12107935636?text=%C2%A1Hola%20Claudia%21%20Vi%20tu%20p%C3%A1gina%20web%20y%20quiero%20reservar%20una%20cita." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.4.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c1.7.7 2 .6 2.7.5a2.3 2.3 0 0 0 1.5-1.1 1.9 1.9 0 0 0 .1-1.1c0-.1-.2-.2-.4-.3z"/></svg><span data-en="Book on WhatsApp">Reservar por WhatsApp</span></a>
-            <a class="btn btn--outline" href="#servicios"><span data-en="Services &amp; prices">Servicios y precios</span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <!-- ===== PORTAL DE ACCESO: Claudia protagonista ===== -->
+    <section class="portal" aria-label="Portada">
+      <div class="portal__media">
+        <img src="assets/img/hero-brush-wide.webp" alt="Claudia Serrano maquillándose con brocha bajo la luz de anillo" width="1920" height="1080" fetchpriority="high">
+        <video data-wide="assets/video/hero.mp4" data-tall="assets/video/hero-vertical.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
+      </div>
+      <div class="wrap portal__content">
+        <p class="portal__sub" data-portal>Makeup Studio &amp; Academy · San Antonio, TX</p>
+        <h1 class="display d-hero portal__title"><span class="word"><span>Claudia</span></span><span class="word"><span>Serrano</span></span></h1>
+        <div class="portal__row">
+          <div style="display:grid;gap:1.2rem" data-portal>
+            <p class="phrase">La nueva era de la belleza.</p>
+            <p class="lede">Agenda tu cita, aprende maquillaje conmigo uno a uno y compra mis productos favoritos, todo en un solo lugar.</p>
+            <div class="actions">
+              <a class="btn btn--gold" href="agendar.html" data-magnetic>Agendar mi cita
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+              <a class="btn btn--glass" href="portal/index.html">Acceder a mi portal</a>
+            </div>
           </div>
-          <p class="hero__note" data-en="Appointments are in Spanish.">Atiendo en español.</p>
+          <nav class="doors" aria-label="Entradas" data-portal>
+            <a class="door" href="agendar.html"><img src="assets/img/catalogo/novia-06-sm.webp" alt="" width="200" height="266"><div><b>Agenda</b><span>Novias, full glam y peinados</span></div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></a>
+            <a class="door" href="academia.html"><img src="assets/img/gen/academia-clase.webp" alt="" width="200" height="250"><div><b>Academia</b><span>Makeup Class 1:1 · desde $150</span></div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></a>
+            <a class="door" href="tienda.html"><img src="assets/img/gen/prod-paleta.webp" alt="" width="200" height="250"><div><b>Tienda</b><span>Los favoritos de Claudia</span></div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></a>
+          </nav>
         </div>
-        <div class="hero__media">
-          <div class="hero__frame">
-            <img src="assets/img/hero-video-poster.webp" alt="Claudia Serrano maquillándose con brocha bajo luz de anillo" width="720" height="1080" fetchpriority="high">
-            <video src="assets/video/hero-vertical.mp4" poster="assets/img/hero-video-poster.webp" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
-          </div>
-          <span class="hero__tag" data-en="The new era">La nueva era</span>
-        </div>
+        <div class="portal__foot" data-portal><span>Atiendo en español</span><span class="scroll-cue">Descubre <i></i></span></div>
       </div>
     </section>
 
     <div class="ribbon" aria-hidden="true">
-      <div class="ribbon__track"><div class="ribbon__group"><span>Novias</span><i>✦</i><span>Full Glam Signature Look</span><i>✦</i><span>Full Glam + Peinado</span><i>✦</i><span>Hollywood Waves</span><i>✦</i><span>Makeup Class 1:1</span><i>✦</i><span>San Antonio, TX</span><i>✦</i></div><div class="ribbon__group"><span>Novias</span><i>✦</i><span>Full Glam Signature Look</span><i>✦</i><span>Full Glam + Peinado</span><i>✦</i><span>Hollywood Waves</span><i>✦</i><span>Makeup Class 1:1</span><i>✦</i><span>San Antonio, TX</span><i>✦</i></div></div>
+      <div class="ribbon__track">
+        <div class="ribbon__group"><span>Bride Makeup &amp; Hair</span><i>✦</i><span>Full Glam Signature Look</span><i>✦</i><span>Full Glam + Peinado</span><i>✦</i><span>Hollywood Waves</span><i>✦</i><span>Makeup Class 1:1</span><i>✦</i></div>
+        <div class="ribbon__group"><span>Bride Makeup &amp; Hair</span><i>✦</i><span>Full Glam Signature Look</span><i>✦</i><span>Full Glam + Peinado</span><i>✦</i><span>Hollywood Waves</span><i>✦</i><span>Makeup Class 1:1</span><i>✦</i></div>
+      </div>
     </div>
 
-    <!-- SOBRE MÍ · LA NUEVA ERA (fondo marrón como en el manual) -->
-    <section class="section section--brown" id="sobre-mi">
-      <div class="wrap intro__grid">
-        <div class="intro__text">
-          <p class="label" data-en="About me">Sobre mí</p>
-          <h2 class="display display--l" data-en="The new era">La nueva era</h2>
-          <p class="phrase" data-en="Editorial beauty, with the precision and artistry of high-end makeup.">Belleza editorial, con la precisión y el arte del maquillaje de alto nivel.</p>
-          <p class="lede" data-en="I'm Claudia Serrano, a Venezuelan professional makeup and hair artist based in San Antonio, Texas. I draw inspiration from the great fashion houses and editorial beauty to create the look you choose, one you feel comfortable in.">Soy Claudia Serrano, maquilladora y estilista profesional venezolana, radicada en San Antonio, Texas. Me inspiro en las grandes casas de moda y en la belleza editorial para crear el look que tú escojas, uno con el que te sientas a gusto.</p>
-          <ul class="facts">
-            <li><b data-en="Studio">Estudio</b><span>San Antonio, TX</span></li>
-            <li><b data-en="Language">Idioma</b><span data-en="Spanish">Español</span></li>
-            <li><b data-en="Most requested">Lo más pedido</b><span>Full Glam Signature Look</span></li>
-            <li><b data-en="Academy">Academia</b><span data-en="1:1 classes, in person or online">Clases 1:1 presencial u online</span></li>
-          </ul>
-          <img class="intro__sig" src="assets/logo/signature-gold.svg" alt="Firma de Claudia Serrano" width="1275" height="276" loading="lazy">
+    <!-- ===== EL ARTE DEL DETALLE: el video de Claudia avanza con el scroll (PC) ===== -->
+    <section class="seq" data-frames="61" data-src="assets/seq/f_" aria-label="El arte del detalle">
+      <div class="wrap seq__sticky">
+        <div class="seq__intro" style="display:grid;gap:1.1rem;align-content:center">
+          <p class="label">El arte del detalle</p>
+          <h2 class="display d-1" data-split>Precisión y arte</h2>
+          <p class="lede">Una marca inspirada en las grandes casas de moda y la belleza editorial.</p>
         </div>
-        <figure class="intro__photo">
-          <img src="assets/img/claudia-hand-chin-md.webp" alt="Retrato de Claudia Serrano" width="900" height="1350" loading="lazy">
+        <div class="seq__stage">
+          <img src="assets/img/hero-video-poster.webp" alt="Claudia Serrano aplicando rubor con brocha" width="720" height="1080" loading="lazy">
+          <video data-mobile-src="assets/video/hero-vertical.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
+          <canvas aria-hidden="true"></canvas>
+        </div>
+        <div class="seq__beats">
+          <div class="beat"><span class="num">01</span><h3 class="display d-3">Precisión</h3><p>La precisión y el arte del maquillaje de alto nivel, en cada rostro.</p></div>
+          <div class="beat"><span class="num">02</span><h3 class="display d-3">Tu look</h3><p>El look que tú escojas, tanto de maquillaje como de peinado.</p></div>
+          <div class="beat"><span class="num">03</span><h3 class="display d-3">Tu sello</h3><p>Lo ideal es que tú te sientas a gusto. Esa es mi firma.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SERVICIOS (catálogo real) ===== -->
+    <section class="section cream" id="servicios" style="padding-bottom:clamp(3rem,7vw,5rem)">
+      <div class="wrap head head--split">
+        <div style="display:grid;gap:1rem">
+          <p class="label">Servicios · precios en USD</p>
+          <h2 class="display d-1" data-split>Agenda tu look</h2>
+        </div>
+        <div style="display:grid;gap:1rem;justify-items:start" data-anim="up">
+          <p class="lede">Elige tu servicio, el día y la hora, y reserva en línea en minutos.</p>
+          <a class="btn btn--ghost" href="agendar.html">Ver agenda</a>
+        </div>
+      </div>
+      <div class="hs">
+        <div class="hs__track">
+          <a class="svc" href="agendar.html?s=novia">
+            <img src="assets/img/catalogo/novia-06-md.webp" alt="Novia con maquillaje y peinado de Claudia Serrano" width="900" height="1200" loading="lazy">
+            <div class="svc__body"><span class="svc__tag">Novias</span><h3 class="display d-2">Bride Makeup &amp; Hair</h3><p>Luce espectacular bajo mi sello: el look que tú escojas, tanto de maquillaje como de peinado.</p>
+              <div class="svc__row"><p class="svc__price"><small>Desde</small>$350</p><span class="btn btn--light btn--sm">Agendar</span></div></div>
+          </a>
+          <a class="svc" href="agendar.html?s=fullglam">
+            <img src="assets/img/catalogo/fullglam-02-md.webp" alt="Full Glam Signature Look" width="900" height="1200" loading="lazy">
+            <div class="svc__body"><span class="svc__tag">El más pedido</span><h3 class="display d-2">Full Glam Signature Look</h3><p>Mi maquillaje más pedido: full glam, full face.</p>
+              <div class="svc__row"><p class="svc__price">$150</p><span class="btn btn--light btn--sm">Agendar</span></div></div>
+          </a>
+          <a class="svc" href="agendar.html?s=glam-peinado">
+            <img src="assets/img/catalogo/glam-peinado-01-md.webp" alt="Maquillaje full glam con peinado recogido" width="900" height="1200" loading="lazy">
+            <div class="svc__body"><span class="svc__tag">Maquillaje + peinado</span><h3 class="display d-2">Full Glam + Peinado</h3><p>Maquillaje full glam y peinado en la misma cita. No aplica para novias.</p>
+              <div class="svc__row"><p class="svc__price">$230</p><span class="btn btn--light btn--sm">Agendar</span></div></div>
+          </a>
+          <a class="svc" href="agendar.html?s=waves">
+            <img src="assets/img/catalogo/waves-02-md.webp" alt="Peinado Hollywood waves" width="900" height="1200" loading="lazy">
+            <div class="svc__body"><span class="svc__tag">Peinado</span><h3 class="display d-2">Hollywood Waves</h3><p>Peinado de ondas estilo Hollywood.</p>
+              <div class="svc__row"><p class="svc__price">$120</p><span class="btn btn--light btn--sm">Agendar</span></div></div>
+          </a>
+          <a class="svc" href="academia.html" style="background:var(--gold);color:var(--black)">
+            <img src="assets/img/gen/academia-mesa.webp" alt="" width="720" height="900" loading="lazy" style="opacity:.35">
+            <div class="svc__body"><span class="svc__tag" style="background:var(--black);color:var(--gold)">Academia</span><h3 class="display d-2">Makeup Class 1:1</h3><p style="color:rgba(0,0,0,.75)">Presencial u online, totalmente personalizados.</p>
+              <div class="svc__row"><p class="svc__price" style="color:var(--black)"><small style="color:rgba(0,0,0,.6)">Desde</small>$150</p><span class="btn btn--sm">Ver cursos</span></div></div>
+          </a>
+        </div>
+        <p class="hs__hint"><span>Desliza</span><span>5 opciones →</span></p>
+      </div>
+    </section>
+
+    <!-- ===== ACADEMIA ===== -->
+    <section class="section brown" id="academia">
+      <div class="wrap acad">
+        <figure class="acad__media" data-anim="clip">
+          <img src="assets/img/gen/academia-clase.webp" alt="Clase de maquillaje uno a uno" width="720" height="900" loading="lazy">
+          <div class="acad__badge"><b>1:1</b><span>Presencial u online · certificado y guías de productos</span></div>
         </figure>
+        <div style="display:grid;gap:1.4rem">
+          <p class="label">Academia</p>
+          <h2 class="display d-1" data-split>Makeup Class 1:1</h2>
+          <p class="lede">Cursos de maquillaje desde $150, totalmente personalizados. Al inscribirte entras a tu portal de alumna: tus clases en video y tus sesiones uno a uno conmigo.</p>
+          <div class="pkgs" data-stagger>
+            <div class="pkg"><div class="pkg__head"><h3 class="display d-3">Package 1</h3><span class="pkg__price">$300</span></div><ul><li>2 clases: soft y full glam · 7 horas</li><li>Automaquillaje: te maquillas tú misma</li></ul></div>
+            <div class="pkg pkg--featured"><div class="pkg__head"><h3 class="display d-3">Package 2</h3><span class="pkg__price">$1,000</span></div><ul><li>4 clases: soft glam, full glam, novia y quinceañera · 14 horas</li><li>En modelos diferentes</li></ul></div>
+            <div class="pkg"><div class="pkg__head"><h3 class="display d-3">Package 3</h3><span class="pkg__price">$1,500</span></div><ul><li>5 clases: novias, quinceañera, invitadas y piel madura · 22 horas</li><li>2 técnicas de peinado</li></ul></div>
+          </div>
+          <div class="actions">
+            <a class="btn btn--gold" href="academia.html" data-magnetic>Ver la academia</a>
+            <a class="btn btn--ghost" href="portal/index.html">Entrar al portal de alumnas</a>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- SERVICIOS (catálogo real) -->
-    <section class="section" id="servicios">
+    <!-- ===== TIENDA (productos de ejemplo) ===== -->
+    <section class="section sand" id="tienda">
       <div class="wrap">
         <div class="head head--split">
           <div style="display:grid;gap:1rem">
-            <p class="label" data-en="Services &amp; prices">Servicios y precios</p>
-            <h2 class="display display--l" data-en="Services">Servicios</h2>
+            <p class="label">Tienda</p>
+            <h2 class="display d-1" data-split>Los favoritos de Claudia</h2>
           </div>
-          <p class="lede" data-en="Prices in US dollars. Message me on WhatsApp with your date and I'll confirm availability.">Precios en dólares (USD). Escríbeme por WhatsApp con tu fecha y te confirmo disponibilidad.</p>
+          <div style="display:grid;gap:.8rem;justify-items:start" data-anim="up">
+            <p class="lede">Los productos que la patrocinan y que usa en su trabajo, para comprar aquí mismo.</p>
+            <span class="tag-example">Prototipo · productos de ejemplo</span>
+          </div>
         </div>
-        <div class="services">
-          <article class="service">
-            <div class="service__photo">
-              <img src="assets/img/catalogo/novia-06-md.webp" alt="Novia con maquillaje y peinado de Claudia Serrano" width="900" height="1200" loading="lazy">
-              <span class="service__badge" data-en="Brides">Novias</span>
-            </div>
-            <div class="service__top">
-              <h3 class="display display--s">Bride Makeup &amp; Hair</h3>
-              <p class="service__price"><small data-en="From">Desde</small>$350</p>
-            </div>
-            <p data-en="Look spectacular with my signature: the look you choose, in both makeup and hair. What matters most is that you feel comfortable.">Luce espectacular bajo mi sello: el look que tú escojas, tanto de maquillaje como de peinado. Lo ideal es que tú te sientas a gusto.</p>
-            <a class="btn btn--outline" href="https://wa.me/12107935636?text=%C2%A1Hola%20Claudia%21%20Quiero%20informaci%C3%B3n%20para%20Bride%20Makeup%20%26%20Hair%20%28desde%20%24350%29.%20Mi%20fecha%20es%3A%20" target="_blank" rel="noopener"><span data-en="Book this service">Reservar este servicio</span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          </article>
-          <article class="service">
-            <div class="service__photo">
-              <img src="assets/img/catalogo/fullglam-02-md.webp" alt="Full Glam Signature Look" width="900" height="1200" loading="lazy">
-              <span class="service__badge" data-en="Most requested">El más pedido</span>
-            </div>
-            <div class="service__top">
-              <h3 class="display display--s">Full Glam Signature Look</h3>
-              <p class="service__price">$150</p>
-            </div>
-            <p data-en="My most requested makeup: full glam, full face.">Mi maquillaje más pedido: full glam, full face.</p>
-            <a class="btn btn--outline" href="https://wa.me/12107935636?text=%C2%A1Hola%20Claudia%21%20Quiero%20reservar%20un%20Full%20Glam%20Signature%20Look%20%28%24150%29.%20Mi%20fecha%20es%3A%20" target="_blank" rel="noopener"><span data-en="Book this service">Reservar este servicio</span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          </article>
-          <article class="service">
-            <div class="service__photo">
-              <img src="assets/img/catalogo/glam-peinado-01-md.webp" alt="Maquillaje full glam con peinado recogido" width="900" height="1200" loading="lazy">
-              <span class="service__badge" data-en="Makeup + hair">Maquillaje + peinado</span>
-            </div>
-            <div class="service__top">
-              <h3 class="display display--s" data-en="Full Glam + Hair">Full Glam + Peinado</h3>
-              <p class="service__price">$230</p>
-            </div>
-            <p data-en="Full glam makeup and hairstyling in one appointment. Not for brides: for your wedding see Bride Makeup &amp;amp; Hair.">Maquillaje full glam y peinado en la misma cita. No aplica para novias: para tu boda mira Bride Makeup &amp; Hair.</p>
-            <a class="btn btn--outline" href="https://wa.me/12107935636?text=%C2%A1Hola%20Claudia%21%20Quiero%20reservar%20Maquillaje%20Full%20Glam%20%2B%20Peinado%20%28%24230%29.%20Mi%20fecha%20es%3A%20" target="_blank" rel="noopener"><span data-en="Book this service">Reservar este servicio</span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          </article>
-          <article class="service">
-            <div class="service__photo">
-              <img src="assets/img/catalogo/waves-02-md.webp" alt="Peinado Hollywood waves en cabello rubio" width="900" height="1200" loading="lazy">
-              <span class="service__badge" data-en="Hair">Peinado</span>
-            </div>
-            <div class="service__top">
-              <h3 class="display display--s">Hollywood Waves</h3>
-              <p class="service__price">$120</p>
-            </div>
-            <p data-en="Hollywood-style waves.">Peinado de ondas estilo Hollywood.</p>
-            <a class="btn btn--outline" href="https://wa.me/12107935636?text=%C2%A1Hola%20Claudia%21%20Quiero%20reservar%20Hollywood%20Waves%20%28%24120%29.%20Mi%20fecha%20es%3A%20" target="_blank" rel="noopener"><span data-en="Book this service">Reservar este servicio</span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          </article>
-        </div>
+        <div class="pgrid" data-products="6"></div>
+        <div class="actions" style="margin-top:2rem;justify-content:center"><a class="btn" href="tienda.html">Ir a la tienda</a></div>
       </div>
     </section>
 
-    <!-- NOVIAS -->
-    <section class="section section--sand" id="novias">
-      <div class="wrap brides">
-        <div class="brides__photos">
-          <img src="assets/img/catalogo/novia-04-md.webp" alt="Novia con velo, maquillaje de Claudia Serrano" width="900" height="1200" loading="lazy">
-          <img src="assets/img/catalogo/novia-02-md.webp" alt="Novia con recogido y soft glam" width="900" height="1200" loading="lazy">
-          <img src="assets/img/catalogo/novia-07-md.webp" alt="Novia con ondas y maquillaje glam" width="900" height="1200" loading="lazy">
-        </div>
-        <div class="brides__text">
-          <p class="label" data-en="Brides">Novias</p>
-          <h2 class="display display--l" data-en="Your day, your look">Tu día, tu look</h2>
-          <blockquote class="brides__quote">
-            <p class="phrase" data-en="“The look you choose, in both makeup and hair. What matters most is that you feel comfortable.”">«El look que tú escojas, tanto de maquillaje como de peinado. Lo ideal es que tú te sientas a gusto.»</p>
-          </blockquote>
-          <p class="lede" data-en="Bride Makeup &amp; Hair from $350. Tell me your date, the venue and how you picture yourself, and I'll reply on WhatsApp.">Bride Makeup &amp; Hair desde $350. Cuéntame tu fecha, el lugar y cómo te imaginas, y te respondo por WhatsApp.</p>
-          <div class="actions">
-            <a class="btn" href="https://wa.me/12107935636?text=%C2%A1Hola%20Claudia%21%20Me%20caso%20y%20quiero%20cotizar%20Bride%20Makeup%20%26%20Hair.%20Fecha%3A%20%E2%80%A6%20Lugar%3A%20%E2%80%A6" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.4.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c1.7.7 2 .6 2.7.5a2.3 2.3 0 0 0 1.5-1.1 1.9 1.9 0 0 0 .1-1.1c0-.1-.2-.2-.4-.3z"/></svg><span data-en="Get my wedding quote">Cotizar mi boda</span></a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ACADEMIA (flyer de cursos) -->
-    <section class="section" id="academia">
-      <div class="wrap academy__grid">
-        <div class="academy__intro">
-          <p class="label" data-en="Academy">Academia</p>
-          <h2 class="display display--l">Makeup Class 1:1</h2>
-          <p class="lede" data-en="Makeup classes from $150, in person or online, fully personalized. They include a certificate and product guides.">Cursos de maquillaje desde $150, presencial u online, totalmente personalizados. Incluyen certificado y guías de productos.</p>
-          <div class="actions">
-            <a class="btn" href="https://wa.me/12107935636?text=%C2%A1Hola%20Claudia%21%20Quiero%20informaci%C3%B3n%20de%20los%20cursos%20de%20maquillaje%201%3A1." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.4.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c1.7.7 2 .6 2.7.5a2.3 2.3 0 0 0 1.5-1.1 1.9 1.9 0 0 0 .1-1.1c0-.1-.2-.2-.4-.3z"/></svg><span data-en="I want to enroll">Quiero inscribirme</span></a>
-            <a class="btn btn--outline" href="aula/index.html"><span data-en="Student classroom">Aula de alumnas</span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          </div>
-          <figure class="academy__photo"><img src="assets/img/claudia-ringlight-palette-md.webp" alt="Claudia Serrano con brochas y paleta de sombras" width="900" height="1350" loading="lazy"></figure>
-        </div>
-        <div class="packages">
-            <article class="package">
-              <div class="package__head">
-                <h3 class="display display--s">Package 1</h3>
-                <p class="package__price">$300</p>
-              </div>
-              <ul>
-                <li data-en="2 classes: soft and full glam">2 clases: soft y full glam</li>
-                <li data-en="7 hours">7 horas</li>
-                <li data-en="Certificate and product guides">Certificado y guías de productos</li>
-                <li data-en="Self-makeup: you do your own makeup">Automaquillaje: te maquillas tú misma</li>
-              </ul>
-              <a class="btn btn--outline" href="https://wa.me/12107935636?text=%C2%A1Hola%20Claudia%21%20Quiero%20informaci%C3%B3n%20del%20curso%20de%20maquillaje%20Package%201%20%28%24300%29." target="_blank" rel="noopener"><span data-en="I want this package">Quiero este paquete</span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-            </article>
-            <article class="package">
-              <div class="package__head">
-                <h3 class="display display--s">Package 2</h3>
-                <p class="package__price">$1,000</p>
-              </div>
-              <ul>
-                <li data-en="4 classes: soft glam, full glam, bridal and quinceañera">4 clases: soft glam, full glam, novia y quinceañera</li>
-                <li data-en="14 hours">14 horas</li>
-                <li data-en="Certificate and product guides">Certificado y guías de productos</li>
-                <li data-en="On different models">En modelos diferentes</li>
-              </ul>
-              <a class="btn btn--outline" href="https://wa.me/12107935636?text=%C2%A1Hola%20Claudia%21%20Quiero%20informaci%C3%B3n%20del%20curso%20de%20maquillaje%20Package%202%20%28%241%2C000%29." target="_blank" rel="noopener"><span data-en="I want this package">Quiero este paquete</span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-            </article>
-            <article class="package">
-              <div class="package__head">
-                <h3 class="display display--s">Package 3</h3>
-                <p class="package__price">$1,500</p>
-              </div>
-              <ul>
-                <li data-en="5 classes: brides, quinceañera, guests and mature skin">5 clases: novias, quinceañera, invitadas y piel madura</li>
-                <li data-en="2 hairstyling techniques">2 técnicas de peinado</li>
-                <li data-en="Certificate and product guides">Certificado y guías de productos</li>
-                <li data-en="22 hours">22 horas</li>
-              </ul>
-              <a class="btn btn--outline" href="https://wa.me/12107935636?text=%C2%A1Hola%20Claudia%21%20Quiero%20informaci%C3%B3n%20del%20curso%20de%20maquillaje%20Package%203%20%28%241%2C500%29." target="_blank" rel="noopener"><span data-en="I want this package">Quiero este paquete</span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-            </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- PORTAFOLIO (fotos reales del catálogo) -->
-    <section class="section section--sand" id="portafolio">
+    <!-- ===== PORTAFOLIO (fotos reales) ===== -->
+    <section class="section dark" id="portafolio">
       <div class="wrap">
         <div class="head head--split">
           <div style="display:grid;gap:1rem">
-            <p class="label" data-en="Portfolio">Portafolio</p>
-            <h2 class="display display--l" data-en="Real clients">Clientas reales</h2>
+            <p class="label">Portafolio</p>
+            <h2 class="display d-1" data-split>Clientas reales</h2>
           </div>
-          <a class="btn btn--outline" href="https://instagram.com/claudiasserrano" target="_blank" rel="noopener"><span data-en="More on Instagram">Más en Instagram</span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn--ghost" href="https://instagram.com/claudiasserrano" target="_blank" rel="noopener" data-anim="up">@claudiasserrano</a>
         </div>
-        <div class="gallery">
-          <figure><img src="assets/img/catalogo/novia-04-45.webp" alt="Novia por Claudia Serrano" width="900" height="1125" loading="lazy"><figcaption data-en="Bride">Novia</figcaption></figure>
-          <figure><img src="assets/img/catalogo/fullglam-01-45.webp" alt="Full glam por Claudia Serrano" width="900" height="1125" loading="lazy"><figcaption data-en="Full glam">Full glam</figcaption></figure>
-          <figure><img src="assets/img/catalogo/waves-02-45.webp" alt="Hollywood waves por Claudia Serrano" width="900" height="1125" loading="lazy"><figcaption data-en="Hollywood waves">Hollywood waves</figcaption></figure>
-          <figure><img src="assets/img/catalogo/novia-02-45.webp" alt="Novia por Claudia Serrano" width="900" height="1125" loading="lazy"><figcaption data-en="Bride">Novia</figcaption></figure>
-          <figure><img src="assets/img/catalogo/glam-peinado-01-45.webp" alt="Full glam + peinado por Claudia Serrano" width="900" height="1125" loading="lazy"><figcaption data-en="Full glam + hair">Full glam + peinado</figcaption></figure>
-          <figure><img src="assets/img/catalogo/fullglam-04-45.webp" alt="Full glam por Claudia Serrano" width="900" height="1125" loading="lazy"><figcaption data-en="Full glam">Full glam</figcaption></figure>
-          <figure><img src="assets/img/catalogo/novia-07-45.webp" alt="Novia por Claudia Serrano" width="900" height="1125" loading="lazy"><figcaption data-en="Bride">Novia</figcaption></figure>
-          <figure><img src="assets/img/catalogo/fullglam-03-45.webp" alt="Full glam por Claudia Serrano" width="900" height="1125" loading="lazy"><figcaption data-en="Full glam">Full glam</figcaption></figure>
-          <figure><img src="assets/img/catalogo/novia-05-45.webp" alt="Novia por Claudia Serrano" width="900" height="1125" loading="lazy"><figcaption data-en="Bride">Novia</figcaption></figure>
-          <figure><img src="assets/img/catalogo/waves-01-45.webp" alt="Hollywood waves por Claudia Serrano" width="900" height="1125" loading="lazy"><figcaption data-en="Hollywood waves">Hollywood waves</figcaption></figure>
-          <figure><img src="assets/img/catalogo/novia-01-45.webp" alt="Novia por Claudia Serrano" width="900" height="1125" loading="lazy"><figcaption data-en="Bride">Novia</figcaption></figure>
-          <figure><img src="assets/img/catalogo/fullglam-02-45.webp" alt="Full glam por Claudia Serrano" width="900" height="1125" loading="lazy"><figcaption data-en="Full glam">Full glam</figcaption></figure>
-          <figure><img src="assets/img/catalogo/novia-03-45.webp" alt="Novia por Claudia Serrano" width="900" height="1125" loading="lazy"><figcaption data-en="Bride">Novia</figcaption></figure>
-          <figure><img src="assets/img/catalogo/glam-peinado-02-45.webp" alt="Peinado recogido por Claudia Serrano" width="900" height="1125" loading="lazy"><figcaption data-en="Updo">Peinado recogido</figcaption></figure>
-          <figure><img src="assets/img/catalogo/novia-06-45.webp" alt="Novia por Claudia Serrano" width="900" height="1125" loading="lazy"><figcaption data-en="Bride">Novia</figcaption></figure>
+        <div class="pf">
+          <div class="pf__col">
+            <figure><img src="assets/img/catalogo/novia-04-45.webp" alt="Novia con velo" width="900" height="1125" loading="lazy"><figcaption>Novia</figcaption></figure>
+            <figure><img src="assets/img/catalogo/fullglam-01-45.webp" alt="Full glam" width="900" height="1125" loading="lazy"><figcaption>Full glam</figcaption></figure>
+            <figure><img src="assets/img/catalogo/novia-05-45.webp" alt="Novia de espaldas con recogido" width="900" height="1125" loading="lazy"><figcaption>Novia</figcaption></figure>
+            <figure><img src="assets/img/catalogo/waves-01-45.webp" alt="Hollywood waves" width="900" height="1125" loading="lazy"><figcaption>Hollywood waves</figcaption></figure>
+          </div>
+          <div class="pf__col">
+            <figure><img src="assets/img/catalogo/novia-02-45.webp" alt="Novia soft glam" width="900" height="1125" loading="lazy"><figcaption>Novia</figcaption></figure>
+            <figure><img src="assets/img/catalogo/glam-peinado-01-45.webp" alt="Full glam y peinado" width="900" height="1125" loading="lazy"><figcaption>Full glam + peinado</figcaption></figure>
+            <figure><img src="assets/img/catalogo/fullglam-04-45.webp" alt="Full glam con ojos cerrados" width="900" height="1125" loading="lazy"><figcaption>Full glam</figcaption></figure>
+            <figure><img src="assets/img/catalogo/novia-01-45.webp" alt="Novia" width="900" height="1125" loading="lazy"><figcaption>Novia</figcaption></figure>
+          </div>
+          <div class="pf__col pf__col--xs">
+            <figure><img src="assets/img/catalogo/novia-07-45.webp" alt="Novia con ondas" width="900" height="1125" loading="lazy"><figcaption>Novia</figcaption></figure>
+            <figure><img src="assets/img/catalogo/fullglam-03-45.webp" alt="Full glam con ondas" width="900" height="1125" loading="lazy"><figcaption>Full glam</figcaption></figure>
+            <figure><img src="assets/img/catalogo/novia-03-45.webp" alt="Novia soft glam" width="900" height="1125" loading="lazy"><figcaption>Novia</figcaption></figure>
+            <figure><img src="assets/img/catalogo/glam-peinado-02-45.webp" alt="Peinado recogido" width="900" height="1125" loading="lazy"><figcaption>Peinado recogido</figcaption></figure>
+          </div>
+          <div class="pf__col pf__col--xs">
+            <figure><img src="assets/img/catalogo/waves-02-45.webp" alt="Hollywood waves en cabello rubio" width="900" height="1125" loading="lazy"><figcaption>Hollywood waves</figcaption></figure>
+            <figure><img src="assets/img/catalogo/fullglam-02-45.webp" alt="Full glam signature look" width="900" height="1125" loading="lazy"><figcaption>Full glam</figcaption></figure>
+            <figure><img src="assets/img/catalogo/novia-06-45.webp" alt="Novia con vestido blanco" width="900" height="1125" loading="lazy"><figcaption>Novia</figcaption></figure>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- CONTACTO (negro y oro, como el logotipo principal) -->
-    <section class="section section--black" id="contacto">
-      <div class="wrap contact">
-        <img class="contact__mono" src="assets/logo/monogram-gold.png" alt="" width="712" height="490" loading="lazy">
-        <img class="contact__sig" src="assets/logo/signature-gold.svg" alt="Claudia Serrano" width="1275" height="276" loading="lazy">
-        <h2 class="display display--l" data-en="Book your appointment">Reserva tu cita</h2>
-        <p class="lede" data-en="Message me on WhatsApp with the service and your date. Appointments are in Spanish.">Escríbeme por WhatsApp con el servicio y tu fecha. Atiendo en español.</p>
-        <div class="actions">
-          <a class="btn btn--gold" href="https://wa.me/12107935636?text=%C2%A1Hola%20Claudia%21%20Vi%20tu%20p%C3%A1gina%20web%20y%20quiero%20reservar%20una%20cita." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.4.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c1.7.7 2 .6 2.7.5a2.3 2.3 0 0 0 1.5-1.1 1.9 1.9 0 0 0 .1-1.1c0-.1-.2-.2-.4-.3z"/></svg><span>WhatsApp · (210) 793-5636</span></a>
-          <a class="btn btn--ghost-light" href="https://instagram.com/claudiasserrano" target="_blank" rel="noopener"><span>Instagram</span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <!-- ===== SOBRE CLAUDIA ===== -->
+    <section class="section cream" id="sobre-mi">
+      <div class="wrap about">
+        <figure class="about__photo" data-anim="clip"><img src="assets/img/claudia-hand-chin-md.webp" alt="Retrato de Claudia Serrano" width="900" height="1350" loading="lazy" data-parallax="6"></figure>
+        <div style="display:grid;gap:1.3rem">
+          <p class="label">Sobre mí</p>
+          <h2 class="display d-1" data-split>La nueva era</h2>
+          <p class="phrase" data-anim="up">Belleza editorial, con la precisión y el arte del maquillaje de alto nivel.</p>
+          <p class="lede" data-anim="up">Soy Claudia Serrano, maquilladora y estilista profesional venezolana, radicada en San Antonio, Texas. Me inspiro en las grandes casas de moda y en la belleza editorial para crear el look que tú escojas, uno con el que te sientas a gusto.</p>
+          <ul class="facts" data-stagger>
+            <li><b>Estudio</b><span>San Antonio, TX</span></li>
+            <li><b>Idioma</b><span>Español</span></li>
+            <li><b>Lo más pedido</b><span>Full Glam Signature Look</span></li>
+            <li><b>Academia</b><span>Clases 1:1 presencial u online</span></li>
+          </ul>
+          <img class="about__sig" src="assets/logo/signature-black.svg" alt="Firma de Claudia Serrano" width="1275" height="276" loading="lazy" data-anim="fade">
         </div>
-        <ul class="contact__list">
-          <li><a href="tel:+12107935636">+1 (210) 793-5636</a></li>
-          <li><a href="https://instagram.com/claudiasserrano" target="_blank" rel="noopener">@claudiasserrano</a></li>
-          <li><a href="mailto:claudiaserranoinfo@gmail.com">claudiaserranoinfo@gmail.com</a></li>
-          <li>San Antonio, Texas</li>
-        </ul>
+      </div>
+    </section>
+
+    <!-- ===== LLAMADO FINAL ===== -->
+    <section class="section dark cta">
+      <div class="cta__bg"><img src="assets/img/gen/estudio-vanity.webp" alt="" width="900" height="504" loading="lazy" data-parallax="8"></div>
+      <div class="wrap cta__inner">
+        <img class="cta__mono" src="assets/logo/monogram-gold.png" alt="" width="712" height="490" loading="lazy" data-anim="fade">
+        <h2 class="display d-1" data-split>Tu cita te espera</h2>
+        <p class="lede" data-anim="up">Elige tu servicio y reserva en línea en minutos. Atiendo en español.</p>
+        <div class="actions" data-anim="up">
+          <a class="btn btn--gold" href="agendar.html" data-magnetic>Agendar mi cita</a>
+          <a class="btn btn--ghost" href="https://wa.me/12107935636?text=Hola%20Claudia%2C%20quiero%20agendar%20una%20cita" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
       </div>
     </section>
   </main>
 
+  <!-- ===== PIE ===== -->
   <footer class="footer">
     <div class="wrap">
-      <span>© <span data-year>2026</span> Claudia Serrano · Makeup Studio &amp; Academy · San Antonio, TX</span>
-      <nav aria-label="Pie de página">
-        <a href="https://instagram.com/claudiasserrano" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://wa.me/12107935636?text=%C2%A1Hola%20Claudia%21%20Vi%20tu%20p%C3%A1gina%20web%20y%20quiero%20reservar%20una%20cita." target="_blank" rel="noopener">WhatsApp</a>
-        <a href="aula/index.html" data-en="Student classroom">Aula de alumnas</a>
-      </nav>
+      <div class="footer__grid">
+        <div style="display:grid;gap:1rem;align-content:start">
+          <img class="footer__sig" src="assets/logo/signature-gold.svg" alt="Claudia Serrano" width="1275" height="276" loading="lazy">
+          <p>Makeup Studio &amp; Academy · San Antonio, TX</p>
+        </div>
+        <div><h4>Explora</h4><ul><li><a href="#servicios">Servicios</a></li><li><a href="academia.html">Academia</a></li><li><a href="tienda.html">Tienda</a></li><li><a href="#portafolio">Portafolio</a></li></ul></div>
+        <div><h4>Clientas</h4><ul><li><a href="agendar.html">Agendar cita</a></li><li><a href="portal/index.html">Mi portal</a></li><li><a href="#" data-cart-open>Mi carrito</a></li></ul></div>
+        <div><h4>Contacto</h4><ul><li><a href="https://wa.me/12107935636" target="_blank" rel="noopener">WhatsApp +1 (210) 793-5636</a></li><li><a href="https://instagram.com/claudiasserrano" target="_blank" rel="noopener">@claudiasserrano</a></li><li><a href="mailto:claudiaserranoinfo@gmail.com">claudiaserranoinfo@gmail.com</a></li></ul></div>
+      </div>
+      <div class="footer__bottom"><span>© <span data-year>2026</span> Claudia Serrano · Makeup Studio &amp; Academy</span><span>Prototipo · pagos simulados y productos de ejemplo</span></div>
     </div>
   </footer>
 
-  <a class="wa-float" href="https://wa.me/12107935636?text=%C2%A1Hola%20Claudia%21%20Vi%20tu%20p%C3%A1gina%20web%20y%20quiero%20reservar%20una%20cita." target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.4.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c1.7.7 2 .6 2.7.5a2.3 2.3 0 0 0 1.5-1.1 1.9 1.9 0 0 0 .1-1.1c0-.1-.2-.2-.4-.3z"/></svg><span>WhatsApp</span></a>
-
-  <script src="assets/js/site.js" defer></script>
+  <!-- Barra de acciones en el teléfono -->
+  <nav class="dock" aria-label="Acciones rápidas">
+    <a class="btn btn--gold" href="agendar.html">Agendar</a>
+    <a class="btn btn--glass" href="portal/index.html">Mi portal</a>
+    <button class="icon-btn" type="button" data-cart-open aria-label="Abrir carrito"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg><span class="cart-count" data-n="0"></span></button>
+  </nav>
 </body>
 </html>

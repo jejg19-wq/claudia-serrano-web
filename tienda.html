@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex">
+  <title>Tienda · Los favoritos de Claudia Serrano</title>
+  <meta name="description" content="Los productos que patrocinan a Claudia Serrano y que usa en su trabajo. Prototipo con productos de ejemplo; se conectará a Shopify.">
+  <meta name="theme-color" content="#f5f5f5">
+  <link rel="icon" href="assets/logo/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Italiana&amp;family=Open+Sans:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="preload" as="font" href="assets/fonts/tan-mon-cheri.woff2" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/app.css">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js" defer></script>
+  <script src="assets/js/data.js" defer></script>
+  <script src="assets/js/app.js" defer></script>
+  <script src="assets/js/shop.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+  <header class="header header--solid">
+    <div class="wrap header__bar">
+      <a class="logo" href="index.html" aria-label="Claudia Serrano, inicio">
+        <img class="logo--light" src="assets/logo/signature-white.svg" alt="Claudia Serrano" width="1275" height="276">
+        <img class="logo--dark" src="assets/logo/signature-black.svg" alt="" width="1275" height="276">
+      </a>
+      <nav class="nav" aria-label="Principal">
+        <a href="index.html#servicios">Servicios</a>
+        <a href="agendar.html">Agenda</a>
+        <a href="academia.html">Academia</a>
+        <a href="tienda.html" aria-current="page">Tienda</a>
+      </nav>
+      <div class="header__right">
+        <a class="btn btn--sm btn--book" href="agendar.html">Agendar cita</a>
+        <button class="icon-btn" type="button" data-cart-open aria-label="Abrir carrito"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg><span class="cart-count" data-n="0"></span></button>
+        <details class="menu">
+          <summary class="icon-btn" aria-label="Menú">
+            <svg class="i-burger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
+            <svg class="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          </summary>
+          <div class="menu__panel">
+            <nav class="menu__links" aria-label="Menú">
+              <a href="index.html"><small>01</small>Inicio</a>
+              <a href="agendar.html"><small>02</small>Agenda</a>
+              <a href="academia.html"><small>03</small>Academia</a>
+              <a href="tienda.html"><small>04</small>Tienda</a>
+              <a href="portal/index.html"><small>05</small>Mi portal</a>
+            </nav>
+          </div>
+        </details>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="page-top cream">
+      <div class="wrap head head--split" style="margin-bottom:0">
+        <div style="display:grid;gap:1rem">
+          <p class="label">Tienda</p>
+          <h1 class="display d-1" data-split>Los favoritos de Claudia</h1>
+          <p class="lede">Los productos que la patrocinan y que usa en su trabajo.</p>
+        </div>
+        <p class="proto" style="max-width:340px">Prototipo: productos, nombres y precios de ejemplo. La tienda se conectará a Shopify con los productos reales.</p>
+      </div>
+    </section>
+
+    <section class="cream" style="padding-bottom:var(--section)">
+      <div class="wrap">
+        <div class="filters" role="group" aria-label="Filtrar por categoría">
+          <button class="chip is-on" type="button" data-filter="all">Todo</button>
+          <button class="chip" type="button" data-filter="Rostro">Rostro</button>
+          <button class="chip" type="button" data-filter="Ojos">Ojos</button>
+          <button class="chip" type="button" data-filter="Labios">Labios</button>
+          <button class="chip" type="button" data-filter="Herramientas">Herramientas</button>
+        </div>
+        <div class="pgrid" id="grid" data-products="99"><noscript><p>Activa JavaScript para ver la tienda.</p></noscript></div>
+      </div>
+    </section>
+
+    <section class="section dark cta">
+      <div class="cta__bg"><img src="assets/img/gen/prod-brochas.webp" alt="" width="720" height="900" loading="lazy"></div>
+      <div class="wrap cta__inner">
+        <h2 class="display d-1" data-split>Aprende a usarlos</h2>
+        <p class="lede" data-anim="up">En la academia te enseño a sacarles el máximo, uno a uno.</p>
+        <div class="actions" data-anim="up"><a class="btn btn--gold" href="academia.html">Ver la academia</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" style="padding-bottom:2rem">
+    <div class="wrap footer__bottom" style="margin-top:0;border-top:0;padding-top:0">
+      <span>© <span data-year>2026</span> Claudia Serrano · Makeup Studio &amp; Academy · San Antonio, TX</span>
+      <span><a href="index.html">Inicio</a> · <a href="agendar.html">Agenda</a> · <a href="academia.html">Academia</a></span>
+    </div>
+  </footer>
+</body>
+</html>

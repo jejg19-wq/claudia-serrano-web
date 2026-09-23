@@ -2,84 +2,10 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="robots" content="noindex">
-  <title>Aula de alumnas · Claudia Serrano Makeup Academy</title>
-  <meta name="theme-color" content="#f5f5f5">
-  <link rel="icon" href="../assets/logo/favicon.png" type="image/png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Italiana&amp;family=Open+Sans:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/site.css">
+  <meta http-equiv="refresh" content="0; url=../portal/index.html">
+  <title>Portal de alumnas · Claudia Serrano</title>
+  <script>location.replace('../portal/index.html' + location.hash);</script>
 </head>
-<body>
-  <header class="header">
-    <div class="wrap header__bar">
-      <a class="header__logo" href="../index.html" aria-label="Claudia Serrano, inicio"><img src="../assets/logo/signature-black.svg" alt="Claudia Serrano" width="1275" height="276"></a>
-      <div class="header__right">
-        <div class="lang" role="group" aria-label="Idioma / Language"><button type="button" data-lang="es" class="is-on" aria-pressed="true">ES</button><button type="button" data-lang="en" aria-pressed="false">EN</button></div>
-        <a class="btn btn--outline" style="min-height:42px;padding:.6rem 1rem;font-size:.7rem" href="../index.html#academia"><span data-en="Academy">Academia</span></a>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <section class="aula-hero">
-      <div class="wrap" style="display:grid;gap:1.2rem;max-width:760px">
-        <p class="label" data-en="Academy · student classroom">Academia · aula de alumnas</p>
-        <h1 class="display display--l" data-en="Welcome to your lessons">Bienvenida a tus lecciones</h1>
-        <p class="lede" data-en="Enter the access code Claudia sent you when you enrolled. Your videos and product guides are here.">Escribe el código de acceso que Claudia te envió al inscribirte. Aquí están tus videos y las guías de productos.</p>
-      </div>
-    </section>
-
-    <section class="section section--brown" id="gate" style="padding-block:clamp(3rem,8vw,5rem)">
-      <div class="wrap">
-        <form class="aula-form" id="gate-form" novalidate>
-          <img src="../assets/logo/monogram-line-black.png" alt="" style="width:70px;margin-inline:auto" loading="lazy">
-          <label class="display display--s" for="codigo" data-en="Access code">Código de acceso</label>
-          <input type="text" id="codigo" name="codigo" autocomplete="one-time-code" autocapitalize="characters" spellcheck="false" required>
-          <p class="aula-error" id="gate-error" role="alert" hidden></p>
-          <button class="btn" type="submit"><span data-en="Enter the classroom">Entrar al aula</span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-          <p class="small muted" data-en="Don't have a code yet? Enroll and Claudia sends it to you on WhatsApp.">¿Aún no tienes código? Inscríbete y Claudia te lo envía por WhatsApp.</p>
-          <a class="btn btn--outline" href="https://wa.me/12107935636?text=%C2%A1Hola%20Claudia%21%20Soy%20alumna%20y%20necesito%20mi%20c%C3%B3digo%20de%20acceso%20al%20aula." target="_blank" rel="noopener"><span data-en="Ask for my code">Pedir mi código</span></a>
-        </form>
-      </div>
-    </section>
-
-    <section class="section" id="room" hidden>
-      <div class="wrap" style="display:grid;gap:2rem">
-        <div class="head head--split" style="margin-bottom:0">
-          <div style="display:grid;gap:1rem">
-            <p class="label" data-en="Your lessons">Tus lecciones</p>
-            <h2 class="display display--m" data-en="Watch, pause, practice again">Mira, pausa, practica otra vez</h2>
-          </div>
-          <button class="btn btn--outline" type="button" id="logout"><span data-en="Sign out">Salir</span></button>
-        </div>
-        <div class="lessons" id="lessons"></div>
-        <div class="grid-2">
-          <div class="panel">
-            <p class="label" data-en="Product guides">Guías de productos</p>
-            <ul id="guias" style="display:grid;gap:.5rem"></ul>
-          </div>
-          <div class="panel">
-            <p class="label" data-en="Certificate">Certificado</p>
-            <p class="muted" data-en="Your package includes a certificate. When you finish, ask Claudia for it on WhatsApp.">Tu paquete incluye certificado. Al terminar, pídeselo a Claudia por WhatsApp.</p>
-            <a class="btn" href="https://wa.me/12107935636?text=%C2%A1Hola%20Claudia%21%20Termin%C3%A9%20mi%20curso%20y%20quiero%20solicitar%20mi%20certificado." target="_blank" rel="noopener"><span data-en="Request my certificate">Solicitar mi certificado</span></a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer" style="padding-bottom:2rem">
-    <div class="wrap">
-      <span>© <span data-year>2026</span> Claudia Serrano · Makeup Studio &amp; Academy · San Antonio, TX</span>
-      <nav aria-label="Pie de página"><a href="../index.html" data-en="Home">Inicio</a><a href="../index.html#academia" data-en="Academy">Academia</a></nav>
-    </div>
-  </footer>
-
-  <script src="../assets/js/site.js"></script>
-  <script src="lecciones.js"></script>
-  <script src="aula.js"></script>
-</body>
+<body><p>El aula ahora es el <a href="../portal/index.html">portal de alumnas</a>.</p></body>
 </html>
