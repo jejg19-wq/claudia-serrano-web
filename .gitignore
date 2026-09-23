@@ -9,3 +9,8 @@ Thumbs.db
 .claude/
 /catalogo/
 /cursos/
+
+# Herramientas de prueba
+tools/.venv/
+tools/capturas/
+tools/__pycache__/
