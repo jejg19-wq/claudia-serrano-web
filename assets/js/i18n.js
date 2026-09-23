@@ -13,6 +13,10 @@
   document.documentElement.lang = CS.lang;
 
   CS.EN = {
+    /* v5 */
+    'Retratos de Claudia Serrano': 'Portraits of Claudia Serrano', 'Elige tu servicio': 'Choose your service', 'Novias, full glam, peinados.': 'Brides, full glam, hairstyling.',
+    'Mira los horarios disponibles.': 'See the available times.', 'Confirmación inmediata': 'Instant confirmation', 'Y tu cita queda en tu portal.': 'And your appointment is saved in your portal.',
+    'Estudio de maquillaje con espejo de luces': 'Makeup studio with a lighted mirror', 'Correo': 'Email', 'Paso 1 de 4': 'Step 1 of 4',
     /* Navegación y comunes */
     'Saltar al contenido': 'Skip to content', 'Principal': 'Main', 'Menú': 'Menu', 'Inicio': 'Home', 'Servicios': 'Services', 'Academia': 'Academy', 'Tienda': 'Shop',
     'Portafolio': 'Portfolio', 'Sobre mí': 'About me', 'Acceder': 'Sign in', 'Agendar cita': 'Book now', 'Agenda': 'Booking', 'Mi portal': 'My portal', 'Abrir carrito': 'Open cart',

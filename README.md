@@ -44,13 +44,14 @@ Bilingüe **español / inglés**. Se abre en inglés si el navegador o teléfono
   - Intro de marca en la primera visita.
   - Titulares que entran por líneas y fotos que se revelan con máscara.
   - Parallax y columnas del portafolio a distinta velocidad.
-  - Carrusel de servicios fijado con scroll en PC.
-  - Secuencia de 61 cuadros del video de Claudia en `assets/seq/` (1,3 MB), que avanza con el scroll en PC.
+  - Portafolio en miniaturas con visor a pantalla completa.
+  - «El arte del detalle»: video propio (`assets/video/reel.mp4`, hecho con ffmpeg a partir de 6 fotos de Claudia) en un arco con texto circular que gira.
   - Botones magnéticos y cursor dorado.
 - **Seguridad del motion:**
   - Nada se oculta en el HTML ni en el CSS. GSAP pone los estados iniciales solo si cargó y si el usuario no pidió «reducir movimiento».
   - Una red de seguridad completa cualquier animación que no haya disparado.
-  - En teléfono no hay secuencia por scroll: el video se reproduce solo.
+  - Los videos solo se reproducen cuando están en pantalla (ahorra batería y datos).
+- **Caché:** los CSS/JS llevan `?v=N`; al cambiarlos, subir N en las páginas para que los teléfonos no usen la copia vieja.
 
 ## Cómo probar
 

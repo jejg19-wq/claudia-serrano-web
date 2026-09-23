@@ -22,7 +22,10 @@
   /* ---------- Paso 1: servicios ---------- */
   var list = $('#svc-list');
   list.innerHTML = CS.services.map(function (s) {
-    return '<button type="button" class="opt" data-id="' + s.id + '" aria-pressed="false"><img src="' + s.img + '" alt="" width="152" height="184"><div><b>' + t(s.name) + '</b><span>' + t(s.tag) + ' · ' + (EN ? 'approx. ' : 'aprox. ') + dur(s.duration) + '</span></div><span class="price">' + (s.from ? '<small class="muted" style="font-family:var(--body);font-size:.6rem;letter-spacing:.14em;display:block">' + t('Desde').toUpperCase() + '</small>' : '') + CS.money(s.price) + '</span></button>';
+    return '<button type="button" class="opt" data-id="' + s.id + '" aria-pressed="false"><img src="' + s.img + '" alt="" width="900" height="1200" loading="lazy">' +
+      '<span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>' +
+      '<b>' + t(s.name) + '</b><span>' + t(s.tag) + ' · ' + (EN ? 'approx. ' : 'aprox. ') + dur(s.duration) + '</span>' +
+      '<span class="price">' + (s.from ? '<small style="font-family:var(--body);font-size:.56rem;letter-spacing:.14em;margin-right:.3rem">' + t('Desde').toUpperCase() + '</small>' : '') + CS.money(s.price) + '</span></button>';
   }).join('');
   list.addEventListener('click', function (e) {
     var b = e.target.closest('.opt'); if (!b) return;
@@ -122,6 +125,10 @@
     state.step = n;
     $$('[data-panel]').forEach(function (p) { p.hidden = +p.dataset.panel !== n; });
     $$('#steps li').forEach(function (li) { var s = +li.dataset.step; li.classList.toggle('is-on', s === n); li.classList.toggle('is-done', s < n); });
+    var names = [t('Servicio'), t('Fecha y hora'), t('Tus datos'), t('Pago'), EN ? 'Confirmed' : 'Confirmada'];
+    $('#step-count').textContent = n <= 4 ? (EN ? 'Step ' + n + ' of 4' : 'Paso ' + n + ' de 4') : (EN ? 'Done' : 'Listo');
+    $('#step-name').textContent = names[n - 1];
+    $('#step-bar').style.width = Math.min(100, n * 25) + '%';
     if (n === 2) { if (state.date) view = new Date(state.date.getFullYear(), state.date.getMonth(), 1); renderCal(); renderSlots(); check2(); }
     if (n === 4) { $('#pay-total').textContent = (state.svc.from ? t('Desde') + ' ' : '') + CS.money(state.svc.price); $('#pay-note').textContent = state.svc.from ? (EN ? 'The bridal price starts at $350; Claudia confirms the total based on your look.' : 'El precio de novia es desde $350; Claudia confirma el total según tu look.') : (EN ? 'Published service price.' : 'Precio publicado del servicio.'); }
     var top = $('#wizard').getBoundingClientRect().top + window.scrollY - 90;
@@ -136,7 +143,7 @@
   function summary() {
     var s = state.svc;
     $('#sum-name').textContent = s ? t(s.name) : t('Elige un servicio');
-    if (s) $('#sum-img').src = s.img;
+    if (s) $('#sum-img').src = s.img.replace('-md.webp', '-sm.webp');
     $('#sum-date').textContent = state.date ? longDate(state.date) : '—';
     $('#sum-time').textContent = state.time || '—';
     $('#sum-dur').textContent = s ? dur(s.duration) : '—';

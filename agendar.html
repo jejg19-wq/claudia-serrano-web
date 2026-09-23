@@ -12,18 +12,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Italiana&amp;family=Open+Sans:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
   <link rel="preload" as="font" href="assets/fonts/tan-mon-cheri.woff2" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/app.css">
+  <link rel="stylesheet" href="assets/css/app.css?v=8">
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js" defer></script>
-  <script src="assets/js/data.js" defer></script>
-  <script src="assets/js/i18n.js" defer></script>
-  <script src="assets/js/app.js" defer></script>
-  <script src="assets/js/booking.js" defer></script>
+  <script src="assets/js/data.js?v=8" defer></script>
+  <script src="assets/js/i18n.js?v=8" defer></script>
+  <script src="assets/js/app.js?v=8" defer></script>
+  <script src="assets/js/booking.js?v=8" defer></script>
 </head>
 <body>
   <a class="skip" href="#contenido">Saltar al contenido</a>
-  <header class="header header--solid">
+  <header class="header">
     <div class="wrap header__bar">
       <a class="logo" href="index.html" aria-label="Claudia Serrano, inicio">
         <img class="logo--light" src="assets/logo/signature-white.svg" alt="Claudia Serrano" width="1275" height="276">
@@ -60,23 +60,33 @@
   </header>
 
   <main id="contenido">
-    <section class="page-top cream">
-      <div class="wrap" style="display:grid;gap:1rem;max-width:900px;margin-left:max(var(--gutter),calc((100% - var(--max))/2))">
-        <p class="label">Agenda en línea</p>
+    <section class="page-hero page-hero--short">
+      <div class="page-hero__media"><img src="assets/img/gen/estudio-vanity.webp" alt="Estudio de maquillaje con espejo de luces" width="900" height="504" fetchpriority="high" style="object-position:50% 50%"></div>
+      <div class="wrap">
+        <p class="label" style="color:var(--gold)">Agenda en línea</p>
         <h1 class="display d-1" data-split>Agenda tu cita</h1>
         <p class="lede">Cuatro pasos: servicio, fecha y hora, tus datos y el pago. Al final recibes la confirmación y tu cita aparece en tu portal.</p>
+        <ol class="beats" style="max-width:460px">
+          <li><span class="num">01</span><b>Elige tu servicio</b><p>Novias, full glam, peinados.</p></li>
+          <li><span class="num">02</span><b>Fecha y hora</b><p>Mira los horarios disponibles.</p></li>
+          <li><span class="num">03</span><b>Confirmación inmediata</b><p>Y tu cita queda en tu portal.</p></li>
+        </ol>
       </div>
     </section>
 
     <section class="cream" style="padding-bottom:var(--section)">
       <div class="wrap wizard" id="wizard">
         <div>
-          <ol class="steps" id="steps">
-            <li data-step="1"><i>1</i>Servicio</li>
-            <li data-step="2"><i>2</i>Fecha y hora</li>
-            <li data-step="3"><i>3</i>Tus datos</li>
-            <li data-step="4"><i>4</i>Pago</li>
-          </ol>
+          <div class="stepper">
+            <div class="stepper__top"><span id="step-count">Paso 1 de 4</span><b id="step-name">Servicio</b></div>
+            <div class="stepper__bar"><i id="step-bar"></i></div>
+            <ol class="steps" id="steps">
+              <li data-step="1"><i>1</i><span>Servicio</span></li>
+              <li data-step="2"><i>2</i><span>Fecha y hora</span></li>
+              <li data-step="3"><i>3</i><span>Tus datos</span></li>
+              <li data-step="4"><i>4</i><span>Pago</span></li>
+            </ol>
+          </div>
 
           <!-- Paso 1 -->
           <div class="panel" data-panel="1">
@@ -138,10 +148,8 @@
 
         <!-- Resumen -->
         <aside class="summary" aria-live="polite">
-          <img id="sum-img" src="assets/img/claudia-studio-smile-md.webp" alt="" width="900" height="1350">
+          <div class="summary__head"><img id="sum-img" src="assets/img/claudia-studio-smile-sm.webp" alt="" width="480" height="720"><div><p class="label">Tu reserva</p><b class="display d-3" id="sum-name" style="display:block;margin-top:.4rem">Elige un servicio</b></div></div>
           <div class="summary__body">
-            <p class="label">Tu reserva</p>
-            <b class="display d-3" id="sum-name">Elige un servicio</b>
             <dl>
               <div><dt>Fecha</dt><dd id="sum-date">—</dd></div>
               <div><dt>Hora</dt><dd id="sum-time">—</dd></div>
@@ -161,5 +169,6 @@
       <span><a href="index.html">Inicio</a> · <a href="academia.html">Academia</a> · <a href="tienda.html">Tienda</a></span>
     </div>
   </footer>
+  <a class="wa-float" href="https://wa.me/12107935636?text=Hola%20Claudia%2C%20quiero%20agendar%20una%20cita" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.8 14.13c-.24.68-1.42 1.3-1.95 1.34-.5.05-.97.23-3.27-.68-2.77-1.09-4.52-3.92-4.66-4.1-.13-.18-1.11-1.48-1.11-2.82s.7-2 .95-2.27c.24-.27.53-.34.71-.34h.51c.16 0 .38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.13.29-.27.45-.13.16-.28.35-.4.47-.13.13-.27.28-.12.55.16.27.7 1.15 1.5 1.86 1.03.92 1.9 1.2 2.17 1.34.27.13.43.11.58-.07.16-.18.67-.78.85-1.05.18-.27.36-.22.6-.13.25.09 1.57.74 1.84.88.27.13.45.2.51.31.07.11.07.64-.17 1.32z"/></svg></a>
 </body>
 </html>

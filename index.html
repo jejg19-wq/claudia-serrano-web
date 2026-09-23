@@ -17,14 +17,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Italiana&amp;family=Open+Sans:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
   <link rel="preload" as="font" href="assets/fonts/tan-mon-cheri.woff2" type="font/woff2" crossorigin>
   <link rel="preload" as="image" href="assets/img/hero-video-poster.webp" fetchpriority="high">
-  <link rel="stylesheet" href="assets/css/app.css">
+  <link rel="stylesheet" href="assets/css/app.css?v=8">
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js" defer></script>
-  <script src="assets/js/data.js" defer></script>
-  <script src="assets/js/i18n.js" defer></script>
-  <script src="assets/js/app.js" defer></script>
+  <script src="assets/js/data.js?v=8" defer></script>
+  <script src="assets/js/i18n.js?v=8" defer></script>
+  <script src="assets/js/app.js?v=8" defer></script>
 </head>
 <body>
   <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -106,23 +106,28 @@
       </div>
     </div>
 
-    <!-- ===== EL ARTE DEL DETALLE: el video de Claudia avanza con el scroll (PC) ===== -->
-    <section class="seq" data-frames="61" data-src="assets/seq/f_" aria-label="El arte del detalle">
-      <div class="wrap seq__sticky">
-        <div class="seq__intro" style="display:grid;gap:1.1rem;align-content:center">
+    <!-- ===== EL ARTE DEL DETALLE: video nuevo con otras fotos de Claudia ===== -->
+    <section class="section reel-sec" aria-label="El arte del detalle">
+      <div class="wrap reel">
+        <div class="reel__text">
           <p class="label">El arte del detalle</p>
           <h2 class="display d-1" data-split>Precisión y arte</h2>
-          <p class="lede">Una marca inspirada en las grandes casas de moda y la belleza editorial.</p>
+          <p class="lede" data-anim="up">Una marca inspirada en las grandes casas de moda y la belleza editorial.</p>
+          <ol class="beats" data-stagger>
+            <li><span class="num">01</span><b>Precisión</b><p>La precisión y el arte del maquillaje de alto nivel, en cada rostro.</p></li>
+            <li><span class="num">02</span><b>Tu look</b><p>El look que tú escojas, tanto de maquillaje como de peinado.</p></li>
+            <li><span class="num">03</span><b>Tu sello</b><p>Lo ideal es que tú te sientas a gusto. Esa es mi firma.</p></li>
+          </ol>
         </div>
-        <div class="seq__stage">
-          <img src="assets/img/hero-video-poster.webp" alt="Claudia Serrano aplicando rubor con brocha" width="720" height="1080" loading="lazy">
-          <video data-mobile-src="assets/video/hero-vertical.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
-          <canvas aria-hidden="true"></canvas>
-        </div>
-        <div class="seq__beats">
-          <div class="beat"><span class="num">01</span><h3 class="display d-3">Precisión</h3><p>La precisión y el arte del maquillaje de alto nivel, en cada rostro.</p></div>
-          <div class="beat"><span class="num">02</span><h3 class="display d-3">Tu look</h3><p>El look que tú escojas, tanto de maquillaje como de peinado.</p></div>
-          <div class="beat"><span class="num">03</span><h3 class="display d-3">Tu sello</h3><p>Lo ideal es que tú te sientas a gusto. Esa es mi firma.</p></div>
+        <div class="reel__stage" data-anim="clip">
+          <div class="reel__arch">
+            <img src="assets/img/reel-poster.webp" alt="Retratos de Claudia Serrano" width="720" height="1080" loading="lazy">
+            <video data-wide="assets/video/reel.mp4" data-tall="assets/video/reel.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
+          </div>
+          <div class="reel__ring" aria-hidden="true">
+            <svg viewBox="0 0 200 200"><defs><path id="ring-path" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/></defs><circle cx="100" cy="100" r="99" fill="#0b0908"/><text><textPath href="#ring-path">Claudia Serrano · Makeup Studio · Academy · </textPath></text></svg>
+            <div class="reel__ring-core"><img src="assets/logo/monogram-gold.png" alt="" width="712" height="490"></div>
+          </div>
         </div>
       </div>
     </section>
@@ -139,35 +144,30 @@
           <a class="btn btn--ghost" href="agendar.html">Ver agenda</a>
         </div>
       </div>
-      <div class="hs">
-        <div class="hs__track">
-          <a class="svc" href="agendar.html?s=novia">
-            <img src="assets/img/catalogo/novia-06-md.webp" alt="Novia con maquillaje y peinado de Claudia Serrano" width="900" height="1200" loading="lazy">
-            <div class="svc__body"><span class="svc__tag">Novias</span><h3 class="display d-2">Bride Makeup &amp; Hair</h3><p>Luce espectacular bajo mi sello: el look que tú escojas, tanto de maquillaje como de peinado.</p>
-              <div class="svc__row"><p class="svc__price"><small>Desde</small>$350</p><span class="btn btn--light btn--sm">Agendar</span></div></div>
+      <div class="wrap">
+        <div class="svc-grid" data-stagger>
+          <a class="svc2" href="agendar.html?s=novia">
+            <figure class="svc2__img"><img src="assets/img/catalogo/novia-06-md.webp" alt="Novia con maquillaje y peinado de Claudia Serrano" width="900" height="1200" loading="lazy"><span class="svc2__tag">Novias</span></figure>
+            <h3 class="svc2__name">Bride Makeup &amp; Hair</h3>
+            <div class="svc2__row"><p class="svc2__price"><small>Desde</small>$350</p><span class="svc2__cta">Agendar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
           </a>
-          <a class="svc" href="agendar.html?s=fullglam">
-            <img src="assets/img/catalogo/fullglam-02-md.webp" alt="Full Glam Signature Look" width="900" height="1200" loading="lazy">
-            <div class="svc__body"><span class="svc__tag">El más pedido</span><h3 class="display d-2">Full Glam Signature Look</h3><p>Mi maquillaje más pedido: full glam, full face.</p>
-              <div class="svc__row"><p class="svc__price">$150</p><span class="btn btn--light btn--sm">Agendar</span></div></div>
+          <a class="svc2" href="agendar.html?s=fullglam">
+            <figure class="svc2__img"><img src="assets/img/catalogo/fullglam-02-md.webp" alt="Full Glam Signature Look" width="900" height="1200" loading="lazy"><span class="svc2__tag">El más pedido</span></figure>
+            <h3 class="svc2__name">Full Glam Signature Look</h3>
+            <div class="svc2__row"><p class="svc2__price">$150</p><span class="svc2__cta">Agendar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
           </a>
-          <a class="svc" href="agendar.html?s=glam-peinado">
-            <img src="assets/img/catalogo/glam-peinado-01-md.webp" alt="Maquillaje full glam con peinado recogido" width="900" height="1200" loading="lazy">
-            <div class="svc__body"><span class="svc__tag">Maquillaje + peinado</span><h3 class="display d-2">Full Glam + Peinado</h3><p>Maquillaje full glam y peinado en la misma cita. No aplica para novias.</p>
-              <div class="svc__row"><p class="svc__price">$230</p><span class="btn btn--light btn--sm">Agendar</span></div></div>
+          <a class="svc2" href="agendar.html?s=glam-peinado">
+            <figure class="svc2__img"><img src="assets/img/catalogo/glam-peinado-01-md.webp" alt="Maquillaje full glam con peinado recogido" width="900" height="1200" loading="lazy"><span class="svc2__tag">Maquillaje + peinado</span></figure>
+            <h3 class="svc2__name">Full Glam + Peinado</h3>
+            <div class="svc2__row"><p class="svc2__price">$230</p><span class="svc2__cta">Agendar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
           </a>
-          <a class="svc" href="agendar.html?s=waves">
-            <img src="assets/img/catalogo/waves-02-md.webp" alt="Peinado Hollywood waves" width="900" height="1200" loading="lazy">
-            <div class="svc__body"><span class="svc__tag">Peinado</span><h3 class="display d-2">Hollywood Waves</h3><p>Peinado de ondas estilo Hollywood.</p>
-              <div class="svc__row"><p class="svc__price">$120</p><span class="btn btn--light btn--sm">Agendar</span></div></div>
-          </a>
-          <a class="svc" href="academia.html" style="background:var(--gold);color:var(--black)">
-            <img src="assets/img/gen/academia-mesa.webp" alt="" width="720" height="900" loading="lazy" style="opacity:.35">
-            <div class="svc__body"><span class="svc__tag" style="background:var(--black);color:var(--gold)">Academia</span><h3 class="display d-2">Makeup Class 1:1</h3><p style="color:rgba(0,0,0,.75)">Presencial u online, totalmente personalizados.</p>
-              <div class="svc__row"><p class="svc__price" style="color:var(--black)"><small style="color:rgba(0,0,0,.6)">Desde</small>$150</p><span class="btn btn--sm">Ver cursos</span></div></div>
+          <a class="svc2" href="agendar.html?s=waves">
+            <figure class="svc2__img"><img src="assets/img/catalogo/waves-02-md.webp" alt="Peinado Hollywood waves" width="900" height="1200" loading="lazy"><span class="svc2__tag">Peinado</span></figure>
+            <h3 class="svc2__name">Hollywood Waves</h3>
+            <div class="svc2__row"><p class="svc2__price">$120</p><span class="svc2__cta">Agendar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
           </a>
         </div>
-        <p class="hs__hint"><span>Desliza</span><span>5 opciones →</span></p>
+        <a class="acad-banner" href="academia.html" data-anim="up"><img src="assets/img/gen/academia-mesa.webp" alt="" width="720" height="900" loading="lazy"><div><b>Makeup Class 1:1</b><span>Presencial u online, totalmente personalizados.</span></div><span class="btn btn--gold btn--sm">Ver cursos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
       </div>
     </section>
 
@@ -221,32 +221,24 @@
             <p class="label">Portafolio</p>
             <h2 class="display d-1" data-split>Clientas reales</h2>
           </div>
-          <a class="btn btn--ghost" href="https://instagram.com/claudiasserrano" target="_blank" rel="noopener" data-anim="up">@claudiasserrano</a>
+          <a class="btn btn--glass" href="https://instagram.com/claudiasserrano" target="_blank" rel="noopener" data-anim="up"><span class="ico-ig" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.25" fill="#fff" stroke="none"/></svg></span>@claudiasserrano</a>
         </div>
-        <div class="pf">
-          <div class="pf__col">
-            <figure><img src="assets/img/catalogo/novia-04-45.webp" alt="Novia con velo" width="900" height="1125" loading="lazy"><figcaption>Novia</figcaption></figure>
-            <figure><img src="assets/img/catalogo/fullglam-01-45.webp" alt="Full glam" width="900" height="1125" loading="lazy"><figcaption>Full glam</figcaption></figure>
-            <figure><img src="assets/img/catalogo/novia-05-45.webp" alt="Novia de espaldas con recogido" width="900" height="1125" loading="lazy"><figcaption>Novia</figcaption></figure>
-            <figure><img src="assets/img/catalogo/waves-01-45.webp" alt="Hollywood waves" width="900" height="1125" loading="lazy"><figcaption>Hollywood waves</figcaption></figure>
-          </div>
-          <div class="pf__col">
-            <figure><img src="assets/img/catalogo/novia-02-45.webp" alt="Novia soft glam" width="900" height="1125" loading="lazy"><figcaption>Novia</figcaption></figure>
-            <figure><img src="assets/img/catalogo/glam-peinado-01-45.webp" alt="Full glam y peinado" width="900" height="1125" loading="lazy"><figcaption>Full glam + peinado</figcaption></figure>
-            <figure><img src="assets/img/catalogo/fullglam-04-45.webp" alt="Full glam con ojos cerrados" width="900" height="1125" loading="lazy"><figcaption>Full glam</figcaption></figure>
-            <figure><img src="assets/img/catalogo/novia-01-45.webp" alt="Novia" width="900" height="1125" loading="lazy"><figcaption>Novia</figcaption></figure>
-          </div>
-          <div class="pf__col pf__col--xs">
-            <figure><img src="assets/img/catalogo/novia-07-45.webp" alt="Novia con ondas" width="900" height="1125" loading="lazy"><figcaption>Novia</figcaption></figure>
-            <figure><img src="assets/img/catalogo/fullglam-03-45.webp" alt="Full glam con ondas" width="900" height="1125" loading="lazy"><figcaption>Full glam</figcaption></figure>
-            <figure><img src="assets/img/catalogo/novia-03-45.webp" alt="Novia soft glam" width="900" height="1125" loading="lazy"><figcaption>Novia</figcaption></figure>
-            <figure><img src="assets/img/catalogo/glam-peinado-02-45.webp" alt="Peinado recogido" width="900" height="1125" loading="lazy"><figcaption>Peinado recogido</figcaption></figure>
-          </div>
-          <div class="pf__col pf__col--xs">
-            <figure><img src="assets/img/catalogo/waves-02-45.webp" alt="Hollywood waves en cabello rubio" width="900" height="1125" loading="lazy"><figcaption>Hollywood waves</figcaption></figure>
-            <figure><img src="assets/img/catalogo/fullglam-02-45.webp" alt="Full glam signature look" width="900" height="1125" loading="lazy"><figcaption>Full glam</figcaption></figure>
-            <figure><img src="assets/img/catalogo/novia-06-45.webp" alt="Novia con vestido blanco" width="900" height="1125" loading="lazy"><figcaption>Novia</figcaption></figure>
-          </div>
+        <div class="pf2" data-stagger>
+          <button type="button" data-full="assets/img/catalogo/novia-04-md.webp" aria-label="Novia"><img src="assets/img/catalogo/novia-04-sm.webp" alt="Novia" width="480" height="640" loading="lazy"><span>Novia</span></button>
+          <button type="button" data-full="assets/img/catalogo/fullglam-01-md.webp" aria-label="Full glam"><img src="assets/img/catalogo/fullglam-01-sm.webp" alt="Full glam" width="480" height="640" loading="lazy"><span>Full glam</span></button>
+          <button type="button" data-full="assets/img/catalogo/waves-02-md.webp" aria-label="Hollywood waves"><img src="assets/img/catalogo/waves-02-sm.webp" alt="Hollywood waves" width="480" height="640" loading="lazy"><span>Hollywood waves</span></button>
+          <button type="button" data-full="assets/img/catalogo/novia-02-md.webp" aria-label="Novia"><img src="assets/img/catalogo/novia-02-sm.webp" alt="Novia" width="480" height="640" loading="lazy"><span>Novia</span></button>
+          <button type="button" data-full="assets/img/catalogo/glam-peinado-01-md.webp" aria-label="Full glam + peinado"><img src="assets/img/catalogo/glam-peinado-01-sm.webp" alt="Full glam + peinado" width="480" height="640" loading="lazy"><span>Full glam + peinado</span></button>
+          <button type="button" data-full="assets/img/catalogo/fullglam-04-md.webp" aria-label="Full glam"><img src="assets/img/catalogo/fullglam-04-sm.webp" alt="Full glam" width="480" height="640" loading="lazy"><span>Full glam</span></button>
+          <button type="button" data-full="assets/img/catalogo/novia-07-md.webp" aria-label="Novia"><img src="assets/img/catalogo/novia-07-sm.webp" alt="Novia" width="480" height="640" loading="lazy"><span>Novia</span></button>
+          <button type="button" data-full="assets/img/catalogo/fullglam-03-md.webp" aria-label="Full glam"><img src="assets/img/catalogo/fullglam-03-sm.webp" alt="Full glam" width="480" height="640" loading="lazy"><span>Full glam</span></button>
+          <button type="button" data-full="assets/img/catalogo/novia-05-md.webp" aria-label="Novia"><img src="assets/img/catalogo/novia-05-sm.webp" alt="Novia" width="480" height="640" loading="lazy"><span>Novia</span></button>
+          <button type="button" data-full="assets/img/catalogo/waves-01-md.webp" aria-label="Hollywood waves"><img src="assets/img/catalogo/waves-01-sm.webp" alt="Hollywood waves" width="480" height="640" loading="lazy"><span>Hollywood waves</span></button>
+          <button type="button" data-full="assets/img/catalogo/novia-01-md.webp" aria-label="Novia"><img src="assets/img/catalogo/novia-01-sm.webp" alt="Novia" width="480" height="640" loading="lazy"><span>Novia</span></button>
+          <button type="button" data-full="assets/img/catalogo/fullglam-02-md.webp" aria-label="Full glam"><img src="assets/img/catalogo/fullglam-02-sm.webp" alt="Full glam" width="480" height="640" loading="lazy"><span>Full glam</span></button>
+          <button type="button" data-full="assets/img/catalogo/novia-03-md.webp" aria-label="Novia"><img src="assets/img/catalogo/novia-03-sm.webp" alt="Novia" width="480" height="640" loading="lazy"><span>Novia</span></button>
+          <button type="button" data-full="assets/img/catalogo/glam-peinado-02-md.webp" aria-label="Peinado recogido"><img src="assets/img/catalogo/glam-peinado-02-sm.webp" alt="Peinado recogido" width="480" height="640" loading="lazy"><span>Peinado recogido</span></button>
+          <button type="button" data-full="assets/img/catalogo/novia-06-md.webp" aria-label="Novia"><img src="assets/img/catalogo/novia-06-sm.webp" alt="Novia" width="480" height="640" loading="lazy"><span>Novia</span></button>
         </div>
       </div>
     </section>
@@ -280,7 +272,7 @@
         <p class="lede" data-anim="up">Elige tu servicio y reserva en línea en minutos.</p>
         <div class="actions" data-anim="up">
           <a class="btn btn--gold" href="agendar.html" data-magnetic>Agendar mi cita</a>
-          <a class="btn btn--ghost" href="https://wa.me/12107935636?text=Hola%20Claudia%2C%20quiero%20agendar%20una%20cita" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="btn btn--glass" href="https://wa.me/12107935636?text=Hola%20Claudia%2C%20quiero%20agendar%20una%20cita" target="_blank" rel="noopener"><span class="ico-wa" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="#fff" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.8 14.13c-.24.68-1.42 1.3-1.95 1.34-.5.05-.97.23-3.27-.68-2.77-1.09-4.52-3.92-4.66-4.1-.13-.18-1.11-1.48-1.11-2.82s.7-2 .95-2.27c.24-.27.53-.34.71-.34h.51c.16 0 .38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.13.29-.27.45-.13.16-.28.35-.4.47-.13.13-.27.28-.12.55.16.27.7 1.15 1.5 1.86 1.03.92 1.9 1.2 2.17 1.34.27.13.43.11.58-.07.16-.18.67-.78.85-1.05.18-.27.36-.22.6-.13.25.09 1.57.74 1.84.88.27.13.45.2.51.31.07.11.07.64-.17 1.32z"/></svg></span>WhatsApp</a>
         </div>
       </div>
     </section>
@@ -293,6 +285,7 @@
         <div style="display:grid;gap:1rem;align-content:start">
           <img class="footer__sig" src="assets/logo/signature-gold.svg" alt="Claudia Serrano" width="1275" height="276" loading="lazy">
           <p>Makeup Studio &amp; Academy · San Antonio, TX</p>
+          <div class="social"><a href="https://instagram.com/claudiasserrano" target="_blank" rel="noopener" aria-label="Instagram"><span class="ico-ig" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.25" fill="#fff" stroke="none"/></svg></span></a><a href="https://wa.me/12107935636?text=Hola%20Claudia%2C%20quiero%20agendar%20una%20cita" target="_blank" rel="noopener" aria-label="WhatsApp"><span class="ico-wa" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="#fff" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.8 14.13c-.24.68-1.42 1.3-1.95 1.34-.5.05-.97.23-3.27-.68-2.77-1.09-4.52-3.92-4.66-4.1-.13-.18-1.11-1.48-1.11-2.82s.7-2 .95-2.27c.24-.27.53-.34.71-.34h.51c.16 0 .38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.13.29-.27.45-.13.16-.28.35-.4.47-.13.13-.27.28-.12.55.16.27.7 1.15 1.5 1.86 1.03.92 1.9 1.2 2.17 1.34.27.13.43.11.58-.07.16-.18.67-.78.85-1.05.18-.27.36-.22.6-.13.25.09 1.57.74 1.84.88.27.13.45.2.51.31.07.11.07.64-.17 1.32z"/></svg></span></a><a href="mailto:claudiaserranoinfo@gmail.com" aria-label="Correo"><span class="ico-mail" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7l8 6 8-6"/></svg></span></a></div>
         </div>
         <div><h4>Explora</h4><ul><li><a href="#servicios">Servicios</a></li><li><a href="academia.html">Academia</a></li><li><a href="tienda.html">Tienda</a></li><li><a href="#portafolio">Portafolio</a></li></ul></div>
         <div><h4>Clientas</h4><ul><li><a href="agendar.html">Agendar cita</a></li><li><a href="portal/index.html">Mi portal</a></li><li><a href="#" data-cart-open>Mi carrito</a></li></ul></div>
@@ -306,7 +299,8 @@
   <nav class="dock" aria-label="Acciones rápidas">
     <a class="btn btn--gold" href="agendar.html">Agendar</a>
     <a class="btn btn--glass" href="portal/index.html">Mi portal</a>
-    <button class="icon-btn" type="button" data-cart-open aria-label="Abrir carrito"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg><span class="cart-count" data-n="0"></span></button>
+    <a class="wa-dock" href="https://wa.me/12107935636?text=Hola%20Claudia%2C%20quiero%20agendar%20una%20cita" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.8 14.13c-.24.68-1.42 1.3-1.95 1.34-.5.05-.97.23-3.27-.68-2.77-1.09-4.52-3.92-4.66-4.1-.13-.18-1.11-1.48-1.11-2.82s.7-2 .95-2.27c.24-.27.53-.34.71-.34h.51c.16 0 .38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.13.29-.27.45-.13.16-.28.35-.4.47-.13.13-.27.28-.12.55.16.27.7 1.15 1.5 1.86 1.03.92 1.9 1.2 2.17 1.34.27.13.43.11.58-.07.16-.18.67-.78.85-1.05.18-.27.36-.22.6-.13.25.09 1.57.74 1.84.88.27.13.45.2.51.31.07.11.07.64-.17 1.32z"/></svg></a>
   </nav>
+  <a class="wa-float" href="https://wa.me/12107935636?text=Hola%20Claudia%2C%20quiero%20agendar%20una%20cita" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.8 14.13c-.24.68-1.42 1.3-1.95 1.34-.5.05-.97.23-3.27-.68-2.77-1.09-4.52-3.92-4.66-4.1-.13-.18-1.11-1.48-1.11-2.82s.7-2 .95-2.27c.24-.27.53-.34.71-.34h.51c.16 0 .38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.13.29-.27.45-.13.16-.28.35-.4.47-.13.13-.27.28-.12.55.16.27.7 1.15 1.5 1.86 1.03.92 1.9 1.2 2.17 1.34.27.13.43.11.58-.07.16-.18.67-.78.85-1.05.18-.27.36-.22.6-.13.25.09 1.57.74 1.84.88.27.13.45.2.51.31.07.11.07.64-.17 1.32z"/></svg></a>
 </body>
 </html>

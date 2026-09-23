@@ -109,6 +109,22 @@
     box.innerHTML = list.map(CS.productCard).join('');
   });
 
+
+  /* ---------- Visor de fotos del portafolio ---------- */
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-full]'); if (!b) return;
+    var dlg = $('#viewer');
+    if (!dlg) {
+      dlg = document.createElement('dialog'); dlg.className = 'viewer'; dlg.id = 'viewer';
+      dlg.innerHTML = '<img alt=""><button type="button" aria-label="' + t('Cerrar') + '"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
+      document.body.appendChild(dlg);
+      dlg.addEventListener('click', function (ev) { if (ev.target === dlg || ev.target.closest('button')) dlg.close(); });
+    }
+    var img = dlg.querySelector('img'); img.src = b.dataset.full; img.alt = b.getAttribute('aria-label') || '';
+    if (dlg.showModal) dlg.showModal(); else window.open(b.dataset.full, '_blank');
+    if (window.gsap && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) gsap.fromTo(img, { scale: .92, opacity: 0 }, { scale: 1, opacity: 1, duration: .6, ease: 'expo.out' });
+  });
+
   /* ---------- Idioma: traducir textos fijos (antes del motion) ---------- */
   if (CS.translate) CS.translate(document.body);
 
@@ -131,8 +147,15 @@
     var p = v.play(); if (p && p.catch) p.catch(function () {});
   }
   $$('video[data-wide]').forEach(function (v) {
-    var tall = window.matchMedia('(max-aspect-ratio: 1/1)').matches;
-    if (!(navigator.connection && navigator.connection.saveData)) playVideo(v, tall ? v.dataset.tall : v.dataset.wide);
+    if (navigator.connection && navigator.connection.saveData) return;
+    var tall = window.matchMedia('(max-aspect-ratio: 1/1)').matches, src = tall ? v.dataset.tall : v.dataset.wide;
+    if (!('IntersectionObserver' in window)) return playVideo(v, src);
+    new IntersectionObserver(function (en) {
+      en.forEach(function (x) {
+        if (x.isIntersecting) { if (!v.src) playVideo(v, src); else { var p = v.play(); if (p && p.catch) p.catch(function () {}); } }
+        else if (v.src) v.pause();
+      });
+    }, { rootMargin: '200px 0px' }).observe(v);
   });
   // Video de la sección «El arte del detalle» en teléfono/tableta (en PC se usa la secuencia por scroll)
   $$('video[data-mobile-src]').forEach(function (v) { if (!desktop || reduced || !window.gsap || !window.ScrollTrigger) playVideo(v, v.dataset.mobileSrc); });
@@ -184,10 +207,6 @@
       var amt = +el.dataset.parallax || 10;
       gsap.fromTo(el, { yPercent: -amt }, { yPercent: amt, ease: 'none', scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } });
     });
-    $$('.pf__col').forEach(function (col, i) {
-      var amt = [40, -60, 30, -40][i % 4];
-      gsap.to(col, { y: amt, ease: 'none', scrollTrigger: { trigger: col.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } });
-    });
   }
 
   /* ---------- Portal: intro de marca + entrada del titular ---------- */
@@ -211,54 +230,17 @@
       setTimeout(function () { if (intro.parentNode) intro.remove(); }, 4500);   // red de seguridad
     }
     tl.fromTo('.portal__frame', { clipPath: 'inset(8% 10% 8% 10% round 22px)' }, { clipPath: 'inset(0% 0% 0% 0% round 0px)', duration: 1.8, ease: 'expo.inOut', clearProps: 'clipPath' }, first ? '-=1' : 0)
-      .from(words, { yPercent: 110, stagger: .1, duration: 1.3 }, '-=1.9')
+      .from(words, { y: 34, opacity: 0, stagger: .12, duration: 1.3 }, '-=1.9')
       .from(rest, { y: 30, opacity: 0, stagger: .08, duration: 1 }, '-=1');
     setTimeout(function () { tl.progress(1); }, 6000);   // red de seguridad
     if (desktop) gsap.to('.portal__frame', { yPercent: 6, ease: 'none', scrollTrigger: { trigger: portal, start: 'top top', end: 'bottom top', scrub: true } });
   }
 
-  /* ---------- Secuencia: el video de Claudia avanza con el scroll (PC) ---------- */
-  var seq = $('.seq');
-  if (seq && desktop) {
-    var canvas = $('canvas', seq), ctx = canvas.getContext('2d');
-    var N = +seq.dataset.frames || 61, base = seq.dataset.src || 'assets/seq/f_', frames = [], cur = -1;
-    function src(i) { return (CS.root || '') + base + String(i + 1).padStart(3, '0') + '.webp'; }
-    function draw(i) {
-      var img = frames[i];
-      if (!img || !img.complete || !img.naturalWidth) { for (var k = i; k >= 0; k--) if (frames[k] && frames[k].naturalWidth) { img = frames[k]; break; } }
-      if (!img || !img.naturalWidth) return;
-      var cw = canvas.width = canvas.clientWidth * (window.devicePixelRatio > 1 ? 1.5 : 1);
-      var ch = canvas.height = canvas.clientHeight * (window.devicePixelRatio > 1 ? 1.5 : 1);
-      var s = Math.max(cw / img.naturalWidth, ch / img.naturalHeight);
-      var w = img.naturalWidth * s, h = img.naturalHeight * s;
-      ctx.drawImage(img, (cw - w) / 2, (ch - h) / 2, w, h);
-    }
-    for (var i = 0; i < N; i++) { var im = new Image(); im.decoding = 'async'; im.src = src(i); frames.push(im); if (i === 0) im.onload = function () { draw(0); }; }
-    seq.classList.add('is-scrub');
-    var beats = $$('.beat', seq);
-    var state = { f: 0 };
-    ST.refresh();
-    gsap.to(state, {
-      f: N - 1, ease: 'none', snap: 'f',
-      scrollTrigger: { trigger: seq, start: 'top top', end: 'bottom bottom', scrub: 0.4,
-        onUpdate: function (self) {
-          var idx = Math.min(beats.length - 1, Math.floor(self.progress * beats.length));
-          beats.forEach(function (b, j) { b.classList.toggle('is-on', j === idx); });
-        } },
-      onUpdate: function () { var f = Math.round(state.f); if (f !== cur) { cur = f; draw(f); } }
-    });
-    if (beats[0]) beats[0].classList.add('is-on');
-    window.addEventListener('resize', function () { draw(Math.max(0, cur)); });
-  }
-
-  /* ---------- Servicios: carrusel horizontal fijado (PC) ---------- */
-  var hs = $('.hs');
-  if (hs && desktop) {
-    var track = $('.hs__track', hs);
-    hs.classList.add('is-pinned');
-    var dist = function () { return Math.max(0, track.scrollWidth - window.innerWidth); };
-    gsap.to(track, { x: function () { return -dist(); }, ease: 'none',
-      scrollTrigger: { trigger: hs, start: 'center center', end: function () { return '+=' + dist(); }, pin: true, scrub: 0.6, invalidateOnRefresh: true } });
+  /* ---------- Reel en arco: crece suave al entrar y el texto circular acompaña (PC) ---------- */
+  var arch = $('.reel__arch');
+  if (arch && desktop) {
+    gsap.fromTo(arch, { scale: .9, borderRadius: '999px 999px 60px 60px' }, { scale: 1, borderRadius: '999px 999px 22px 22px', ease: 'none', scrollTrigger: { trigger: arch, start: 'top 95%', end: 'center 55%', scrub: .6 } });
+    gsap.fromTo('.reel__ring', { yPercent: 30 }, { yPercent: -20, ease: 'none', scrollTrigger: { trigger: '.reel', start: 'top bottom', end: 'bottom top', scrub: true } });
   }
 
   /* ---------- Botones magnéticos y cursor (PC con mouse) ---------- */
