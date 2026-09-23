@@ -866,6 +866,10 @@ html.gate-locked body { overflow: hidden; background: var(--black); }
 /* Teléfonos y tabletas: sin grano superpuesto ni desenfoque en las apariciones (más fluido y sin parpadeos en Safari) */
 @media (hover: none), (max-width: 1023px) {
   body::after { display: none; }
+  /* Sin intro y portada visible desde el primer momento, aunque el JavaScript tarde o falle */
+  .intro { display: none !important; }
+  html.js:not(.is-static) body:not(.is-ready) .hero__title .line > span { transform: none; }
+  html.js:not(.is-static) body:not(.is-ready) .hero__fade { opacity: 1; transform: none; }
   /* En teléfonos y tabletas el contenido está siempre visible: nada depende de que una animación termine */
   html.js [data-reveal]:not(.is-in), html.js [data-reveal-stagger]:not(.is-in) > *,
   html.js [data-reveal], html.js [data-reveal-stagger] > * { opacity: 1; transform: none; filter: none; transition: none; }

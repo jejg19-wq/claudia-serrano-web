@@ -96,7 +96,12 @@ window.SITE = {
     }
   }
   const gated = html.classList.contains('gate-locked');
-  if (intro && !gated && !reduced && (!seen || forceIntro)) {
+  // En teléfonos y tabletas no hay intro: la página se ve al instante (con datos lentos la intro tapaba todo)
+  const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 1024px)').matches;
+  if (intro && !isDesktop && !forceIntro) {
+    intro.hidden = true;
+    document.body.classList.add('is-ready');
+  } else if (intro && !gated && !reduced && (!seen || forceIntro)) {
     document.body.classList.add('is-locked');
     setTimeout(() => intro.classList.add('is-playing'), 40);
     const t = setTimeout(finishIntro, 2600);
