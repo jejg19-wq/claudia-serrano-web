@@ -502,3 +502,12 @@ p { text-wrap: pretty; }
 .enroll .field select { appearance: auto; }
 .portal .lede { color: rgba(245,245,245,.92); text-shadow: 0 1px 14px rgba(0,0,0,.55); }
 .portal .phrase { text-shadow: 0 2px 20px rgba(0,0,0,.45); }
+
+/* Textos sobre fondos oscuros que no usan la clase .dark (portada interior, secuencia, acceso al portal) */
+.seq .lede, .gate .lede, .page-hero .lede, .card--dark .lede { color: rgba(245,245,245,.84); }
+.seq .muted, .gate .muted, .page-hero .muted, .card--dark .muted { color: rgba(245,245,245,.66); }
+.seq .label, .gate .label, .card--dark .label { color: var(--nude); }
+.page-hero .lede { text-shadow: 0 1px 14px rgba(0,0,0,.5); }
+.gate .proto { color: rgba(245,245,245,.72); background: rgba(212,175,55,.08); border-color: rgba(212,175,55,.45); }
+.cream .gold, .sand .gold, .card .gold { color: #93721f; }   /* oro oscurecido para que se lea sobre fondos claros */
+.summary .label { color: var(--nude); }
